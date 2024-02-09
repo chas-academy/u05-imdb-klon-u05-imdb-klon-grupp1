@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestWebController;
 use App\Models\Test;
+use App\Http\Controllers\ListController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/tests', [TestWebController::class, 'index']);
+
+
+// Routes for the lists (display all, show one, edit one, update one and delete one)
+Route::get('/lists', [ListController::class, 'index']);
+Route::get('/lists/{id}', [ListController::class, 'show']);
+Route::get('/lists/{id}/edit', [ListController::class, 'edit']);
+Route::put('/lists/{id}', [ListController::class, 'update']);
+Route::delete('/lists/{id}', [ListController::class, 'destroy']);
 
 /*made unused routes for later*/
 /* Route::get('/tests/create', [TestWebController::class, 'create'])->name('tests.create');
