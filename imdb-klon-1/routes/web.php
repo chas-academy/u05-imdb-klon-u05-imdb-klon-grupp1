@@ -5,6 +5,7 @@ use App\Http\Controllers\TestWebController;
 use App\Models\Test;
 use App\Http\Controllers\ListController;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,4 +46,9 @@ Route::get('/movies/{movie}', [MovieController::class, 'show'])->name('movies.sh
 Route::get('/movies/{movie}/edit', [MovieController::class, 'edit'])->name('movies.edit');
 Route::put('/movies/{movie}', [MovieController::class, 'update'])->name('movies.update');
 Route::delete('/movies/{movie}', [MovieController::class, 'destroy'])->name('movies.destroy');
+
+
+//Routes for reviews 
+Route::get('/reviews', [ReviewController::class, 'index']);
+
 
