@@ -4,9 +4,14 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+
+use App\Models\CategoryList;
+use App\Models\Review;
 
 class User extends Authenticatable
 {
@@ -42,4 +47,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    // One user can have multiple lists 
+    // TODO: Check if this statement is correct. (Dennis)
+    public function categorieLists(): HasMany
+    {
+        return $this->hasMany(CategoryList::class);
+    }
+
+    public function reviews(): HasMany 
+    {
+        return $this->hasMany(Review::class);    
+    }
+
+    
+
 }
