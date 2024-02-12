@@ -5,6 +5,7 @@ use App\Http\Controllers\TestWebController;
 use App\Models\Test;
 use App\Http\Controllers\ListController;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,3 +47,11 @@ Route::get('/movies/{movie}/edit', [MovieController::class, 'edit'])->name('movi
 Route::put('/movies/{movie}', [MovieController::class, 'update'])->name('movies.update');
 Route::delete('/movies/{movie}', [MovieController::class, 'destroy'])->name('movies.destroy');
 
+// Routes for handeling users
+Route::get('/users', [UserController::class, 'index'])->name('users.index'); // ...show all users
+Route::get('/users/create', [UserController::class, 'create'])->name('users.create'); // ...create a new user
+Route::post('/users/{id}', [UserController::class, 'store'])->name('users.store'); // ...add new user to all users
+Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show'); // ...show specific user
+Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit'); // ...edit user information
+Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update'); // ...send 'edit' changes 
+Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.index'); // ...delete a specific user
