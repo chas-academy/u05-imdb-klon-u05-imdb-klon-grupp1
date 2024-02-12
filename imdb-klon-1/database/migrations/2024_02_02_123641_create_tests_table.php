@@ -12,16 +12,19 @@ return new class extends Migration
 
     public function up(): void
     {
-        Schema::create(
-            'tests',
+        if(!Schema::hasTable('tests')){
 
-            function (Blueprint $table) {
-                $table->id();
-                $table->string('fillable_string');
-                $table->decimal('fillable_int');
-                $table->timestamps();
-            }
-        );
+            Schema::create(
+                'tests',
+
+                function (Blueprint $table) {
+                    $table->id();
+                    $table->string('fillable_string');
+                    $table->decimal('fillable_int');
+                    $table->timestamps();
+                }
+            );
+        }
     }
 
     /**
