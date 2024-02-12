@@ -6,6 +6,7 @@ use App\Models\Test;
 use App\Http\Controllers\ListController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\GenreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,3 +56,11 @@ Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show'); 
 Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit'); // ...edit user information
 Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update'); // ...send 'edit' changes 
 Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.index'); // ...delete a specific user
+
+
+// Routes for handeling Genre
+Route::get('/genres', [GenreController::class, 'genres.index']);
+Route::get('/genres/{id}', [GenreController::class, 'genres.show']);
+Route::get('/genres/{id}/edit', [GenreController::class, 'genres.edit']);
+Route::put('/genres/{id}', [GenreController::class, 'genres.update']);
+Route::delete('/genres/{id}', [GenreController::class, 'genres.destroy']);
