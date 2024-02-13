@@ -5,6 +5,8 @@ use App\Http\Controllers\TestWebController;
 use App\Models\Test;
 use App\Http\Controllers\ListController;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\ReviewController;
+=======
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GenreController;
 
@@ -48,6 +50,15 @@ Route::get('/movies/{movie}/edit', [MovieController::class, 'edit'])->name('movi
 Route::put('/movies/{movie}', [MovieController::class, 'update'])->name('movies.update');
 Route::delete('/movies/{movie}', [MovieController::class, 'destroy'])->name('movies.destroy');
 
+
+//Routes for reviews 
+Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index');
+Route::get('/reviews/create', [ReviewController::class, 'create'])->name('reviews.create');
+Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+Route::get('/reviews/{review}', [ReviewController::class, 'show'])->name('reviews.show');
+Route::get('/reviews/{review}/edit', [ReviewController::class, 'edit'])->name('reviews.edit');
+Route::put('/reviews/{review}', [ReviewController::class, 'update'])->name('reviews.update');
+Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
 // Routes for handeling users
 Route::get('/users', [UserController::class, 'index'])->name('users.index'); // ...show all users
 Route::get('/users/create', [UserController::class, 'create'])->name('users.create'); // ...create a new user
