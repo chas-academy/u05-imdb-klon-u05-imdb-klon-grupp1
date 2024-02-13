@@ -6,6 +6,9 @@ use App\Models\Test;
 use App\Http\Controllers\ListController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ReviewController;
+=======
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\GenreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,3 +59,19 @@ Route::get('/reviews/{review}', [ReviewController::class, 'show'])->name('review
 Route::get('/reviews/{review}/edit', [ReviewController::class, 'edit'])->name('reviews.edit');
 Route::put('/reviews/{review}', [ReviewController::class, 'update'])->name('reviews.update');
 Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
+// Routes for handeling users
+Route::get('/users', [UserController::class, 'index'])->name('users.index'); // ...show all users
+Route::get('/users/create', [UserController::class, 'create'])->name('users.create'); // ...create a new user
+Route::post('/users/{id}', [UserController::class, 'store'])->name('users.store'); // ...add new user to all users
+Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show'); // ...show specific user
+Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit'); // ...edit user information
+Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update'); // ...send 'edit' changes 
+Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.index'); // ...delete a specific user
+
+
+// Routes for handeling Genre
+Route::get('/genres', [GenreController::class, 'genres.index']);
+Route::get('/genres/{id}', [GenreController::class, 'genres.show']);
+Route::get('/genres/{id}/edit', [GenreController::class, 'genres.edit']);
+Route::put('/genres/{id}', [GenreController::class, 'genres.update']);
+Route::delete('/genres/{id}', [GenreController::class, 'genres.destroy']);
