@@ -14,8 +14,8 @@ return new class extends Migration
         if (!Schema::hasTable('reviews')){
             Schema::create('reviews', function (Blueprint $table) {
                 $table->id('review_id');
-                $table->foreignId('user_id')->references('id')->on('User'); //adds user an movie primary keys. not sure if i should use constrained or references
-                $table->foreignId('title_id')->references('id')->on('Movie');
+                $table->foreignId('user_id')->constrained(); // ->references('id')->on('User'); changed for constrained
+                $table->foreignId('title_id')->constrained('movies');
                 $table->float('rating');
                 $table->text('comment');
                 $table->timestamps();

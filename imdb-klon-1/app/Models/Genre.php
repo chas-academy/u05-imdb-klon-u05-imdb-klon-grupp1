@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Genre extends Model
 {
     use HasFactory;
+    protected $table = 'genres';
     public function movies()
     {
         return $this->belongsToMany(Movie::class, 'genre_movies_pivot', 'genres_id', 'movies_id');
