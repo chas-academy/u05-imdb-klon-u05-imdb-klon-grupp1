@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if(!Schema::hasTable('users')){
+        if(!Schema::hasTable('genres')){
             Schema::create('genres', function (Blueprint $table) {
                 $table->id();
-                $table->varchar('name')->unique();
+                $table->string('name')->unique();
                 $table->foreignId('list_id')->constrained();
                 $table->timestamps();
             });
