@@ -6,7 +6,6 @@ use App\Models\Test;
 use App\Http\Controllers\ListController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ReviewController;
-=======
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GenreController;
 
