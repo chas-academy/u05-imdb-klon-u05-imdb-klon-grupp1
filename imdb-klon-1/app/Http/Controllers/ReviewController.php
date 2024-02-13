@@ -12,33 +12,30 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        // obs, kolla om reviewslist, kopierat från categorylist. kanske inte stämmer. 
-    //     $reviews = ReviewsList::get();
-    //  return view('showreviews', ['reviews' => $reviews]);
+        $reviews = Review::all();
+        return view('reviews.index', ['reviews' => $reviews]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        //
-    }
-
+    public function create(Request $request)
+{
+    
+}
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        //
-    }
-
+{
+     
+}
     /**
      * Display the specified resource.
      */
     public function show(Review $review)
     {
-        //
+        return view('reviews.show', ['review' => $review]);
     }
 
     /**
@@ -46,22 +43,23 @@ class ReviewController extends Controller
      */
     public function edit(Review $review)
     {
-        //
+        return view('reviews.edit', ['review' => $review]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Review $review, Request $request)
-    {
-        //
-    }
+    public function update(Request $request, Review $review)
+{
+   
+}
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Review $review)
-    {
-        //
-    }
+public function destroy(Review $review)
+{
+    // Delete the review
+    $review->delete();
+
+    // Redirect the user
+    return redirect('/reviews');
+}
 }
