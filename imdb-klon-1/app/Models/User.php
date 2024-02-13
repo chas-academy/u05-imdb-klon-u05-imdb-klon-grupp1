@@ -49,17 +49,14 @@ class User extends Authenticatable
     ];
 
     // One user can have multiple lists 
-    // TODO: Check if this statement is correct. (Dennis)
     public function categorieLists(): HasMany
     {
         return $this->hasMany(CategoryList::class);
     }
 
-    public function reviews(): HasMany 
+    // One user can have one review per movie
+    public function reviews(): HasOne 
     {
-        return $this->hasMany(Review::class);    
+        return $this->hasOne(Review::class);    
     }
-
-    
-
 }
