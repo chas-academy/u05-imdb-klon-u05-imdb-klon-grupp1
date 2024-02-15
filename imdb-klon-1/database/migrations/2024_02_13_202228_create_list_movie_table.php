@@ -11,10 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('list_movie', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('list_movie')){
+            Schema::create('list_movie', function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('title_id')->constrained(table: 'movies');
+                $table->foreignId('list_id')->constrained(table: 'lists');
+                $table->timestamps();
+            });
+        }
     }
 
     /**
