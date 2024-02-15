@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 // One movie has many genre, many reviews, many watchlist
 class Movie extends Model
 {
@@ -51,5 +53,19 @@ class Movie extends Model
         $data_rating = $movie->reviews()->avg('rating');
         $data['top_rating'] =  $data_rating;
         $movie->update($data);
+    }
+
+
+
+
+
+
+
+
+
+    // pivot table for Movie and Genre
+    public function Genre(): BelongsToMany
+    {
+        return $this->belongsToMany(Genre::class, 'movie_genre', 'genre_id', 'list_id')->withTimestamps();
     }
 }
