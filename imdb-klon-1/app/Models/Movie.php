@@ -56,9 +56,15 @@ class Movie extends Model
         $movie->update($data);
     }
 
+    // pivot table for Movie and Genre
+    public function Genre(): BelongsToMany
+    {
+        return $this->belongsToMany(Genre::class, 'movie_genre', 'genre_id', 'list_id')->withTimestamps();
+
     // pivot table for CategoryList & Movie
     public function categoryLists(): BelongsToMany
     {
         return $this->belongsToMany(CategoryList::class, 'list_movie', 'title_id', 'list_id')->withTimestamps();
+
     }
 }
