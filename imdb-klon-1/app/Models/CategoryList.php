@@ -23,8 +23,8 @@ class CategoryList extends Model
     /**
      * The movies that belong to the list.
      */
-    public function Movie(): BelongsToMany
+    public function movies(): BelongsToMany
     {
-        return $this->belongsToMany(Movie::class, 'MoviesLists', 'list_id', 'title_id');
+        return $this->belongsToMany(Movie::class, 'list_movie', 'list_id', 'title_id')->withTimestamps();
     }
 }
