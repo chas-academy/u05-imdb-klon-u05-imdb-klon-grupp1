@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lists', function (Blueprint $table) {
-            $table->id(); // to create an auto-incrementing primary key column 
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('title_id')->constrained();
-            $table->timestamps();
-        });
+        if(!Schema::hasTable('lists')){
+            Schema::create('lists', function (Blueprint $table) {
+                $table->id(); // to create an auto-incrementing primary key column 
+                $table->foreignId('user_id')->constrained();
+                $table->foreignId('title_id')->constrained('movies');
+                $table->timestamps();
+            });
+        }
     }
 
     /**
