@@ -13,7 +13,7 @@ class Genre extends Model
 
     public function movies(): BelongsToMany
     {
-        return $this->belongsToMany(Movie::class, 'list_movie', 'list_id', 'title_id')->withTimestamps();
+        return $this->belongsToMany(Movie::class, 'movie_genre', 'genre_id', 'title_id')->withTimestamps();
     }
     // Commented out the code below. I think the entity shouldnt be connected directly to a pivot?
     // public function movies()

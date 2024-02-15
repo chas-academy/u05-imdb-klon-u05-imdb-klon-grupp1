@@ -21,10 +21,6 @@ class Movie extends Model
         return $imagePath;
     }
 
-    public function genres()
-    {
-        return $this->belongsToMany(Genre::class, 'genre_movies_pivot', 'movies_id', 'genres_id');
-    }
 
     public function reviews()
     {
@@ -57,9 +53,9 @@ class Movie extends Model
     }
 
     // pivot table for Movie and Genre
-    public function Genre(): BelongsToMany
+    public function genres(): BelongsToMany
     {
-        return $this->belongsToMany(Genre::class, 'movie_genre', 'genre_id', 'list_id')->withTimestamps();
+        return $this->belongsToMany(Genre::class, 'movie_genre', 'title_id', 'genre_id')->withTimestamps();
     }
 
     // pivot table for CategoryList & Movie
