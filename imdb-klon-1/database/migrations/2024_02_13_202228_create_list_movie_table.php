@@ -14,7 +14,7 @@ return new class extends Migration
         if (!Schema::hasTable('list_movie')){
             Schema::create('list_movie', function (Blueprint $table) {
                 $table->id();
-                $table->foreignId('title_id')->constrained(table: 'movies');
+                $table->foreignId('title_id')->constrained(table: 'movies'); // ...specifies what table to fetch information from
                 $table->foreignId('list_id')->constrained(table: 'lists');
                 $table->timestamps();
             });
