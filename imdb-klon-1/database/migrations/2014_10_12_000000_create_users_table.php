@@ -16,10 +16,10 @@ return new class extends Migration
         if(!Schema::hasTable('users')){
             Schema::create('users', function (Blueprint $table) {
                 $table->id();
-                $table->varchar('username')->unique();
-                $table->varchar('email')->unique();
-                $table->varchar('password');
-                $table->varchar('role');
+                $table->string('username')->unique();
+                $table->string('email')->unique();
+                $table->string('password');
+                $table->string('role');
                 $table->rememberToken();
                 $table->timestamps();
             });

@@ -21,12 +21,9 @@ return new class extends Migration
             $table->text('trailer_path');
             $table->integer('top_rating')->default(0);
             $table->string('movie_genres')->default(null);
-            $table->foreignId('genre_id')->constrained('genres'); 
-            $table->foreignId('review_id')->constrained('reviews');
-            // $table->foreignId('genre_id')->constrained('genres'); 
-            // $table->foreignId('review_id')->constrained('reviews');
-           
-          
+            $table->foreignId('genre_id')->constrained();
+            $table->foreignId('review_id')->constrained();
+
             $table->timestamps();
         });
     }
