@@ -1,5 +1,6 @@
 <?php
-
+#Movie.php ->
+#Added a '$fillable' for mass assignment
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,6 +12,16 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Movie extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'title',
+        'description',
+        'release_date',
+        'img_path',
+        'trailer_path',
+        'top_rating',
+        'movie_genres'
+    ];
 
     //protected $guarded = [];
     protected $table = 'movies';

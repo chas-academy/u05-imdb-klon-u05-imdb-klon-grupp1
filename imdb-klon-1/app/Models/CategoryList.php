@@ -1,7 +1,11 @@
 <?php
 
 namespace App\Models;
+#CategoryList.php changes ->
+#Added the 'use'-case to use factory.
+#Added $fillable variable to handle mass assignments.
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -11,6 +15,13 @@ use App\Models\Movie;
 
 class CategoryList extends Model
 {
+    use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'title_id'
+    ];
+
     protected $table = 'lists';
     /**
      * Get the user that owns the category list.
