@@ -16,6 +16,8 @@ return new class extends Migration
                 $table->id(); // to create an auto-incrementing primary key column 
                 $table->foreignId('user_id')->constrained();
                 $table->foreignId('title_id')->constrained('movies');
+              
+
                 $table->timestamps();
             });
         }
