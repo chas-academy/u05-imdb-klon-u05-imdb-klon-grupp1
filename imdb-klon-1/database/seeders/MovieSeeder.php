@@ -1,5 +1,4 @@
 <?php
-#Created MovieSeeder.php to handle fake db information
 
 namespace Database\Seeders;
 
