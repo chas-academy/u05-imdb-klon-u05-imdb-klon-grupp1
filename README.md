@@ -19,6 +19,7 @@
 - As a user, I want to be able to create an account easily using my email or social media accounts, so I can personalize my experience on the site.
 
 - As a user, I want to be able to rate and review movies,  so I can share my opinions with the community and discover new content based on recommendations. 
+- As a user i want to save movies i like and/or want to see to a list
 
 #### Admin:
 - As an admin, I want to be able to manage and update the database of movies and TV shows, ensuring accurate and up-to-date information on the platform.
