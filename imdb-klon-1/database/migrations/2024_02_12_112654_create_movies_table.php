@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('movie_genres')->default(null);
             $table->foreignId('genre_id')->constrained('genres'); 
             $table->foreignId('review_id')->constrained('reviews');
+            // $table->foreignId('genre_id')->constrained('genres'); 
+            // $table->foreignId('review_id')->constrained('reviews');
            
           
             $table->timestamps();
