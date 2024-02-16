@@ -1,8 +1,6 @@
 <?php
-
-
+#Modified Review.php and removed the id from the fillable. not needed
 namespace App\Models;
-
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,8 +10,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Review extends Model
 {
     use HasFactory;
+
     protected $fillable = [
-        'review_id',
         'user_id',
         'title_id',
         'rating',
