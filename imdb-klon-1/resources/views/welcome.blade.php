@@ -1,3 +1,9 @@
+@extends('layouts.app')
+
+@section('titletab', 'Home')
+<!-- html tag, name -->
+
+@section('content')
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
