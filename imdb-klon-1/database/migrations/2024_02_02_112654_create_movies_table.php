@@ -1,5 +1,8 @@
 <?php
+#Changed the way we define foreign keys to make it easier to work with. 'Model::class' will use the 'model_id' naming convention.
 
+use App\Models\Review;
+use App\Models\Genre;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,22 +14,31 @@ return new class extends Migration
      */
     public function up(): void
     {
+        
         if(!Schema::hasTable('movies')){
-        Schema::create('movies', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->text('description');
-            $table->integer('release_date');
-            $table->text('img_path');
-            $table->text('trailer_path');
-            $table->integer('top_rating')->default(0);
-            $table->string('movie_genres')->default(null);
-            $table->foreignId('genre_id')->constrained();
-            $table->foreignId('review_id')->constrained();
+            
+            Schema::disableForeignKeyConstraints();
 
-            $table->timestamps();
-        });
-    }
+            Schema::create('movies', function (Blueprint $table) {
+                $table->id();
+                $table->string('title');
+                $table->text('description');
+                $table->integer('release_date');
+                $table->text('img_path');
+                $table->text('trailer_path');
+                $table->integer('top_rating')->default(0);
+                $table->string('movie_genres')->default(null);
+                $table->integer('genre_id')->unsigned()->change();
+                $table->integer('review_id')->unsigned()->change();
+                $table->timestamps();
+            });
+            
+            Schema::table('movies', function($table){
+                $table->foreignIdFor(Genre::class)->constrained();
+                $table->foreignIdFor(Review::class)->constrained();
+            });
+        }
+        Schema::enableForeignKeyConstraints();
 }
 
     /**
@@ -34,6 +46,8 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::disableForeignKeyConstraints();
+
         Schema::dropIfExists('movies');
     }
 };

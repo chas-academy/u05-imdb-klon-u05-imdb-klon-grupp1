@@ -1,5 +1,7 @@
 <?php
-
+#Changed 'name' -> 'username' as said in the ERD. 
+#Added 'role'. I must have missed it before.
+#Installed 'Doctrine DBAL' package to view db content in the terminal. Use `php artisan db:table table_name` to view table-content.
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -23,10 +25,12 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'username',
         'email',
+        'email_verified_at',
         'password',
-    ];
+        'role',
+    ]; // Added
 
     /**
      * The attributes that should be hidden for serialization.

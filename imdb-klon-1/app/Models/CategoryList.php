@@ -17,16 +17,18 @@ class CategoryList extends Model
 {
     use HasFactory;
 
+    protected $table = 'lists';
+
     protected $fillable = [
         'user_id',
-        'title_id'
+        'title_id',
+        'watchlist' // Added
     ];
 
-    protected $table = 'lists';
     /**
      * Get the user that owns the category list.
      */
-    public function User(): HasOne
+    public function user(): HasOne
     {
         return $this->hasOne(User::class);
     }

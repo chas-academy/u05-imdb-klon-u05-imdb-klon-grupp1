@@ -20,7 +20,9 @@ class Movie extends Model
         'img_path',
         'trailer_path',
         'top_rating',
-        'movie_genres'
+        'movie_genres',
+        'genre_id', // Added
+        'review_id' // Added
     ];
 
     //protected $guarded = [];
@@ -35,7 +37,7 @@ class Movie extends Model
 
     public function reviews()
     {
-        return $this->hasMany(Review::class, 'movies_id');
+        return $this->hasMany(Review::class, 'title_id'); //Changed from movies_id
     }
 
     // public function profiles()

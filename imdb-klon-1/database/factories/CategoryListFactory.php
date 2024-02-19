@@ -1,6 +1,6 @@
 <?php
-#Created CategoryListFactory.php and changed ->
-#Added 'faker' information to generate content
+#19/02
+#Changed the value of generated content for lists.
 
 namespace Database\Factories;
 
@@ -22,8 +22,9 @@ class CategoryListFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => $this->faker->randomNumber(),
-            'title_id' => $this->faker->randomNumber()
-        ];
+            'user_id' => $this->faker->numberBetween(1, 10),
+            'title_id' => $this->faker->numberBetween(1, 10),
+            'watchlist' => $this->faker->boolean()
+        ]; // Added
     }
 }

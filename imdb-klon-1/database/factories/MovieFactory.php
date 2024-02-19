@@ -5,6 +5,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Movie;
+use Doctrine\DBAL\Driver\AbstractSQLiteDriver\Middleware\EnableForeignKeys;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Movie>
@@ -18,15 +19,16 @@ class MovieFactory extends Factory
      * @return array<string, mixed>
      */
     public function definition(): array
-    {
+    {   
         return [
             'title' => $this->faker->title(),
             'description' => $this->faker->sentence(45),
             'release_date' => $this->faker->date(),
             'img_path' => $this->faker->image(),
             'trailer_path' => $this->faker->url(),
-            'top_rating' => $this->faker->randomNumber(5),
-            'movie_genres' => $this->faker->colorName()
+            'top_rating' => $this->faker->numberBetween(0, 5),
+            'genre_id' => $this->faker->numberBetween(1, 10),
+            'review_id' => $this->faker->numberBetween(1, 10)
         ];
     }
 }
