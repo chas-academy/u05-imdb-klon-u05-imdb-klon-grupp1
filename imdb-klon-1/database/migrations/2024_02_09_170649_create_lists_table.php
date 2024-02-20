@@ -19,8 +19,8 @@ return new class extends Migration
 
             Schema::create('lists', function (Blueprint $table) {
                 $table->id(); // to create an auto-incrementing primary key column 
-                $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-                $table->foreignId('movie_id')->constrained()->onDelete('cascade')->onUpdate('cascade'); // Changed to 'movie_id' from 'title_id' 
+                $table->foreignId('user_id')->constrained();
+                $table->foreignId('movie_id')->constrained('movies'); // Changed to 'movie_id' from 'title_id' 
                 $table->boolean('watchlist');
                 $table->timestamps();
             });

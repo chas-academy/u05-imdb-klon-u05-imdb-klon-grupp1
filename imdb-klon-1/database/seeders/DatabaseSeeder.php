@@ -23,9 +23,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             GenreSeeder::class,
+            MovieSeeder::class,
             CategoryListSeeder::class,
-            ReviewSeeder::class,
-            MovieSeeder::class
+            ReviewSeeder::class
         ]);
     }
 }

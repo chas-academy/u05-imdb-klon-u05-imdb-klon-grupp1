@@ -27,8 +27,7 @@ return new class extends Migration
                 $table->text('img_path');
                 $table->text('trailer_path');
                 $table->integer('top_rating')->default(0);
-                $table->foreignId('genre_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-                $table->foreignId('review_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+                $table->foreignId('genre_id')->constrained();
                 $table->timestamps();
             });
         }

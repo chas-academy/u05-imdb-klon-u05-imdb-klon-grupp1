@@ -27,8 +27,7 @@ class MovieFactory extends Factory
             'img_path' => $this->faker->image(),
             'trailer_path' => $this->faker->url(),
             'top_rating' => $this->faker->numberBetween(0, 5),
-            'genre_id' => $this->faker->numberBetween(1, 10),
-            'review_id' => $this->faker->numberBetween(1, 10)
+            'genre_id' => $this->faker->numberBetween(1, 10)
         ];
     }
 }
