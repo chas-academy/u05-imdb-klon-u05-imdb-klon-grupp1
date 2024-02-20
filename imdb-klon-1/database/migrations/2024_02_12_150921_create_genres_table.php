@@ -22,7 +22,6 @@ return new class extends Migration
             Schema::create('genres', function (Blueprint $table) {
                 $table->id();
                 $table->string('name')->unique();
-                /* $table->foreignIdFor(CategoryList::class, 'list_id')->constrained(); */ //TODO Delete if table looks fine. //Dennis
                 $table->timestamps();
             });
         }
