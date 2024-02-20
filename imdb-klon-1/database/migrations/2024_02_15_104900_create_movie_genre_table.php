@@ -20,7 +20,7 @@ return new class extends Migration
 
             Schema::create('movie_genre', function (Blueprint $table) {
                 $table->id();
-                $table->foreignIdFor(Movie::class, 'title_id')->unsigned()->constrained();
+                $table->foreignIdFor(Movie::class)->unsigned()->constrained(); // Changed to 'movie_id' from 'title_id' 
                 $table->foreignIdFor(Genre::class)->unsigned()->constrained();
                 /* $table->foreignId('title_id')->constrained('movies')->cascadeOnDelete()->cascadeOnUpdate();
                 $table->foreignId('genre_id')->constrained('genres')->cascadeOnDelete()->cascadeOnUpdate(); */

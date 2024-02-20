@@ -1,7 +1,6 @@
 <?php
-#Changed 'name' -> 'username' as said in the ERD. 
-#Added 'role'. I must have missed it before.
-#Installed 'Doctrine DBAL' package to view db content in the terminal. Use `php artisan db:table table_name` to view table-content.
+#20/02
+#Changed the relation on user -> list to 'HasOne'
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -30,7 +29,7 @@ class User extends Authenticatable
         'email_verified_at',
         'password',
         'role',
-    ]; // Added
+    ];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -53,9 +52,9 @@ class User extends Authenticatable
     ];
 
     // One user can have multiple lists 
-    public function categorieLists(): HasMany
+    public function categorieLists(): HasOne
     {
-        return $this->hasMany(CategoryList::class);
+        return $this->hasOne(CategoryList::class, 'list_id');
     }
 
     // One user can have one review per movie

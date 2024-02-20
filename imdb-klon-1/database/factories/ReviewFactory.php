@@ -20,7 +20,7 @@ class ReviewFactory extends Factory
     {
         return [
             'user_id' => $this->faker->numberBetween(1, 10), // ...returns a value between 1 and 10
-            'title_id' => $this->faker->numberBetween(1, 10),
+            'movie_id' => $this->faker->numberBetween(1, 10), // Changed to 'movie_id' from 'title_id' 
             'rating' => $this->faker->randomDigit(),
             'comment' => $this->faker->text()
         ];

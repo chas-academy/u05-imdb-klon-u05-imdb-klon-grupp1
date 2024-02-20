@@ -23,8 +23,8 @@ class CategoryListFactory extends Factory
     {
         return [
             'user_id' => $this->faker->numberBetween(1, 10),
-            'title_id' => $this->faker->numberBetween(1, 10),
+            'movie_id' => $this->faker->numberBetween(1, 10), // Changed to 'movie_id' from 'title_id' 
             'watchlist' => $this->faker->boolean()
-        ]; // Added
+        ];
     }
 }

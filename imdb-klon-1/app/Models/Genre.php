@@ -1,5 +1,6 @@
 <?php
-#Added $fillable for table content to create a test environment for genres.
+#20/02
+#Commented out the genre-list pivot
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -15,19 +16,19 @@ class Genre extends Model
 
     protected $fillable = [
         'name'
-    ]; // Removed fk
+    ];
 
     // Pivot table 'movie_genre'
     public function movies(): BelongsToMany
     { // ...table_name, this_id, the_other_id
-        return $this->belongsToMany(Movie::class, 'movie_genre', 'genre_id', 'title_id')->withTimestamps();
+        return $this->belongsToMany(Movie::class, 'movie_genre', 'genre_id', 'movie_id')->withTimestamps(); // Changed to 'movie_id' from 'title_id' 
     }
 
     //TODO Watchlist can include multiple genres? //Dennis
     //TODO Is this something we need now when genre only have 'id' and 'name'? //Dennis
-    public function lists(): HasMany
+/*     public function lists(): HasMany
     {
         return $this->hasMany(Genre::class);
     }
-
+ */
 }

@@ -27,15 +27,9 @@ return new class extends Migration
                 $table->text('img_path');
                 $table->text('trailer_path');
                 $table->integer('top_rating')->default(0);
-                $table->string('movie_genres')->default(null);
-                $table->integer('genre_id')->unsigned()->change();
-                $table->integer('review_id')->unsigned()->change();
+                $table->foreignId('genre_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+                $table->foreignId('review_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
                 $table->timestamps();
-            });
-            
-            Schema::table('movies', function($table){
-                $table->foreignIdFor(Genre::class)->constrained();
-                $table->foreignIdFor(Review::class)->constrained();
             });
         }
         Schema::enableForeignKeyConstraints();

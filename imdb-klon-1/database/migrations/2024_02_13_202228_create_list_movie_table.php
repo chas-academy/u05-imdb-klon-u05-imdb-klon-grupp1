@@ -21,7 +21,7 @@ return new class extends Migration
 
             Schema::create('list_movie', function (Blueprint $table) {
                 $table->id();
-                $table->foreignIdFor(Movie::class, 'title_id')->unsigned()->constrained();
+                $table->foreignIdFor(Movie::class, 'movie_id')->unsigned()->constrained(); // Changed to 'movie_id' from 'title_id' 
                 $table->foreignIdFor(CategoryList::class, 'list_id')->unsigned()->constrained();
                 /* $table->foreignId('title_id')->constrained(table: 'movies')->cascadeOnDelete()->cascadeOnUpdate(); // ...specifies what table to fetch information from
                 $table->foreignId('list_id')->constrained(table: 'lists')->cascadeOnDelete()->cascadeOnUpdate(); */
