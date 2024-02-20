@@ -1,5 +1,6 @@
 <?php
-
+#20/02
+#Changed the relation on user -> list to 'HasOne'
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -23,9 +24,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'username',
         'email',
+        'email_verified_at',
         'password',
+        'role',
     ];
 
     /**
@@ -49,9 +52,9 @@ class User extends Authenticatable
     ];
 
     // One user can have multiple lists 
-    public function categorieLists(): HasMany
+    public function categorieLists(): HasOne
     {
-        return $this->hasMany(CategoryList::class);
+        return $this->hasOne(CategoryList::class, 'list_id');
     }
 
     // One user can have one review per movie

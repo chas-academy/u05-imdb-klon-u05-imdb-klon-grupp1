@@ -1,5 +1,6 @@
 <?php
-
+#20/02
+#Re-wrote the foreign id to be a unsignedBigInt
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,16 +12,20 @@ return new class extends Migration
      */
     public function up(): void
     {
+
         if(!Schema::hasTable('lists')){
+            
+            Schema::disableForeignKeyConstraints();
+
             Schema::create('lists', function (Blueprint $table) {
                 $table->id(); // to create an auto-incrementing primary key column 
                 $table->foreignId('user_id')->constrained();
-                $table->foreignId('title_id')->constrained('movies');
-              
-
+                $table->foreignId('movie_id')->constrained('movies'); // Changed to 'movie_id' from 'title_id' 
+                $table->boolean('watchlist');
                 $table->timestamps();
             });
         }
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -28,6 +33,8 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::disableForeignKeyConstraints();
+
         Schema::dropIfExists('lists');
     }
 };
