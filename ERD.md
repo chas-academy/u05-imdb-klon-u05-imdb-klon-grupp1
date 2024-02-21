@@ -20,10 +20,7 @@ _ittalic_ = Key
 2. **GENRE**
    [*id*, name]
 
-   BelongsToMany -> **MOVIEs** <- BelongsToMany
-
-   `a genre can belong to multiple movies`
-
+   `Has a pivot genre_movie`
 ---
 
 3. **MOVIE**

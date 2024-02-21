@@ -1,8 +1,9 @@
 <?php
-#20/02
+#21/02
 #Added comments for documentation and better readability.
-#Added relation variables where they were missing.
-#Changed Movie prime key to 'movie_id' to follow convention and minimize confusion.
+#Added comments //TODO to find missing pieces in the code.
+#Edited the relations between movie & watchlist (pivot)
+#Edited the relation between Movie & Genre (pivot)
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -15,7 +16,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Movie extends Model
 {
     use HasFactory;
-
+//TODO Add this to the ERD? //Dennis
     protected $fillable = [
         'title',
         'description',
@@ -23,34 +24,28 @@ class Movie extends Model
         'img_path',
         'trailer_path',
         'top_rating',
-        'movie_genres',
-        'genre_id', 
-        'review_id' 
     ];
 
     //protected $guarded = [];
-    protected $table = 'movies';
+    protected $table = 'movies'; //TODO Do we need this? //Dennis
 
+    //TODO Add comment? //Dennis
     public function moviePoster()
     {
         $imagePath = ($this->img_path) ? $this->img_path : 'xxx/xxxx.png';
         return $imagePath;
     }
 
+    //TODO Is this correct? //Dennis
     // One movie can have multiple reviews
     public function reviews(): HasMany
     {
         return $this->hasMany(Review::class, 'movie_id'); // Changed to 'movie_id' from 'title_id' 
     }
 
-    // public function profiles()
-    // {
-    //     return $this->belongsToMany(Profile::class, 'watchlist_pivot', 'movies_id', 'profile_name');
-    // }
-
+    //TODO Add comments? //Dennis
     public function watchlistStatus()
     {
-
         $watchlistStatus = array();
         foreach (auth()->user()->profile->movies as $key => $movie) {
             $watchlistStatus[$key] = $movie->id . ',';
@@ -60,24 +55,32 @@ class Movie extends Model
         return $watchlistStatus;
     }
 
+    //TODO Add comments //Dennis
     public function updateTopRating($movie)
     {
-
         $data_rating = $movie->reviews()->avg('rating');
         $data['top_rating'] =  $data_rating;
         $movie->update($data);
     }
 
-    // pivot table for Movie and Genre
+    /**
+     * Pivot table for Movie & Genre models
+     * 
+     * returns relation with Genre, 'pivot_table_name', 'this_id', 'the_other_id'
+     */
     public function genres(): BelongsToMany
     {
-        return $this->belongsToMany(Genre::class, 'movie_genre', 'movie_id', 'genre_id')->withTimestamps(); // Changed to 'movie_id' from 'title_id' 
+        return $this->belongsToMany(Genre::class, 'genre_movie', 'movie_id', 'genre_id')->withTimestamps(); // Changed to 'movie_id' from 'title_id' 
     }
 
-    // pivot table for Movie & CategoryList
-    public function categoryLists(): BelongsToMany
+    /**
+     * Pivot table for Movie & Watchlist
+     * 
+     * return relation with Watchlist, 'pivot_table_name', 'this_id', 'the_other_id'
+     */
+    public function watchlists(): BelongsToMany
     {
-        return $this->belongsToMany(CategoryList::class, 'list_movie', 'movie_id', 'list_id')->withTimestamps(); // Changed to 'movie_id' from 'title_id' 
+        return $this->belongsToMany(Watchlist::class, 'movie_watchlist', 'movie_id', 'watchlist_id')->withTimestamps(); // Changed to 'movie_id' from 'title_id' 
 
     }
 }

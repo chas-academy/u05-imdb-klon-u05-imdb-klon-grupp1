@@ -21,19 +21,12 @@ return new class extends Migration
 
             Schema::create('reviews', function (Blueprint $table) {
                 $table->id();
-                /* $table->integer('user_id')->unsigned()->change();
-                $table->integer('title_id')->unsigned()->change(); */
-                $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-                $table->foreignId('movie_id')->constrained()->onDelete('cascade')->onUpdate('cascade'); // Changed to 'movie_id' from 'title_id' 
                 $table->float('rating');
                 $table->text('comment');
+                $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+                $table->foreignId('movie_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
                 $table->timestamps();
             });
-            
-            /* Schema::table('reviews', function($table){
-                $table->foreignIdFor(User::class)->unsigned()->constrained();
-                $table->foreignIdFor(Movie::class, 'title_id')->unsigned()->constrained();
-            }); */
         }
         Schema::enableForeignKeyConstraints();
     }

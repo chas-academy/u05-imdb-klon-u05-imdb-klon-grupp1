@@ -1,6 +1,7 @@
 <?php
-#20/02
-#Changed the relation on user -> list to 'HasOne'
+#21/02
+#Defined the user->watchlist relation
+#Corrected the user->review relation
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -26,7 +27,7 @@ class User extends Authenticatable
     protected $fillable = [
         'username',
         'email',
-        'email_verified_at',
+        'email_verified_at', //TODO Extra but included in laravel-projects, keep? //Dennis
         'password',
         'role',
     ];
@@ -51,15 +52,15 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    // One user can have multiple lists 
-    public function categorieLists(): HasOne
+    // One user can have one 'Watchlist'
+    public function watchlist(): HasOne
     {
-        return $this->hasOne(CategoryList::class, 'list_id');
+        return $this->hasOne(Watchlist::class);
     }
 
-    // One user can have one review per movie
-    public function reviews(): HasOne 
+    // One user can review multiple movies
+    public function reviews(): HasMany
     {
-        return $this->hasOne(Review::class);    
+        return $this->hasMany(Review::class);    
     }
 }

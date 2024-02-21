@@ -16,16 +16,16 @@ class Review extends Model
         'rating',
         'comment',
         'user_id',
-        'movie_id' // Changed to 'movie_id' from 'title_id' 
-    ]; // rearanged
+        'movie_id' 
+    ];
 
     public function movie(): BelongsTo
     {
-        return $this->belongsTo(Movie::class); // Removed 'title_id'
+        return $this->belongsTo(Movie::class);
     }
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class); // Removed 'user_id' as User::class represents the 'id' in the usertable.
+        return $this->belongsTo(User::class);
     }
 }
