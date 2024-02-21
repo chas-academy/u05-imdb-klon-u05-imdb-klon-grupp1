@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Review;
+use App\Models\Watchlist;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -24,7 +25,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             GenreSeeder::class,
             MovieSeeder::class,
-            CategoryListSeeder::class,
+            WatchlistSeeder::class,
             ReviewSeeder::class
         ]);
     }

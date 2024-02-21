@@ -1,5 +1,4 @@
 <?php
-#Changed the way we define foreign keys to make it easier to work with. 'Model::class' will use the 'model_id' naming convention.
 
 use App\Models\Review;
 use App\Models\Genre;
@@ -27,7 +26,6 @@ return new class extends Migration
                 $table->text('img_path');
                 $table->text('trailer_path');
                 $table->integer('top_rating')->default(0);
-                $table->foreignId('genre_id')->constrained();
                 $table->timestamps();
             });
         }
