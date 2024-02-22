@@ -9,6 +9,7 @@ use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GenreController;
+use App\Http\Controllers\WatchlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,11 +37,11 @@ Route::get('/tests', [TestWebController::class, 'index']);
 
 
 // Routes for the lists (display all, show one, edit one, update one and delete one)
-Route::get('/lists', [ListController::class, 'index']);
-Route::get('/lists/{id}', [ListController::class, 'show']);
-Route::get('/lists/{id}/edit', [ListController::class, 'edit']);
-Route::put('/lists/{id}', [ListController::class, 'update']);
-Route::delete('/lists/{id}', [ListController::class, 'destroy']);
+Route::get('/lists', [WatchlistController::class, 'index']);
+Route::get('/lists/{id}', [WatchlistController::class, 'show']);
+Route::get('/lists/{id}/edit', [WatchlistController::class, 'edit']);
+Route::put('/lists/{id}', [WatchlistController::class, 'update']);
+Route::delete('/lists/{id}', [WatchlistController::class, 'destroy']);
 
 /*made unused routes for later*/
 /* Route::get('/tests/create', [TestWebController::class, 'create'])->name('tests.create');
