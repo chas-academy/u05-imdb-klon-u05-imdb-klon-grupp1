@@ -27,7 +27,8 @@ class MovieController extends Controller
 
     public function show(Movie $movie)
     {
-        // Implement your logic for displaying a specific movie
+
+        return view('movies.show', compact('movie'));
     }
 
     public function showFromWatchlist($id)
