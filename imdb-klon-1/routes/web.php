@@ -61,7 +61,7 @@ Route::delete('/movies/{movie}', [MovieController::class, 'destroy'])->name('mov
 
 
 //Routes for reviews 
-Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index');
+Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index')->withoutMiddleware(['auth']);
 Route::get('/reviews/create', [ReviewController::class, 'create'])->name('reviews.create');
 Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 Route::get('/reviews/{review}', [ReviewController::class, 'show'])->name('reviews.show');
