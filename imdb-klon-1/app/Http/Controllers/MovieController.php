@@ -9,8 +9,11 @@ class MovieController extends Controller
 {
     public function index()
     {
-        // Implement your logic for displaying a list of movies
+        $movies = Movie::all(); // You might want to paginate if there are many movies
+
+        return view('movies.index', compact('movies'));
     }
+
 
     public function create()
     {
@@ -24,7 +27,8 @@ class MovieController extends Controller
 
     public function show(Movie $movie)
     {
-        // Implement your logic for displaying a specific movie
+
+        return view('movies.show', compact('movie'));
     }
 
     public function showFromWatchlist($id)

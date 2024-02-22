@@ -31,20 +31,20 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    
-// TestController
-Route::get('/tests', [TestWebController::class, 'index']);
+
+    // TestController
+    Route::get('/tests', [TestWebController::class, 'index']);
 
 
-// Routes for the lists (display all, show one, edit one, update one and delete one)
-Route::get('/lists', [WatchlistController::class, 'index']);
-Route::get('/lists/{id}', [WatchlistController::class, 'show']);
-Route::get('/lists/{id}/edit', [WatchlistController::class, 'edit']);
-Route::put('/lists/{id}', [WatchlistController::class, 'update']);
-Route::delete('/lists/{id}', [WatchlistController::class, 'destroy']);
+    // Routes for the lists (display all, show one, edit one, update one and delete one)
+    Route::get('/lists', [WatchlistController::class, 'index']);
+    Route::get('/lists/{id}', [WatchlistController::class, 'show']);
+    Route::get('/lists/{id}/edit', [WatchlistController::class, 'edit']);
+    Route::put('/lists/{id}', [WatchlistController::class, 'update']);
+    Route::delete('/lists/{id}', [WatchlistController::class, 'destroy']);
 
-/*made unused routes for later*/
-/* Route::get('/tests/create', [TestWebController::class, 'create'])->name('tests.create');
+    /*made unused routes for later*/
+    /* Route::get('/tests/create', [TestWebController::class, 'create'])->name('tests.create');
 Route::post('/tests', [TestWebController::class, 'store'])->name('tests.store');
 Route::get('/tests/{test}', [TestWebController::class, 'show'])->name('tests.show');
 Route::get('/tests/{test}/edit', [TestWebController::class, 'edit'])->name('tests.edit');
@@ -86,9 +86,10 @@ Route::get('/genres/{id}/edit', [GenreController::class, 'genres.edit']);
 Route::put('/genres/{id}', [GenreController::class, 'genres.update']);
 Route::delete('/genres/{id}', [GenreController::class, 'genres.destroy']);
 
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
