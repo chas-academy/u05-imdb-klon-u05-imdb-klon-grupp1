@@ -9,16 +9,8 @@ class MovieController extends Controller
 {
     public function index()
     {
-        // Check if the user is not authenticated
-        if (!auth()->user()) {
-            return view('movies.index');
-        }
-    
-        // Retrieve all movies from the database
-        $movies = Movie::all();
-    
-        // Return the 'movies.index' view with movie data
-        return view('movies.index', compact('movies'));
+        $movies = Movie::get();
+        return view('movies.index', ['movies' => $movies]);
     }
 
 
