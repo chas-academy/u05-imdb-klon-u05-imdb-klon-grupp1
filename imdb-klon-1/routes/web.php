@@ -43,18 +43,18 @@ Route::middleware('auth')->group(function () {
     Route::put('/lists/{id}', [WatchlistController::class, 'update']);
     Route::delete('/lists/{id}', [WatchlistController::class, 'destroy']);
 
-        /*made unused routes for later*/
-        /* Route::get('/tests/create', [TestWebController::class, 'create'])->name('tests.create');
+    /*made unused routes for later*/
+    /* Route::get('/tests/create', [TestWebController::class, 'create'])->name('tests.create');
     Route::post('/tests', [TestWebController::class, 'store'])->name('tests.store');
     Route::get('/tests/{test}', [TestWebController::class, 'show'])->name('tests.show');
     Route::get('/tests/{test}/edit', [TestWebController::class, 'edit'])->name('tests.edit');
     Route::put('/tests/{test}', [TestWebController::class, 'update'])->name('tests.update');
     Route::delete('/tests/{test}', [TestWebController::class, 'destroy'])->name('tests.destroy'); */
 
-    Route::get('/movies', [MovieController::class, 'index'])->name('movies.index');
+    Route::get('/movies', [MovieController::class, 'index'])->name('movies.index')->withoutMiddleware(['auth']);
     Route::get('/movies/create', [MovieController::class, 'create'])->name('movies.create');
     Route::post('/movies', [MovieController::class, 'store'])->name('movies.store');
-    Route::get('/movies/{movie}', [MovieController::class, 'show'])->name('movies.show');
+    Route::get('/movies/{movie}', [MovieController::class, 'show'])->name('movies.show')->withoutMiddleware(['auth']);
     Route::get('/movies/{movie}/edit', [MovieController::class, 'edit'])->name('movies.edit');
     Route::put('/movies/{movie}', [MovieController::class, 'update'])->name('movies.update');
     Route::delete('/movies/{movie}', [MovieController::class, 'destroy'])->name('movies.destroy');
@@ -84,13 +84,13 @@ Route::middleware('auth')->group(function () {
     Route::patch('/users/{user}/update-role', [UserController::class, 'updateRole'])->name('users.updateRole')->withoutMiddleware(['auth']); // ...change a users role
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy')->withoutMiddleware(['auth']); // ...delete a specific user
 
-
     // Routes for handeling Genre
     Route::get('/genres', [GenreController::class, 'genres.index']);
     Route::get('/genres/{id}', [GenreController::class, 'genres.show']);
     Route::get('/genres/{id}/edit', [GenreController::class, 'genres.edit']);
     Route::put('/genres/{id}', [GenreController::class, 'genres.update']);
     Route::delete('/genres/{id}', [GenreController::class, 'genres.destroy']);
+
 
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
