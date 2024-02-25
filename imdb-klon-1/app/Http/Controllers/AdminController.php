@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Movie;
-use App\Models\Review;
 use Illuminate\Http\Request;
 use App\Models\User;
 
-class DashboardadminController extends Controller
+class AdminController extends Controller
 {
         /**
          * Display a listing of the resource.
@@ -18,7 +17,7 @@ class DashboardadminController extends Controller
         public function index()
         {
             // Authorize that the current user is an admin. If not, this might throw an exception or handle it based on your authorization logic.
-            $this->authorize('isAdmin');
+            // $this->authorize('isAdmin');
         
             // Display all movies from the Movie model
             $movies = Movie::all();
@@ -26,8 +25,8 @@ class DashboardadminController extends Controller
             // Display all users from the User model
             $users = User::all();
         
-            // Return the 'dashboardadmin.index' view with the retrieved data
-            return view('dashboardadmin.index', compact('movies', 'users'));
+            // Return the 'dashboard' view with the retrieved data
+            return view('admin.index', compact('movies', 'users'));
         }
         
     

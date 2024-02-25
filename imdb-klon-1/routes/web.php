@@ -4,12 +4,12 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestWebController;
 use App\Models\Test;
-use App\Http\Controllers\ListController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\WatchlistController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,10 +25,6 @@ use App\Http\Controllers\WatchlistController;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
 
@@ -70,7 +66,7 @@ Route::put('/reviews/{review}', [ReviewController::class, 'update'])->name('revi
 Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
 
 // Routes for handeling users
-Route::get('/users', [UserController::class, 'index'])->name('users.index'); // ...show all users
+Route::get('/users', [UserController::class, 'index'])->name('users.index')->withoutMiddleware(['auth']); // ...show all users
 Route::get('/users/create', [UserController::class, 'create'])->name('users.create'); // ...create a new user
 Route::post('/users/{id}', [UserController::class, 'store'])->name('users.store'); // ...add new user to all users
 Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show'); // ...show specific user
@@ -91,5 +87,7 @@ Route::delete('/genres/{id}', [GenreController::class, 'genres.destroy']);
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
 
 require __DIR__ . '/auth.php';
