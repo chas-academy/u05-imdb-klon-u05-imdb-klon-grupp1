@@ -1,7 +1,6 @@
 <?php
-#21/02
-#Created pivot for movie & genre following the naming convantion.
-#Deleted 'movie_genre' migration file
+#115
+#Added cascade to foreign keys 'onDelete' and 'onUpdate'
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,8 +14,8 @@ return new class extends Migration
     {
         Schema::create('genre_movie', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('movie_id')->constrained();
-            $table->foreignId('genre_id')->constrained();
+            $table->foreignId('movie_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('genre_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
