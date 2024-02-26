@@ -5,41 +5,44 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Watchlist;
+use App\Models\Movie;
 
 class WatchlistController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $watchlist = Watchlist::get();
-        return view('showlists', ['Watchlist' => $watchlist]);
+        // auths user's watchlist
+        $watchlist = Auth::user()->watchlist;
+
+        // Retrieve the movies
+        $watchlistMovies = $watchlist->movies;
+
+        return view('watchlist.index', compact('watchlistMovies'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
-        //
+        //creating in registratedusercontroller
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+
+    public function store(Request $request, Movie $movie)
     {
-        //
+        $user = auth()->user();
+        $user->watchlist->movies()->attach($movie->id);
+
+        return redirect()->back()->with('success', 'Movie added to watchlist successfully');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Watchlist $watchlist)
     {
-        //
+        return view('watchlists.show', compact('watchlistMovies'));
     }
 
     /**

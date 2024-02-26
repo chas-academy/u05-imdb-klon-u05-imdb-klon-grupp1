@@ -36,20 +36,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/tests', [TestWebController::class, 'index']);
 
 
-    // Routes for the lists (display all, show one, edit one, update one and delete one)
-    Route::get('/lists', [WatchlistController::class, 'index']);
-    Route::get('/lists/{id}', [WatchlistController::class, 'show']);
-    Route::get('/lists/{id}/edit', [WatchlistController::class, 'edit']);
-    Route::put('/lists/{id}', [WatchlistController::class, 'update']);
-    Route::delete('/lists/{id}', [WatchlistController::class, 'destroy']);
-
-    /*made unused routes for later*/
-    /* Route::get('/tests/create', [TestWebController::class, 'create'])->name('tests.create');
-    Route::post('/tests', [TestWebController::class, 'store'])->name('tests.store');
-    Route::get('/tests/{test}', [TestWebController::class, 'show'])->name('tests.show');
-    Route::get('/tests/{test}/edit', [TestWebController::class, 'edit'])->name('tests.edit');
-    Route::put('/tests/{test}', [TestWebController::class, 'update'])->name('tests.update');
-    Route::delete('/tests/{test}', [TestWebController::class, 'destroy'])->name('tests.destroy'); */
+    // Routes for Watchlist
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/watchlist', [WatchlistController::class, 'index'])->name('watchlist.index');
+        Route::post('/watchlist/create', [WatchlistController::class, 'create'])->name('watchlist.create');
+        Route::post('/watchlist/add/{movie}', [WatchlistController::class, 'store'])->name('watchlist.storeFromMovie');
+        Route::get('/watchlist/show/{id}', [WatchlistController::class, 'show'])->name('watchlist.show');
+        Route::get('/watchlist/sort-by-watched', [WatchlistController::class, 'sortMoviesByWatched'])->name('watchlist.sortByWatched');
+    });
 
     Route::get('/movies', [MovieController::class, 'index'])->name('movies.index')->withoutMiddleware(['auth']);
     Route::get('/movies/create', [MovieController::class, 'create'])->name('movies.create');
