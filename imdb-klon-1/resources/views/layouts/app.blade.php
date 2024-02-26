@@ -17,14 +17,12 @@
 
         <!-- Styles -->
         {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
-        <link rel="stylesheet" href="{{ URL::asset('css/main.css') }}">
+        @vite('resources/css/app.css')
 
-       
-        
+        <script src="{{ URL::asset('js/app.js') }}" type="module" defer></script>
 
-       
-        <script src="{{ asset('js/app.js') }}" defer></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 
         <!-- Font Awesome -->
         <script src="https://kit.fontawesome.com/b21a636a7a.js" crossorigin="anonymous"></script>
@@ -34,12 +32,10 @@
        
         <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
         
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-
-        <link rel="stylesheet" href="{{ URL::asset('css/main.css') }}">     
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">    
            
         <link rel="stylesheet" href="https://bootswatch.com/5/cyborg/bootstrap.min.css">
-      
+
 
        
 
