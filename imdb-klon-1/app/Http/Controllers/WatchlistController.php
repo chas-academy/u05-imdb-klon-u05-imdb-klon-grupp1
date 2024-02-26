@@ -14,8 +14,8 @@ class WatchlistController extends Controller
      */
     public function index()
     {
-        $watchlist = Watchlist::get();
-        return view('showlists', ['Watchlist' => $watchlist]);
+        $watchlists = Watchlist::all();
+        return view('watchlist.index', compact('watchlist'));
     }
 
     /**
@@ -31,15 +31,24 @@ class WatchlistController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'Watchlist'
+        ]);
+
+        Watchlist::create([
+            'name' => $request->name,
+            // Add any other fields you want to store
+        ]);
+
+        return redirect()->route('watchlist.index')->with('success', 'Watchlist created successfully');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Watchlist $watchlist)
     {
-        //
+        return view('watchlists.show', compact('watchlist'));
     }
 
     /**

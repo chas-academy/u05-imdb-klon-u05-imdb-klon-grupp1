@@ -63,6 +63,6 @@ class User extends Authenticatable
     // One user can review multiple movies
     public function reviews(): HasMany
     {
-        return $this->hasMany(Review::class);    
+        return $this->hasMany(Review::class);
     }
 }
