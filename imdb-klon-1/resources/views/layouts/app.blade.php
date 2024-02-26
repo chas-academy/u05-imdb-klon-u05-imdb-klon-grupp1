@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -40,14 +39,13 @@
        
 
     </head>
-   
 
-    <body class="d-flex flex-column min-vh-100">
-        @include('layouts.partials.header')
+<body class="d-flex flex-column min-vh-100">
+    @include('layouts.partials.header')
 
-        @yield('content')
-           
-        @include('layouts.partials.footer')
-    </body>
-    
+    @yield('content')
+
+    @include('layouts.partials.footer')
+</body>
+
 </html>

@@ -1,6 +1,6 @@
 
-    <!-- resources/views/movies/index.blade.php -->
-    @extends('layouts.app') <!-- Assuming you have a layout file -->
+
+    @extends('layouts.app')
 
     @section('content')
     <div class="overflow-x-auto">

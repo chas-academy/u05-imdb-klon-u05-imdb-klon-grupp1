@@ -1,6 +1,6 @@
 <?php
-#21/02
-#Added comments explaining the code.
+#118
+#Corrected a syntax error 'movie_genre' -> 'genre_movie'
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -22,6 +22,6 @@ class Genre extends Model
      */
     public function movies(): BelongsToMany
     { 
-        return $this->belongsToMany(Movie::class, 'movie_genre', 'genre_id', 'movie_id')->withTimestamps();
+        return $this->belongsToMany(Movie::class, 'genre_movie', 'genre_id', 'movie_id')->withTimestamps();
     }
 }
