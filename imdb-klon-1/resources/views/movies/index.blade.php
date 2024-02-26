@@ -1,7 +1,7 @@
 <div>
     <!-- resources/views/movies/index.blade.php -->
 
-    @extends('layouts.app') <!-- Assuming you have a layout file -->
+    @extends('layouts.app')
 
     @section('content')
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
