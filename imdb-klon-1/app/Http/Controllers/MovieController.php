@@ -12,8 +12,12 @@ class MovieController extends Controller
      */
     public function index()
     {
-        $movies = Movie::get();
+
+        // Check if the user is not authenticated
+        $movies = Movie::paginate(10); // Adjust the number as needed
         return view('movies.index', ['movies' => $movies]);
+
+
     }
 
     /**

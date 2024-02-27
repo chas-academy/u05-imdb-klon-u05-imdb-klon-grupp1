@@ -23,11 +23,13 @@ return new class extends Migration
                 $table->string('title');
                 $table->text('genre');
                 $table->text('description');
+                $table->text('duration');
                 $table->integer('release_date');
                 $table->text('img_path');
                 $table->text('trailer_path');
                 $table->float('top_rating')->default(0);
                 $table->timestamps();
+
             });
         }
         Schema::enableForeignKeyConstraints();
