@@ -19,7 +19,7 @@ class WatchlistController extends Controller
         // Retrieve the movies
         $watchlistMovies = $watchlist->movies;
 
-        return view('watchlist.index', compact('watchlistMovies'));
+        return view('watchlist.index', compact('watchlist'));
     }
 
 
@@ -42,7 +42,8 @@ class WatchlistController extends Controller
      */
     public function show(Watchlist $watchlist)
     {
-        return view('watchlists.show', compact('watchlistMovies'));
+        $movies = Movie::all();
+        return view('watchlist.index', compact('movies'));
     }
 
     /**

@@ -5,7 +5,7 @@
     <h1>Your Watchlist</h1>
 
     <div class="row">
-        @foreach($watchlistMovies as $movie)
+        @foreach($movies as $movie)
         <div class="col-md-4">
             <div class="card mb-4 box-shadow">
                 <img class="card-img-top" src="{{ $movie->moviePoster() }}" alt="{{ $movie->title }}">
