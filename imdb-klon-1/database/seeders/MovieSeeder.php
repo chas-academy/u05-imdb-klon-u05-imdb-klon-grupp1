@@ -117,27 +117,27 @@ class MovieSeeder extends Seeder
             ],
         ];
 
-        foreach ($movies as $movieData) {
-            $movie = Movie::create($movieData);
-
-            // Attach random genres to the movie
-            $genres = Genre::inRandomOrder()->take(rand(1, 3))->pluck('id');
-            $movie->genres()->attach($genres);
-        }
-
-        // Generate random movies
-        Movie::factory()->count(10 - count($movies))->create();
-
         /**
-         * For each 'Movie'
-         * Find a random genre via its 'id'
-         * Add the genre to the movie
+         * Separate the movies into single movies
+         * creates them using the movie class 
+         * assigns the genre connection 
          */
-        foreach (Movie::all() as $movie) {
-            $genre = Genre::inRandomOrder()->take(rand(1, 10))->pluck('id');
-            $movie->genres()->attach($genre);
+        foreach ($movies as $movieData) {
+            $title = $movieData['title']; // ...access the title of each movie
+            $genre = $movieData['genre']; // ...access the genres of each movie
+
+            $movie = Movie::create($movieData); // ...create a new movie from the movies array
+
+            $genreNames = explode(',', $genre); // ...split genres into an array if there is multiple on one movie
+
+            // Create or accossiate genres with a movie 
+            foreach ($genreNames as $genreName) {
+                $genreName = trim($genreName); // ...remove leading and trailing whitespace
+
+                $genre = Genre::firstOrCreate(['name' => $genreName]); // ...find/create the 'genre->name' value that matches 'movie->genre'
+                $movie->genres()->attach($genre->id); // ...apply the genre id to the 'movie->genre'
+            }
         }
     }
 }
-
 
