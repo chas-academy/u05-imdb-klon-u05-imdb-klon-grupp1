@@ -1,11 +1,10 @@
-
 @extends('layouts.app')
 @section('titletab', 'movies index') <!-- html tag, name -->
 
 @section('content')
     <div class="container p-3">
         <div class="container p-3 text-center">
-            <!-- <h1 class="mb-4">Admin Dashboard</h1> -->
+           
             <h2 class="mb-4">Movies</h2>
         </div>
     </div>
@@ -29,19 +28,29 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-2">
-                                    <img src="{{ asset($movie->img_path) }}" class="img img-rounded img-fluid"/>
-
+                                       
+                                        <img src="{{ asset($movie->img_path) }}" class="img img-rounded img-fluid"/>
                                         <p class="text-secondary text-center">15 Minutes Ago</p>
                                     </div>
+                                    
                                     <div class="col-md-10">
-                                        {{-- <a class="float-left" href="{{ url('movies/'. $movie->slug) }}"> --}}
-                                        <a class="float-left" href="{{ route('movies.show', $movie) }}">                                        
-                                        <h2 class="card-title">{{$movie->title}}</h2>
-                                        {{$movie->year}}
-                                        </a>
-                                        <p class="float-left mt-3">{{ $movie->public }} | {{ $movie->top_rating }} <i class="text-warning fa fa-star"></i> | {{ $movie->genre }}</p>
-                                        <p class="float-left"><strong>{{ $movie->top_rating }} <i class="text-warning fa fa-star"></i> </strong> <button type="button" class="btn btn-success btn-sm">84</button> Metascore</p>
+    <a class="float-left" href="{{ route('movies.show', $movie) }}">
+        <h2 class="card-title">{{$movie->title}}</h2>
+        {{$movie->release_date}}
+    </a>
+    </div>
+    <div class="clearfix">
+        <p class="float-left mt-3" style="display: block;">
+            PG-13 |  {{ $movie->top_rating }} <i class="text-warning fa fa-star"></i>  {{ $movie->genre }}
+        </p>
+    </div>
 
+
+    <p class="float-left">
+    
+    <button type="button" class="btn btn-success btn-sm">84</button> Metascore
+  </p>
+</div>
                                         <div class="clearfix"></div>
                                         <p>{{$movie->description}}</p>
                                     </div>
@@ -78,9 +87,6 @@
     </div>
 
 @endsection
-
-
-
 
 
 
