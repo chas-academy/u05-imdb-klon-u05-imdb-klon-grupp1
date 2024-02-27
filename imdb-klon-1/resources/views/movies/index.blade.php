@@ -1,36 +1,25 @@
+@extends('layouts.app')
 
+@section('content')
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4 bg-gradient-to-b from-red-950 to-zinc-950">
+    @foreach($movies as $movie)
+    <div class="relative bg-stone-950 border border-amber-300 dark:border-orange-600 p-4 mb-4">
+        <!-- Blurred Background Poster -->
+        <div class="absolute inset-0 bg-cover bg-center filter blur-md" style="background-image: url('{{ $movie->img_path }}');"></div>
 
-    @extends('layouts.app')
+        <!-- Sharp Focused Poster -->
+        <div class="relative z-10 max-w-full h-[250px] mx-auto">
+            <img src="{{ $movie->img_path }}" alt="{{ $movie->title }}" class="w-full h-full object-contain rounded-lg shadow-md max-w-full h-[250px] mx-auto">
+        </div>
 
-    @section('content')
-    <div class="overflow-x-auto">
-        <table class="min-w-full bg-white dark:bg-gray-800">
-            <thead>
-                <tr>
-                    <th class="px-6 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-left text-xs leading-4 font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">ID</th>
-                    <th class="px-6 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-left text-xs leading-4 font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Title</th>
-                    <th class="px-6 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-left text-xs leading-4 font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Description</th>
-                    <th class="px-6 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-left text-xs leading-4 font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Release Date</th>
-                    <th class="px-6 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-left text-xs leading-4 font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Image Path</th>
-                    <th class="px-6 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-left text-xs leading-4 font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Trailer Path</th>
-                    <th class="px-6 py-3 border-b-2 border-gray-300 dark:border-gray-700 text-left text-xs leading-4 font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Top Rating</th>
-                </tr>
-            </thead>
-            <tbody class="bg-white dark:bg-gray-800">
-                @foreach($movies as $movie)
-                <tr>
-                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300 dark:border-gray-700">{{ $movie->id }}</td>
-                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300 dark:border-gray-700">{{ $movie->title }}</td>
-                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300 dark:border-gray-700">{{ $movie->description }}</td>
-                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300 dark:border-gray-700">{{ $movie->release_date }}</td>
-                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300 dark:border-gray-700">{{ $movie->img_path }}</td>
-                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300 dark:border-gray-700">{{ $movie->trailer_path }}</td>
-                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300 dark:border-gray-700">{{ $movie->top_rating }}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+        <!-- Movie Information -->
+        <div class="text-white mt-4 relative z-9999">
+            <p class="text-lg font-bold mb-2">{{ $movie->title }}</p>
+            <p class="text-sm">{{ $movie->description }}</p>
+            <p class="text-xs">Release Date: {{ $movie->release_date }}</p>
+            <p class="mt-2 text-xs">Top Rating: {{ $movie->top_rating }}</p>
+        </div>
     </div>
-    @endsection
-   
-
+    @endforeach
+</div>
+@endsection
