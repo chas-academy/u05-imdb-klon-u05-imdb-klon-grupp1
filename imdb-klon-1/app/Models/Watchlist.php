@@ -24,9 +24,9 @@ class Watchlist extends Model
     /**
      * Watchlist - User Relation
      */
-    public function user() : BelongsTo
+    public function user()
     {
-     return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -34,8 +34,8 @@ class Watchlist extends Model
      * 
      * returns relation to Movie, 'table_name', 'this_id', 'the_other_id'
      */
-    public function movies() : BelongsToMany
+    public function movies(): BelongsToMany
     {
-        return $this->belongsToMany(Movie::class, 'movie_watchlist', 'watchlist_id', 'movie_id'); 
+        return $this->belongsToMany(Movie::class, 'movie_watchlist', 'watchlist_id', 'movie_id');
     }
 }

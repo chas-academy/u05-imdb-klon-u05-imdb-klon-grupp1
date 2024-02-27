@@ -1,10 +1,11 @@
 <?php
-#Created a GenreSeeder -> to generate 10 genres (placeholder -> colorNames)
+#118
+#Added an array with all the genres and inserted them into the table.
 namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Genre;
+use Illuminate\Support\Facades\DB;
 
 class GenreSeeder extends Seeder
 {
@@ -13,6 +14,42 @@ class GenreSeeder extends Seeder
      */
     public function run(): void
     {
-        Genre::factory()->count(10)->create();
+        // Store all the genres in an array
+        $genres = [
+            'Action',
+            'Adventure',
+            'Animation',
+            'Biography',
+            'Comedy',
+            'Crime',
+            'Documentary',
+            'Drama',
+            'Family',
+            'Fantasy',
+            'Film-Noir',
+            'History',
+            'Horror',
+            'Music',
+            'Musical',
+            'Mystery',
+            'Romance',
+            'Sci-Fi',
+            'Short',
+            'Sport',
+            'Thriller',
+            'War',
+            'Western',
+        ];
+
+        /**
+         * Breaks up and inserts the genres in the genres table one by one
+         */
+        collect($genres)->each(function ($genre) {
+            DB::table('genres')->insert([
+                'name' => $genre,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        });
     }
 }

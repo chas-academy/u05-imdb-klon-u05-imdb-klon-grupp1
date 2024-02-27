@@ -1,7 +1,6 @@
 <?php
-#21/02
-#Created the pivot for movie & watchlist
-#Deleted the 'list_movie' migration file
+#115
+#Added cascade 'onDelete' and 'onUpdate' for future user handeling 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,8 +14,8 @@ return new class extends Migration
     {
         Schema::create('movie_watchlist', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('movie_id')->constrained();
-            $table->foreignId('watchlist_id')->constrained();
+            $table->foreignId('movie_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('watchlist_id')->constrained()->onDelete('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -1,6 +1,6 @@
 <?php
-#Added the 'timestamp' for email varifications. This was to fix an issue that had accoured and disrupted the seeder for user.
-
+#115
+#Added the built in soft delete attribute to the users table
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -26,6 +26,7 @@ return new class extends Migration
                 $table->string('role');
                 $table->rememberToken();
                 $table->timestamps();
+                $table->softDeletes();
             });
         }
         Schema::enableForeignKeyConstraints();

@@ -1,23 +1,25 @@
 <?php
-#21/02
-#Defined the user->watchlist relation
-#Corrected the user->review relation
+#115
+#Implement SoftDeletes to handle user CRUD and minimize drawback
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 use Illuminate\Foundation\Auth\User as Authenticatable;
+
 use Illuminate\Notifications\Notifiable;
+
 use Laravel\Sanctum\HasApiTokens;
 
-use App\Models\CategoryList;
 use App\Models\Review;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -61,6 +63,6 @@ class User extends Authenticatable
     // One user can review multiple movies
     public function reviews(): HasMany
     {
-        return $this->hasMany(Review::class);    
+        return $this->hasMany(Review::class);
     }
 }

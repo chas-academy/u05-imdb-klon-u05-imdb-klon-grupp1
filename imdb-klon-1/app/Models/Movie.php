@@ -1,9 +1,5 @@
 <?php
-#21/02
-#Added comments for documentation and better readability.
-#Added comments //TODO to find missing pieces in the code.
-#Edited the relations between movie & watchlist (pivot)
-#Edited the relation between Movie & Genre (pivot)
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;

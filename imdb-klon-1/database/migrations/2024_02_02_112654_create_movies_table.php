@@ -1,7 +1,7 @@
 <?php
-
-use App\Models\Review;
-use App\Models\Genre;
+#118
+#Added 'genre' to movies table to reference the genre_name
+#'top_rating' is now a float to show decimal value.
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
