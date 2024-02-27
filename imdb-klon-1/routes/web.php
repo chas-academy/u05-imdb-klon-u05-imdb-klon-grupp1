@@ -1,7 +1,6 @@
 <?php
-#115
-#Added routs for the UserController ->name(updateUsername & updateRole & delete)
-#Removed unused Controller-calls
+#130
+#Added some comments in the code to consider for admincontroller.
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestWebController;
@@ -40,7 +39,8 @@ Route::middleware('auth')->group(function () {
         Route::post('/watchlist/add/{movie}', [WatchlistController::class, 'store'])->name('watchlist.storeFromMovie');
         Route::get('/watchlist/show/{id}', [WatchlistController::class, 'show'])->name('watchlist.show');
         Route::get('/watchlist/sort-by-watched', [WatchlistController::class, 'sortMoviesByWatched'])->name('watchlist.sortByWatched');
-    });
+    }); // Why do we need 2 auth middleware? :)
+
 
     Route::get('/movies', [MovieController::class, 'index'])->name('movies.index')->withoutMiddleware(['auth']);
     Route::get('/movies/create', [MovieController::class, 'create'])->name('movies.create');
@@ -82,11 +82,16 @@ Route::middleware('auth')->group(function () {
     Route::put('/genres/{id}', [GenreController::class, 'genres.update']);
     Route::delete('/genres/{id}', [GenreController::class, 'genres.destroy']);
 
-
-
+    /**
+     * Routes for handeling user-information as user
+     */
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::middleware('admin')->group(function () {
+    // Move the admin routs in here to utalize the admin middleware
 });
 
 Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard.index');
