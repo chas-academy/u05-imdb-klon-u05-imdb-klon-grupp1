@@ -21,12 +21,15 @@ return new class extends Migration
             Schema::create('movies', function (Blueprint $table) {
                 $table->id();
                 $table->string('title');
+                $table->text('genre');
                 $table->text('description');
+                $table->text('duration');
                 $table->integer('release_date');
                 $table->text('img_path');
                 $table->text('trailer_path');
-                $table->integer('top_rating')->default(0);
+                $table->float('top_rating')->default(0);
                 $table->timestamps();
+
             });
         }
         Schema::enableForeignKeyConstraints();
