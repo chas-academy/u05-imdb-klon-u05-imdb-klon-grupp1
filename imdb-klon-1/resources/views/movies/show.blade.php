@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 {{-- @section('titletab', '$movie_id') <!-- html tag, name --> --}}
@@ -23,12 +24,19 @@
             </div>
         </div>
         <div class="row text-center mt-3">
-            <div class="col-md my-auto">
-                <img class="img-fluid" style="width: 350px" src="{{ $movie->img_path }}" alt="">
-            </div>
-            <div class="col-md mt-3">
-            <iframe width="100%" height="315" src="{{ $movie->trailer_path }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
+        <div class="col-md d-flex justify-content-center align-items-center">
+    <img class="img-fluid" style="width: 350px" src="{{ $movie->img_path }}" alt="">
+</div>
+
+<div class="col-md mt-3">
+    @php
+        $videoId = substr($movie->trailer_path, strpos($movie->trailer_path, 'v=') + 2);
+    @endphp
+    <iframe width="100%" height="315" src="https://www.youtube.com/embed/{{ $videoId }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+
+
         </div>
 
         <div class="row mt-3">
@@ -58,13 +66,14 @@
             </div>
 
             <div class="col-sm">
-            @auth
+                <!--Emma if want to use this button i did it from Nejat
+             @auth
                 <div> {{--Button Add to watchlist--}}
                     <a class="btn btn-primary" href="{{ route('addToWatchlist', ['movieid'=>$movie->id]) }}">
                         Add to watchlist
                     </a>
                 </div>
-            @endauth
+            @endauth -->
         </div>
 
     </div>
@@ -91,7 +100,7 @@
                             <h5 class="card-title text-primary">{{ $review->title }}</h5>                         
                             <p class="float-left"> {{ $review->user->username }} | <strong> {{ $review-> top_rating }} <i class="fa fa-star" style="color: yellow"></i> </strong> </i></p>                         
                             <div class="clearfix"></div>
-                            <p>{{ $review->content }}</p>
+                            <p>{{ $review->comment }}</p>
                         </div>
 
                         @auth                            
@@ -116,9 +125,4 @@
         @endif
     </div>
 @endsection
-
-
-
-
-
 
