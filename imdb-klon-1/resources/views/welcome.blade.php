@@ -41,7 +41,6 @@
                 <div class="item active">
 
                     <img src="https://m.media-amazon.com/images/S/pv-target-images/af5f3bfd605bcf60c762eee7cc2f94d6bd3c1514573440c4cd28126c662e3820._UR1920,1080_BR-6_SX720_FMpng_.png"
-"
                         alt="Up Graded" class="imgMovie" style="width:100%; ">
                 </div>
 

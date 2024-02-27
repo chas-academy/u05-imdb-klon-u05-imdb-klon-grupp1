@@ -1,7 +1,6 @@
 <?php
-#115
-#Added routs for the UserController ->name(updateUsername & updateRole & delete)
-#Removed unused Controller-calls
+#137
+#Changed the route direction to take userid 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestWebController;
@@ -38,7 +37,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/watchlist', [WatchlistController::class, 'index'])->name('watchlist.index');
         Route::post('/watchlist/create', [WatchlistController::class, 'create'])->name('watchlist.create');
         Route::post('/watchlist/add/{movie}', [WatchlistController::class, 'store'])->name('watchlist.storeFromMovie');
-        Route::get('/watchlist/show/{id}', [WatchlistController::class, 'show'])->name('watchlist.show')->withoutMiddleware(['auth']);
+        Route::get('/watchlist/{user}', [WatchlistController::class, 'show'])->name('watchlist.show')->withoutMiddleware(['auth']);
         Route::get('/watchlist/sort-by-watched', [WatchlistController::class, 'sortMoviesByWatched'])->name('watchlist.sortByWatched');
     });
 
