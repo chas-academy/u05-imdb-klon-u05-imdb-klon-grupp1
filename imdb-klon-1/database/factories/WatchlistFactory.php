@@ -1,8 +1,6 @@
 <?php
-#21/02
-#Created a WatchlistFactory
-#
-#Deleted the CategoryListFactory
+#137
+#Added a method to count from 1 and up when seeding watchlists
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -23,8 +21,10 @@ class WatchlistFactory extends Factory
      */
     public function definition(): array
     {
+        static $userId = 1;
+
         return [
-            'user_id' => User::all()->random()->id
+            'user_id' => $userId++,
         ];
     }
 }

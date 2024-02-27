@@ -1,18 +1,22 @@
 <?php
-#21/02
-#Created a WatchlistController and rewrote the index. 
-#Deleted the ListController.
+#137
+#Added logic to handle user watchlists.
+#Added comments in the code
+#Added a function to sort by genre if needed
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Watchlist;
 use App\Models\Movie;
+use App\Models\User;
 
 class WatchlistController extends Controller
 {
     public function index()
     {
+        //TODO Is this needed? //Dennis
         // auths user's watchlist
         $watchlist = Auth::user()->watchlist;
 
@@ -40,9 +44,11 @@ class WatchlistController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Watchlist $watchlist)
+    public function show(User $user)
     {
-        $movies = Movie::all();
+        $watchlist = $user->watchlist;
+        $movies = $watchlist->movies;
+
         return view('watchlist.index', compact('movies'));
     }
 
@@ -68,5 +74,14 @@ class WatchlistController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    /**
+     * Filter by genre
+     */
+    public function filterByGenre(string $id) {
+        $watchlist = Watchlist::whereHas('movie', function ($query) {
+            $query->where('gernre', 'Action');
+        })->get();
     }
 }
