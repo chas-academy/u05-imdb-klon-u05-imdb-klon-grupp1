@@ -12,12 +12,19 @@ class MovieController extends Controller
      */
     public function index()
     {
+        $startTime = microtime(true);
 
         // Check if the user is not authenticated
         $movies = Movie::paginate(10); // Adjust the number as needed
+
+        $endTime = microtime(true);
+
+        $elapsedTime = $endTime - $startTime;
+
+        // Output the elapsed time (for testing purposes)
+        echo "Elapsed Time: " . $elapsedTime . " seconds";
+
         return view('movies.index', ['movies' => $movies]);
-
-
     }
 
     /**
