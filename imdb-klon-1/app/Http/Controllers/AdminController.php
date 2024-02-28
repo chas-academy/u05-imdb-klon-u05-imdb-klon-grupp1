@@ -189,12 +189,30 @@ class AdminController extends Controller
         return redirect()->route('dashboard.index')->with('Success', 'User role has been updated!');
     }
 
+    public function updateGenre(Request $request, User $user) 
+    {
+        $request->validate([
+            'genre' => 'required|in:user,admin',
+        ]);
+
+        $user->role = $request->role;
+        $user->save();
+
+        return redirect()->route('dashboard.index')->with('Success', 'User role has been updated!');
+    }
+
     /**
      * Remove the specified resource from table-view (soft delete).
      */
-    public function destroy(User $user)
+    public function destroyUser(User $user)
     {
         $user->delete();
         return redirect()->route('dashboard.index')->with('Success', 'User has been deleted!');
+    }
+    
+    public function destroyMovie(Movie $movie)
+    {
+        $movie->delete();
+        return redirect()->route('dashboard.index')->with('Success', 'Movie has been deleted!');
     }
     }
