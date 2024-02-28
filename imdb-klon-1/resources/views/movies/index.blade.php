@@ -4,7 +4,7 @@
         <h2 class="mb-4">All Movies</h2>
     </div>
 
-    <div class="container sm mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div class="container sm mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4">
         @foreach ($movies as $movie)
         <a href="{{ route('movies.show', $movie) }}" class="text-decoration-none">
             <div class="bg-white dark:bg-gray-800 p-4 rounded-md">
