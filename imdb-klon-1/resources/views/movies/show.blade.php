@@ -76,53 +76,65 @@
             </div>
 
         </div>
-
+        <!-- auth -->
         <div class="row mt-3">
             <h3>Reviews</h3>
-            @auth
-            <form action="{{ route('movies.reviews.store', $movie->id) }}" method="POST">
-
+            <form action="{{ route('reviews.store', $movie->id) }}" method="POST">
                 @csrf
                 <!-- <input type="text" name="title" class="form-control" style="width: 200px" placeholder="Review heading"> -->
                 <input type="number" name="rating" class="form-control mt-4" style="width: 70px" placeholder="Rating">
                 <label for="comment">Comment:</label>
                 <textarea name="comment" id="comment" class="form-control mt-4" rows="10" placeholder="Review content" required></textarea>
                 <button type="submit" class="btn btn-primary mt-3">Post Review</button>
-
             </form>
-            @endauth
 
         </div>
+        <!-- endauth -->
+
+    </div>
 
 
-        @if (count($movie->reviews))
-        @foreach ($movie->reviews as $review)
-        <div class="card mt-3">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-11">
-                        <h5 class="card-title text-primary">{{ $review->title }}</h5>
-                        <p class="float-left"> {{ $review->user->username }} | <strong> {{ $review-> top_rating }} <i class="fa fa-star" style="color: yellow"></i> </strong> </i></p>
-                        <div class="clearfix"></div>
-                        <p>{{ $review->comment }}</p>
-                    </div>
-
-
-                    @auth
-                    <div class="col-md-1 d-flex align-items-center">
-                        <form action="{{ route('reviews.destroy', $review->id) }}" method="POST">
-                            @csrf
-                            @method('delete')
-                            <button type="submit" class="btn btn-danger">
-                                <i class="far fa-trash-alt"></i>
-                            </button>
-                        </form>
-                    </div>
+    @if (count($movie->reviews))
+    @foreach ($movie->reviews->sortByDesc('created_at') as $review)
+    <div class="card mt-3">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-11">
+                    <h5 class="card-title text-primary">{{ $review->title }}</h5>
+                    <p class="float-left"> {{ $review->user->username }} | <strong> {{ $review-> rating }} <i class="fa fa-star" style="color: yellow"></i> </strong> </i></p>
+                    <div class="clearfix"></div>
+                    <p>{{ $review->comment }}</p>
                 </div>
-                @endauth
 
+                <!-- emilias ugly code down here -->
+                <!-- make auth -->
+                <div>
+                    <form action="{{ route('reviews.update', $review->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <label for="rating">Rating:</label>
+                        <input type="number" name="rating" id="rating" min="1" max="10" value="{{ $review->rating }}">
+                        <label for="comment">Comment:</label>
+                        <textarea name="comment" id="comment">{{ $review->comment }}</textarea>
+                        <button type="submit" class="btn btn-primary mt-3">Update Review</button>
+                    </form>
+                </div>
+                <!-- make auth -->
+                <!-- auth                             -->
+                <div class="col-md-1 d-flex align-items-center">
+                    <form action="{{ route('reviews.destroy', $review->id) }}" method="POST">
+                        @csrf
+                        @method('delete')
+                        <button type="submit" class="btn btn-danger">
+                            <i class="far fa-trash-alt"></i>
+                        </button>
+                    </form>
+                </div>
             </div>
+            <!-- endauth -->
+
         </div>
+    </div>
     </div>
     @endforeach
     @else
