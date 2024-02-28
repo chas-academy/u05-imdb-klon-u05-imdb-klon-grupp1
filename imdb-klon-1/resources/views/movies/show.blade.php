@@ -51,18 +51,23 @@
             </div> 
             <hr>
             <div class="mt-4 d-flex align-items-center">
-                <strong class="me-3">Directors</strong>
-                <ul class="list-group list-group-horizontal ">
-                    <li class="list-group-item text-primary">{{ $movie->director }}</li>
-                </ul> 
-                </div>
-                <hr>
-                <div class="mt-4 d-flex align-items-center">
-                <strong class="me-3">Actors</strong>
-                <ul class="list-group list-group-horizontal ">
-                    <li class="list-group-item text-primary">{{ $movie->actors }}</li>
-                </ul> 
-                </div>
+              <strong class="me-3">Directors</strong>
+              <ul class="list-group list-group-horizontal">
+        @foreach(['Carlson Young'] as $director)
+            <li class="list-group-item text-primary">{{ $director }}</li>
+        @endforeach
+           </ul> 
+            </div>
+            <hr>
+                       <div class="mt-4 d-flex align-items-center">
+                           <strong class="me-3">Actors</strong>
+                            <ul class="list-group list-group-horizontal">
+        @foreach(['Camila Mendes', 'Archie Renaux', 'Marisa Tomei'] as $actor)
+            <li class="list-group-item text-primary">{{ $actor }}</li>
+        @endforeach
+    </ul> 
+</div>
+
             </div>
 
             <div class="col-sm">
