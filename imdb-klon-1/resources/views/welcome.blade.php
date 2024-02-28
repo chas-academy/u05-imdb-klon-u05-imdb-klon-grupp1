@@ -1,10 +1,7 @@
-@extends('layouts.app')
-
 @section('titletab', 'Home')
 <!-- html tag, name -->
 
-@section('content')
-
+<x-app-layout>
 @if (Route::has('login'))
     <div class="sm:fixed sm:top-8 sm:right-4 p-6 text-right z-10">
         @auth
@@ -207,9 +204,5 @@ Barbie and Ken are having the time of their lives in the colorful and seemingly 
         <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
         <script src="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="main.js"></script>
-       
-  @endsection
-
-
-
+        <script type="text/javascript" src="main.js"></script>      
+</x-app-layout>

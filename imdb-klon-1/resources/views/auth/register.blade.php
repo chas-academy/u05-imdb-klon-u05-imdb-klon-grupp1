@@ -45,10 +45,3 @@
         </div>
     </form>
 </x-guest-layout>
-
-<style>
-    body {
-        background-color: #3b3b3b;
-        /* Zink 950 */
-    }
-</style>

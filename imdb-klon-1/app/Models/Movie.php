@@ -32,13 +32,7 @@ class Movie extends Model
         return $imagePath;
     }
 
-    //TODO Is this correct? //Dennis
-    // One movie can have multiple reviews
-    public function reviews(): HasMany
-    {
-        return $this->hasMany(Review::class, 'movie_id'); // Changed to 'movie_id' from 'title_id' 
-    }
-
+    
     //TODO Add comments? //Dennis
     public function watchlistStatus()
     {
@@ -47,10 +41,10 @@ class Movie extends Model
             $watchlistStatus[$key] = $movie->id . ',';
         };
         $watchlistStatus = ',' . implode($watchlistStatus);
-
+        
         return $watchlistStatus;
     }
-
+    
     //TODO Add comments //Dennis
     public function updateTopRating($movie)
     {
@@ -58,7 +52,14 @@ class Movie extends Model
         $data['top_rating'] =  $data_rating;
         $movie->update($data);
     }
-
+    
+    //TODO Is this correct? //Dennis
+    // One movie can have multiple reviews
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class, 'movie_id'); // Changed to 'movie_id' from 'title_id' 
+    }
+    
     /**
      * Pivot table for Movie & Genre models
      * 

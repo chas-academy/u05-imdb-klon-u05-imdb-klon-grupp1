@@ -1,4 +1,4 @@
-@extends('layouts.app') 
+<x-app-layout>
 
 @section('content')
 <div class="border-b border-gray-900/10 pb-12 mb-4">
@@ -45,14 +45,12 @@
         </div>
 
         <div class="flex justify-end">
-            <button type="submit"
-                    class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                Add Movie
-            </button>
+          <x-primary-button>
+            Add Movie
+          </x-primary-button>
         </div>
-    </form>
-</div>
-
+      </form>
+    </div>
 
 <h2 class="text-2xl font-semibold mb-4 text-center">Update or Delete a movie</h2>
 
