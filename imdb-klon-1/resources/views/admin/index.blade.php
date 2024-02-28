@@ -118,6 +118,12 @@
         <input type="text" name="top_rating" value="{{ $movie->top_rating }}" class="text-black">
         <input type="submit" value="Update">
       </form>
+    <form action="{{ route('dashboard.movies.updateGenre', $movie) }}" method="POST">
+      @csrf
+      @method('patch')
+      <input type="text" name="genre" value="{{ $movie->genre }}" class="text-black">
+      <input type="submit" value="Update">
+    </form>
     </td>
     <td>{{ $movie->created_at->format('Y-m-d H:i:s') }}</td>
     <td>{{ $movie->updated_at->format('Y-m-d H:i:s') }}</td>

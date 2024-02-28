@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Movie;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Validation\Rule;
 
 class AdminController extends Controller
 {
@@ -105,6 +106,23 @@ class AdminController extends Controller
     return redirect()->route('dashboard.index')->with('Success', 'Description has been updated');
     }
 
+    public function updateGenre(Request $request, Movie $movie) 
+    {
+        $request->validate([
+            'genre' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::exists('genres', 'name') // Assuming the 'genres' table has a column named 'name'
+            ],
+        ]);
+    
+        $movie->genre = $request->genre;
+        $movie->save();
+
+        return redirect()->route('dashboard.index')->with('Success', 'User role has been updated!');
+    }
+
     public function updateDate(Request $request, Movie $movie)
     {
 
@@ -181,18 +199,6 @@ class AdminController extends Controller
     {
         $request->validate([
             'role' => 'required|in:user,admin',
-        ]);
-
-        $user->role = $request->role;
-        $user->save();
-
-        return redirect()->route('dashboard.index')->with('Success', 'User role has been updated!');
-    }
-
-    public function updateGenre(Request $request, User $user) 
-    {
-        $request->validate([
-            'genre' => 'required|in:user,admin',
         ]);
 
         $user->role = $request->role;
