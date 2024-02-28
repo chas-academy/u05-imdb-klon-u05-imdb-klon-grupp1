@@ -71,9 +71,6 @@ class ReviewController extends Controller
     // 'movie_id' => 'required|exists:movies,id',
 ]);
 
-
-
-
  //Update review
 //  $review->title = $request->input('title');
 //  $review->movie_id = $request->input('movie_id');
@@ -98,6 +95,6 @@ public function destroy(Review $review)
 
 
     // Redirect the user
-    return redirect('/reviews');
+    return view('/reviews');
 }
 }
