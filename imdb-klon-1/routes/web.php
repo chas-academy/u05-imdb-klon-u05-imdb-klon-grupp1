@@ -12,8 +12,10 @@ use App\Http\Controllers\TestWebController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WatchlistController;
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware(['guest'])->group(function () {
+    Route::get('/', function () {
+        return view('welcome');
+    });
 });
 
 // Authenticated Routes
@@ -87,6 +89,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/dashboard/{movie}/updateRating', [AdminController::class, 'updateRating'])->name('dashboard.movies.updateRating');
     Route::delete('/dashboard/{movie}', [AdminController::class, 'destroy'])->name('dashboard.movies.destroy');
     Route::put('/dashboard/{user}', [AdminController::class, 'update'])->name('dashboard.users.update');
+    Route::patch('/dashboard/{movie}/updateGenre', [AdminController::class, 'updateGenre'])->name('dashboard.movies.updateGenre');
     Route::patch('/dashboard/{user}/update-username', [AdminController::class, 'updateUsername'])->name('dashboard.users.updateUsername');
     Route::patch('/dashboard/{user}/update-role', [AdminController::class, 'updateRole'])->name('dashboard.users.updateRole');
     Route::delete('/dashboard/users/{user}', [AdminController::class, 'destroy'])->name('dashboard.users.destroy');
