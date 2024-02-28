@@ -106,22 +106,24 @@ class AdminController extends Controller
     return redirect()->route('dashboard.index')->with('Success', 'Description has been updated');
     }
 
-    public function updateGenre(Request $request, Movie $movie) 
-    {
-        $request->validate([
-            'genre' => [
-                'required',
-                'string',
-                'max:255',
-                Rule::exists('genres', 'name') // Assuming the 'genres' table has a column named 'name'
-            ],
-        ]);
-    
-        $movie->genre = $request->genre;
-        $movie->save();
+    public function updateGenre(Request $request, Movie $movie) {
+    $request->validate([
+        'genre' => [
+            'required',
+            'string',
+            'max:255',
+            Rule::exists('movie_genre', 'genre')->where(function ($query) use ($movie) {
+                $query->where('movie_id', $movie->id);
+            }),
+        ],
+    ]);
 
-        return redirect()->route('dashboard.index')->with('Success', 'User role has been updated!');
+    // Assuming you have a many-to-many relationship defined in your Movie model
+    $movie->genres()->sync([$request->genre]);
+
+    return redirect()->route('dashboard.index')->with('Success', 'Genre has been updated!');
     }
+
 
     public function updateDate(Request $request, Movie $movie)
     {
