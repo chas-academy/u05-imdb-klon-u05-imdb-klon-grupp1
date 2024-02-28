@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Movie;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Validation\Rule;
 
 class AdminController extends Controller
 {
@@ -105,6 +106,23 @@ class AdminController extends Controller
     return redirect()->route('dashboard.index')->with('Success', 'Description has been updated');
     }
 
+    public function updateGenre(Request $request, Movie $movie) 
+    {
+        $request->validate([
+            'genre' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::exists('genres', 'name') // Assuming the 'genres' table has a column named 'name'
+            ],
+        ]);
+    
+        $movie->genre = $request->genre;
+        $movie->save();
+
+        return redirect()->route('dashboard.index')->with('Success', 'User role has been updated!');
+    }
+
     public function updateDate(Request $request, Movie $movie)
     {
 
@@ -192,9 +210,15 @@ class AdminController extends Controller
     /**
      * Remove the specified resource from table-view (soft delete).
      */
-    public function destroy(User $user)
+    public function destroyUser(User $user)
     {
         $user->delete();
         return redirect()->route('dashboard.index')->with('Success', 'User has been deleted!');
+    }
+    
+    public function destroyMovie(Movie $movie)
+    {
+        $movie->delete();
+        return redirect()->route('dashboard.index')->with('Success', 'Movie has been deleted!');
     }
     }

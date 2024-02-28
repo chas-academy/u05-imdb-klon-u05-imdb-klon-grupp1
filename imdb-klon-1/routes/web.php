@@ -98,11 +98,12 @@ Route::patch('/dashboard/{movie}/updateDate', [AdminController::class, 'updateDa
 Route::patch('/dashboard/{movie}/updateImg', [AdminController::class, 'updateImg'])->name('dashboard.movies.updateImg');
 Route::patch('/dashboard/{movie}/updateTrailer', [AdminController::class, 'updateTrailer'])->name('dashboard.movies.updateTrailer');
 Route::patch('/dashboard/{movie}/updateRating', [AdminController::class, 'updateRating'])->name('dashboard.movies.updateRating');
-Route::delete('/dashboard/{movie}', [AdminController::class, 'destroy'])->name('dashboard.movies.destroy');
+Route::patch('/dashboard/{movie}/updateGenre', [AdminController::class, 'updateGenre'])->name('dashboard.movies.updateGenre');
+Route::delete('/dashboard/{movie}', [AdminController::class, 'destroyMovie'])->name('dashboard.movies.destroy');
 Route::put('/dashboard/{user}', [AdminController::class, 'update'])->name('dashboard.users.update');
 Route::patch('/dashboard/{user}/update-username', [AdminController::class, 'updateUsername'])->name('dashboard.users.updateUsername');
 Route::patch('/dashboard/{user}/update-role', [AdminController::class, 'updateRole'])->name('dashboard.users.updateRole');
-Route::delete('/dashboard/users/{user}', [AdminController::class, 'destroy'])->name('dashboard.users.destroy');
+Route::delete('/dashboard/users/{user}', [AdminController::class, 'destroyUser'])->name('dashboard.users.destroy');
 
 
 require __DIR__ . '/auth.php';
