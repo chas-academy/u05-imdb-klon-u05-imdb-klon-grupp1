@@ -1,9 +1,12 @@
 <?php
 
+
 namespace App\Http\Controllers;
+
 
 use Illuminate\Http\Request;
 use App\Models\Review;
+
 
 class ReviewController extends Controller
 {
@@ -13,22 +16,44 @@ class ReviewController extends Controller
     public function index()
     {
         $reviews = Review::all();
-        return view('reviews', ['reviews' => $reviews]);
+        return view('reviews.index', ['reviews' => $reviews]);
     }
+
 
     /**
      * Show the form for creating a new resource.
      */
     public function create(Request $request)
 {
-    
+    return view('reviews.create');
 }
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
-     
+{  
+    //Validate data
+    $request->validate([
+        // 'title' => 'required',
+        'rating' => 'required|integer|min:1|max:10', //Rating from 1 to 10.
+        'comment' => 'required', //Not sure about this one
+        // 'movie_id' => 'required|exists:movies,id',
+    ]);
+     //Create new review
+     $review = new Review();
+    //  $review->title = $request->input('title');
+    //  $review->movie_id = $request->input('movie_id');
+     $review->rating = $request->input('rating');
+     $review->comment = $request->input('comment');
+
+
+     $review->save();
+
+
+
+
+     //Redirect user to review page
+     return redirect()->route('reviews.index', ['review' => $review->id]);
 }
     /**
      * Display the specified resource.
@@ -38,6 +63,7 @@ class ReviewController extends Controller
         return view('reviews.show', ['review' => $review]);
     }
 
+
     /**
      * Show the form for editing the specified resource.
      */
@@ -46,18 +72,45 @@ class ReviewController extends Controller
         return view('reviews.edit', ['review' => $review]);
     }
 
+
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Review $review)
 {
-   
+   //Validate data
+   $request->validate([
+    // 'title' => 'required',
+    'rating' => 'required|integer|min:1|max:10', //Rating from 1 to 10.
+    'comment' => 'required', //Not sure about this one
+    // 'movie_id' => 'required|exists:movies,id',
+]);
+
+
+
+
+ //Update review
+//  $review->title = $request->input('title');
+//  $review->movie_id = $request->input('movie_id');
+ $review->rating = $request->input('rating');
+ $review->comment = $request->input('comment');
+
+
+ $review->save();
+
+
+
+
+ //Redirect user to review page
+ return redirect()->route('reviews.index', ['review' => $review->id]);
 }
+
 
 public function destroy(Review $review)
 {
     // Delete the review
     $review->delete();
+
 
     // Redirect the user
     return redirect('/reviews');
