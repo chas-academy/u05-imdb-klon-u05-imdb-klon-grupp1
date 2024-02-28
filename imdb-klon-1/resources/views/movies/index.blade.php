@@ -1,7 +1,5 @@
-@extends('layouts.app')
-@section('titletab', 'movies index') <!-- html tag, name -->
+<x-app-layout>
 
-@section('content')
     <div class="container p-3">
         <div class="container p-3 text-center">
            
@@ -85,9 +83,4 @@
         {{$movies->links()}}
         {{-- {!! $movies->links() !!} --}}
     </div>
-
-@endsection
-
-
-
-
+</x-app-layout>
