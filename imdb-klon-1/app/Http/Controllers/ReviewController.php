@@ -1,9 +1,8 @@
 <?php
-
-
 namespace App\Http\Controllers;
 
-
+use App\Models\Movie;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Review;
 
@@ -31,30 +30,16 @@ class ReviewController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{  
-    //Validate data
-    $request->validate([
-        // 'title' => 'required',
-        'rating' => 'required|integer|min:1|max:10', //Rating from 1 to 10.
-        'comment' => 'required', //Not sure about this one
-        // 'movie_id' => 'required|exists:movies,id',
-    ]);
-     //Create new review
-     $review = new Review();
-    //  $review->title = $request->input('title');
-    //  $review->movie_id = $request->input('movie_id');
-     $review->rating = $request->input('rating');
-     $review->comment = $request->input('comment');
+    {  
+        $review = new Review();
+        $review->rating = $request->rating;
+        $review->comment = $request->comment;
+        $review->user_id = 1; // omvandla till faktiskt user_id 
+        $review->movie_id = 1; // -- movie_id <- får du via URI för filmen som kommentaren skrivs i.
+        $review->save();
 
-
-     $review->save();
-
-
-
-
-     //Redirect user to review page
-     return redirect()->route('reviews.index', ['review' => $review->id]);
-}
+        return redirect()->route('reviews.index', ['review' => $review]);
+    }
     /**
      * Display the specified resource.
      */
