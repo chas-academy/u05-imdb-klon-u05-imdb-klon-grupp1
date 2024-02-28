@@ -50,15 +50,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/movies/{movie}', [MovieController::class, 'destroy'])->name('movies.destroy');
 
 
-    //Routes for reviews 
     Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index')->withoutMiddleware(['auth']);
-    Route::get('/reviews/create', [ReviewController::class, 'create'])->name('reviews.create');
-    Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
-    Route::get('/reviews/{review}', [ReviewController::class, 'show'])->name('reviews.show');
-    Route::get('/reviews/{review}/edit', [ReviewController::class, 'edit'])->name('reviews.edit');
-    Route::put('/reviews/{review}', [ReviewController::class, 'update'])->name('reviews.update');
-    Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
-
+    Route::get('/reviews/create', [ReviewController::class, 'create'])->name('reviews.create')->withoutMiddleware(['auth']); 
+    Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store')->withoutMiddleware(['auth']);
+    Route::get('/reviews/{review}', [ReviewController::class, 'show'])->name('reviews.show')->withoutMiddleware(['auth']);
+    Route::get('/reviews/{review}/edit', [ReviewController::class, 'edit'])->name('reviews.edit')->withoutMiddleware(['auth']);
+    Route::put('/reviews/{review}', [ReviewController::class, 'update'])->name('reviews.update')->withoutMiddleware(['auth']);
+    Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy')->withoutMiddleware(['auth']);
+// Change auth later for appropriate auth
     /**
      * Routes for the User model
      * 
