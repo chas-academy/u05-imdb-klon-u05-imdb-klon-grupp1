@@ -84,35 +84,34 @@
         @foreach ($movie->reviews->sortByDesc('created_at') as $review)
         <div class="card mt-3">
             <div class="card-body">
-                <div class="row">
-                    <div class="col-md-11">
+                <div class="flex flex-col">
+                    <div class="mb-3">
                         <h5 class="card-title text-primary">{{ $review->title }}</h5>
-                        <p class="float-left">{{ $review->user->username }} | <strong>{{ $review->rating }} <i class="fa fa-star text-yellow-500"></i></strong></p>
-                        <div class="clearfix"></div>
+                        <p>{{ $review->user->username }} | <strong>{{ $review->rating }} <i class="fa fa-star text-yellow-500"></i></strong></p>
+                    </div>
+                    <div class="mb-3">
                         <p>{{ $review->comment }}</p>
                     </div>
                     @auth
-                    <div class="col-md-1 flex items-center">
-                        <form action="{{ route('reviews.update', $review->id) }}" method="POST" class="me-3">
+                    <div class="flex items-end justify-between">
+                        <form action="{{ route('reviews.update', $review->id) }}" method="POST" class="me-3 w-1/2">
                             @csrf
                             @method('PUT')
                             <label for="rating">Rating:</label>
                             <input type="number" name="rating" id="rating" min="1" max="10" value="{{ $review->rating }}" class="form-control w-20">
                             <label for="comment" class="mt-2">Comment:</label>
                             <textarea name="comment" id="comment" class="form-control mt-2">{{ $review->comment }}</textarea>
-                            <x-primary-button type="submit" class="mt-3 mr-2 dark:bg-red-950 hover:bg-orange-500">
+                            <x-primary-button type="submit" class="mt-3 dark:bg-red-950 hover:bg-orange-500">
                                 {{ __('Update Review') }}
                             </x-primary-button>
                         </form>
-                        <div class="col-md-1 flex items-end justify-end">
-                            <form action="{{ route('reviews.destroy', $review->id) }}" method="POST">
-                                @csrf
-                                @method('delete')
-                                <button type="submit" class="btn btn-danger">
-                                    <i class="far fa-trash-alt"></i>
-                                </button>
-                            </form>
-                        </div>
+                        <form action="{{ route('reviews.destroy', $review->id) }}" method="POST" class="w-1/2">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn btn-danger">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
+                        </form>
                     </div>
                     @endauth
                 </div>
