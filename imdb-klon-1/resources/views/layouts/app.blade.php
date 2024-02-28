@@ -46,6 +46,10 @@
     @endif
 
     <main class="flex-grow">
+        <a href="{{ url()->previous() }}" class="text-white no-underline hover:text-gray-300 inline-flex items-center bg-opacity-40 bg-red-400 <bg-opacity-1></bg-opacity-1>0 p-2 rounded-md border border-white border-opacity-50 m-2">
+            <i class="fas fa-arrow-left mr-2"></i>
+            <span>Go Back</span>
+        </a>
         {{ $slot }}
     </main>
 

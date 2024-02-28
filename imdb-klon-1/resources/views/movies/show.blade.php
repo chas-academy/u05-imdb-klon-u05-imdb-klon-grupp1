@@ -76,7 +76,7 @@
                 <input type="number" name="rating" class="form-control mt-4 w-20" placeholder="Rating" min="1" max="10" required>
                 <label for="comment" class="mt-4">Comment:</label>
                 <textarea name="comment" id="comment" class="form-control mt-2" rows="5" placeholder="Review content" required></textarea>
-                <button type="submit" class="btn btn-primary mt-3">Post Review</button>
+                <x-primary-button type="submit" class="mt-3 dark:bg-red-950 hover:bg-orange-500">Post Review</x-primary-button>
             </form>
         </div>
         @endauth
