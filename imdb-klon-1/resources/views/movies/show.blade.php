@@ -1,10 +1,7 @@
-
-@extends('layouts.app')
-
 {{-- @section('titletab', '$movie_id') <!-- html tag, name --> --}}
 @section('titletab', 'Movies ' . $movie->title) <!-- html tag, name -->
 
-@section('content')
+<x-app-layout>
     <div class="container card pt-2 p-3" >
         <div class="row text-center mt-3 d-flex justify-content-center align-items-center">
             <div class="col-sm">
@@ -51,29 +48,31 @@
             </div> 
             <hr>
             <div class="mt-4 d-flex align-items-center">
-                <strong class="me-3">Directors</strong>
-                <ul class="list-group list-group-horizontal ">
-                    <li class="list-group-item text-primary">{{ $movie->director }}</li>
-                </ul> 
-                </div>
-                <hr>
-                <div class="mt-4 d-flex align-items-center">
-                <strong class="me-3">Actors</strong>
-                <ul class="list-group list-group-horizontal ">
-                    <li class="list-group-item text-primary">{{ $movie->actors }}</li>
-                </ul> 
-                </div>
+              <strong class="me-3">Directors</strong>
+              <ul class="list-group list-group-horizontal">
+        @foreach(['Carlson Young'] as $director)
+            <li class="list-group-item text-primary">{{ $director }}</li>
+        @endforeach
+           </ul> 
+            </div>
+            <hr>
+                       <div class="mt-4 d-flex align-items-center">
+                           <strong class="me-3">Actors</strong>
+                            <ul class="list-group list-group-horizontal">
+        @foreach(['Camila Mendes', 'Archie Renaux', 'Marisa Tomei'] as $actor)
+            <li class="list-group-item text-primary">{{ $actor }}</li>
+        @endforeach
+    </ul> 
+</div>
+
             </div>
 
             <div class="col-sm">
-                <!--Emma if want to use this button i did it from Nejat
              @auth
-                <div> {{--Button Add to watchlist--}}
-                    <a class="btn btn-primary" href="{{ route('addToWatchlist', ['movieid'=>$movie->id]) }}">
-                        Add to watchlist
-                    </a>
-                </div>
-            @endauth -->
+                <x-primary-button class="ms-3 bg-red-950 hover:bg-orange-500">
+                {{ __('Add To Watchlist') }}
+            </x-primary-button>
+            @endauth
         </div>
 
     </div>
@@ -88,8 +87,13 @@
                 <textarea name="comment" id="comment" class="form-control mt-4" rows="10" placeholder="Review content" required></textarea>
                 <button type="submit" class="btn btn-primary mt-3">Post Review</button>
             </form> 
+
         </div> 
 <!-- endauth -->
+
+        </div>
+
+
         @if (count($movie->reviews))
             @foreach ($movie->reviews as $review)
             <div class="card mt-3">
@@ -137,5 +141,6 @@
             <h6 class="mt-4">No reviews in this movie!</h6> 
         @endif
     </div>
-@endsection
+    </x-app-layout>
+
 
