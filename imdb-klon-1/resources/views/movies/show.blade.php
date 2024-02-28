@@ -81,14 +81,19 @@
             <h3>Reviews</h3>
             @auth
             <form action="{{ route('movies.reviews.store', $movie->id) }}" method="POST">
+
                 @csrf
-                <input type="text" name="title" class="form-control" style="width: 200px" placeholder="Review heading">
+                <!-- <input type="text" name="title" class="form-control" style="width: 200px" placeholder="Review heading"> -->
                 <input type="number" name="rating" class="form-control mt-4" style="width: 70px" placeholder="Rating">
-                <textarea type="text" name="content" class="form-control mt-4" rows="10" placeholder="Review content"></textarea>
+                <label for="comment">Comment:</label>
+                <textarea name="comment" id="comment" class="form-control mt-4" rows="10" placeholder="Review content" required></textarea>
                 <button type="submit" class="btn btn-primary mt-3">Post Review</button>
+
             </form>
             @endauth
+
         </div>
+
 
         @if (count($movie->reviews))
         @foreach ($movie->reviews as $review)
@@ -101,6 +106,7 @@
                         <div class="clearfix"></div>
                         <p>{{ $review->comment }}</p>
                     </div>
+
 
                     @auth
                     <div class="col-md-1 d-flex align-items-center">
