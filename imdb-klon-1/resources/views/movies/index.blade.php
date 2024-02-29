@@ -1,7 +1,7 @@
 <x-app-layout>
 
     <div class="container p-3 text-center">
-        <h2 class="mb-4">All Movies</h2>
+        <h1 class="mb-4">All Movies</h1>
     </div>
 
     <div class="container sm mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4">

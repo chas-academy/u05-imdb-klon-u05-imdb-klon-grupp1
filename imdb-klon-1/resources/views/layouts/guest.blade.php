@@ -23,7 +23,7 @@
                 ReelCorn
             </div>
             <a href="/" class="ml-2 mr-2"> <!-- Adjust the ml and mr values as needed -->
-                <x-application-logo class="w-20 h-20 fill-current text-red-700" />
+                <x-application-logo class="w-10 h-10 fill-current text-red-700" />
             </a>
             <div class="text-4xl font-bold text-amber-500 dark:text-white">
                 DataBase
