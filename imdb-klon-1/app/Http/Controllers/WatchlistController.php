@@ -1,5 +1,6 @@
 <?php
-
+#169
+#Rewrote the logic in the 'show' method to view the watchlist based on the user who is logged in.
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -31,9 +32,9 @@ class WatchlistController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show(int $userId)
     {
-        $watchlist = $user->watchlist;
+        $watchlist = Watchlist::where('user_id', $userId)->firstOrFail();
         $movies = $watchlist->movies;
 
         return view('watchlist.index', compact('movies'));

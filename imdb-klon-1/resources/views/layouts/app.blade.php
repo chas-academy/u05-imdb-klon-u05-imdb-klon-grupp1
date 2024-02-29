@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<?php 
+/**
+ * Removed all the bootstrap styling i could and the implementation style-sheets
+ * 
+ */ 
+?>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
@@ -24,14 +30,6 @@
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/b21a636a7a.js" crossorigin="anonymous"></script>
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-
-    <link rel="stylesheet" href="https://bootswatch.com/5/cyborg/bootstrap.min.css">
 </head>
 
 <body class="d-flex flex-column min-vh-100 bg-gradient-to-b from-zinc-950 to-red-950">

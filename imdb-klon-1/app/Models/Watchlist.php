@@ -1,7 +1,6 @@
 <?php
-#21/02
-#Created Watchlist model and added $fillable, pivot table relation and user realtions.
-#Deleted CategoryList model
+#169
+#Removed comments and added 'BelongsTo' on the 'user' method
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -24,7 +23,7 @@ class Watchlist extends Model
     /**
      * Watchlist - User Relation
      */
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

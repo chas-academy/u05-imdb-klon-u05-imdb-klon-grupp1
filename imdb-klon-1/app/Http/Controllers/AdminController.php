@@ -10,25 +10,25 @@ use Illuminate\Validation\Rule;
 
 class AdminController extends Controller
 {
-        /**
-         * Display a listing of the resource.
-         *
-         * @return \Illuminate\Http\Response
-         */
-        public function index()
-        {
-            // Authorize that the current user is an admin. If not, this might throw an exception or handle it based on your authorization logic.
-            // $this->authorize('isAdmin');
-        
-            // Display all movies from the Movie model
-            $movies = Movie::all();
-        
-            // Display all users from the User model
-            $users = User::all();
-        
-            // Return the 'dashboard' view with the retrieved data
-            return view('admin.index', compact('movies', 'users'));
-        }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        // Authorize that the current user is an admin. If not, this might throw an exception or handle it based on your authorization logic.
+        // $this->authorize('isAdmin');
+    
+        // Display all movies from the Movie model
+        $movies = Movie::all();
+    
+        // Display all users from the User model
+        $users = User::all();
+    
+        // Return the 'dashboard' view with the retrieved data
+        return view('admin.index', compact('movies', 'users'));
+    }
         
     
 
@@ -107,21 +107,21 @@ class AdminController extends Controller
     }
 
     public function updateGenre(Request $request, Movie $movie) {
-    $request->validate([
-        'genre' => [
-            'required',
-            'string',
-            'max:255',
-            Rule::exists('movie_genre', 'genre')->where(function ($query) use ($movie) {
-                $query->where('movie_id', $movie->id);
-            }),
-        ],
-    ]);
+        $request->validate([
+            'genre' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::exists('movie_genre', 'genre')->where(function ($query) use ($movie) {
+                    $query->where('movie_id', $movie->id);
+                }),
+            ],
+        ]);
 
-    // Assuming you have a many-to-many relationship defined in your Movie model
-    $movie->genres()->sync([$request->genre]);
+        // Assuming you have a many-to-many relationship defined in your Movie model
+        $movie->genres()->sync([$request->genre]);
 
-    return redirect()->route('dashboard.index')->with('Success', 'Genre has been updated!');
+        return redirect()->route('dashboard.index')->with('Success', 'Genre has been updated!');
     }
 
 
