@@ -44,7 +44,7 @@
         </div>
     </header>
     @endif
-
+    
     <main class="flex-grow flex flex-col items-center justify-center relative">
         <a href="{{ url()->previous() }}" class="absolute top-0 left-0 text-white no-underline hover:text-gray-300 inline-flex items-center bg-opacity-40 bg-red-400 bg-opacity-10 p-2 rounded-md border border-white border-opacity-50 mb-4 ml-4 mt-4">
             <i class="fas fa-arrow-left mr-2"></i>
@@ -63,6 +63,7 @@
         </div>
 
         {{ $slot }}
+
     </main>
 
     @include('layouts.partials.footer')

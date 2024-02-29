@@ -1,6 +1,4 @@
 <x-app-layout>
-
-  @section('content')
   <div class="w-full overflow-x-hidden">
     <div class="flex flex-row -mx-2 overflow-x-scroll scrollbar-smooth touch-scroll snap-x snap-mandatory">
       @foreach ($movies as $key => $movie)
@@ -31,6 +29,4 @@
       </button>
     </div>
   </div>
-  @endsection
-
 </x-app-layout>
