@@ -17,7 +17,7 @@
 </head>
 
 <body class="font-sans text-gray-900 antialiased">
-    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-red-950 dark:bg-red-950">
+    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-zinc-950 dark:bg-red-950">
         <div class="flex items-center">
             <div class="text-4xl font-bold text-amber-300 dark:text-white">
                 ReelCorn

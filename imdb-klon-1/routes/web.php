@@ -12,6 +12,7 @@ use App\Http\Controllers\TestWebController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WatchlistController;
 
+
 Route::middleware(['guest'])->group(function () {
     Route::get('/', function () {
         return view('welcome');
