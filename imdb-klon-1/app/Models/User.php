@@ -1,25 +1,17 @@
 <?php
-#115
-#Implement SoftDeletes to handle user CRUD and minimize drawback
-namespace App\Models;
-
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+// User.php
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
-use Illuminate\Foundation\Auth\User as Authenticatable;
-
 use Illuminate\Notifications\Notifiable;
-
-use Laravel\Sanctum\HasApiTokens;
-
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Watchlist;
 use App\Models\Review;
+
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+    use Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -33,6 +25,7 @@ class User extends Authenticatable
         'password',
         'role',
     ];
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -64,5 +57,16 @@ class User extends Authenticatable
     public function reviews(): HasMany
     {
         return $this->hasMany(Review::class);
+    }
+    /**
+     * Check if the user has the given role.
+     *
+     * @param string $role
+     * @return bool
+     */
+
+    public function hasRole($role)
+    {
+        return $this->role === $role;
     }
 }
