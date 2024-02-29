@@ -61,64 +61,80 @@
     <h3 class="h1-home" style="margin-left: 10px;"><i class="fa fa-film" aria-hidden="true"></i> Latest movies and trailers</h3>
 
     <div class="card-group">
-        <div class="card">
-            <img class="card-img-top" src="https://media.themoviedb.org/t/p/original/qhb1qOilapbapxWQn9jtRCMwXJF.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h3 class="card-title card-index">Wonka</h3>
-                <p class="card-text">2023 | 1h 42m | Fantasy, comedy, family</p>
+        <a href="{{ route('movies.show', ['movie' => 6]) }}" class="card-link">
 
-                <p class="card-text"><i class="fa fa-star" style="color:#DBA506" aria-hidden="true"></i>7.3</p>
-                <p class="card-text"><small class="text">
-                        Willy Wonka – chock-full of ideas and determined to change the world one delectable bite at a time – is proof that the best things in life begin with a dream, and if you’re lucky enough to meet Willy Wonka, anything is possible.</small></p>
+            <div class="card">
+                <img class="card-img-top" src="https://media.themoviedb.org/t/p/original/qhb1qOilapbapxWQn9jtRCMwXJF.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h3 class="card-title card-index">Wonka</h3>
+                    <p class="card-text">2023 | 1h 42m | Fantasy, comedy, family</p>
 
-            </div>
-            <a class="btn btn-primary" href="https://www.youtube.com/watch?v=otNh9bTjXWg" role="button"><i class="fa fa-play" aria-hidden="true"></i>Trailer</a>
-        </div>
-        <div class="card">
-            <img class="card-img-top" src="https://media.themoviedb.org/t/p/w600_and_h900_bestv2/mBaXZ95R2OxueZhvQbcEWy2DqyO.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h3 class="card-title card-index">The Hunger Games</h3>
-                <p class="card-text">2023 | 1h 59m | crime, drama, thriller</p>
-                <p class="card-text"><i class="fa fa-star" style="color:#DBA506" aria-hidden="true"></i>6.4</p>
-                <p class="card-text"><small class="text">64 years before he becomes the tyrannical president of Panem, Coriolanus Snow sees a chance for a change in fortunes when he mentors Lucy Gray Baird, the female tribute from District 12..</small></p>
-            </div>
-            <a class="btn btn-primary" href="https://www.youtube.com/watch?v=RDE6Uz73A7g" role="button"><i class="fa fa-play" aria-hidden="true"></i>Trailer</a>
-        </div>
+                    <p class="card-text"><i class="fa fa-star" style="color:#DBA506" aria-hidden="true"></i>7.3</p>
+                    <p class="card-text"><small class="text">
+                            Willy Wonka – chock-full of ideas and determined to change the world one delectable bite at a time – is proof that the best things in life begin with a dream, and if you’re lucky enough to meet Willy Wonka, anything is possible.</small></p>
 
-        <div class="card">
-            <img class="card-img-top" src="https://media.themoviedb.org/t/p/w600_and_h900_bestv2/7lTnXOy0iNtBAdRP3TZvaKJ77F6.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h3 class="card-title card-index"> Aquaman</h3>
-                <p class="card-text">2023 | 2h 4m | action, adventure, fantasy</p>
-                <p class="card-text"><i class="fa fa-star" style="color:#DBA506" aria-hidden="true"></i>6.1</p>
-                <p class="card-text"><small class="text">Black Manta seeks revenge on Aquaman for his father's death. Wielding the Black Trident's power, he becomes a formidable foe. To defend Atlantis, Aquaman forges an alliance with his imprisoned brother. They must protect the kingdom.</small></p>
+                </div>
+                <a class="btn btn-primary" href="https://www.youtube.com/watch?v=otNh9bTjXWg" role="button"><i class="fa fa-play" aria-hidden="true"></i>Trailer</a>
             </div>
-            <a class="btn btn-primary" href="https://www.youtube.com/watch?v=aD3v7gPZ2Lw" role="button"><i class="fa fa-play" aria-hidden="true"></i>Trailer</a>
-        </div>
+        </a>
 
-        <div class="card">
-            <img class="card-img-top" src="https://media.themoviedb.org/t/p/w600_and_h900_bestv2/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h3 class="card-title card-index">Barbie</h3>
-                <p class="card-text">2023 | 1h 54m | Comedy, Adventure
-                </p>
-                <p class="card-text"><i class="fa fa-star" style="color:#DBA506" aria-hidden="true"></i>7.3</p>
-                <p class="card-text"><small class="text">
-                        Barbie and Ken are having the time of their lives in the colorful and seemingly perfect world of Barbie Land. However, when they get a chance to go to the real world, they soon discover the joys and perils of living among humans.</small></p>
-            </div>
-            <a class="btn btn-primary" href="https://www.youtube.com/watch?v=pBk4NYhWNMM" role="button"><i class="fa fa-play" aria-hidden="true"></i>Trailer</a>
-        </div>
+        <a href="{{ route('movies.show', ['movie' => 7]) }}" class="card-link">
 
-        <div class="card">
-            <img class="card-img-top" src="https://media.themoviedb.org/t/p/w600_and_h900_bestv2/kmGCB4TTMEphUSxDHsDULDgJMuB.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h3 class="card-title card-index">One Life</h3>
-                <p class="card-text"> 2024 | 2h 49m | Drama, History, War</p>
-                <p class="card-text"><i class="fa fa-star" style="color:#DBA506" aria-hidden="true"></i>7.5</p>
-                <p class="card-text"><small class="text">British stockbroker Nicholas Winton visits Czechoslovakia in the 1930s and forms plans to assist in the rescue of Jewish children before the onset of World War II, in an operation that came to be known as the Kindertransport.</small></p>
+            <div class="card">
+                <img class="card-img-top" src="https://media.themoviedb.org/t/p/w600_and_h900_bestv2/mBaXZ95R2OxueZhvQbcEWy2DqyO.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h3 class="card-title card-index">The Hunger Games</h3>
+                    <p class="card-text">2023 | 1h 59m | crime, drama, thriller</p>
+                    <p class="card-text"><i class="fa fa-star" style="color:#DBA506" aria-hidden="true"></i>6.4</p>
+                    <p class="card-text"><small class="text">64 years before he becomes the tyrannical president of Panem, Coriolanus Snow sees a chance for a change in fortunes when he mentors Lucy Gray Baird, the female tribute from District 12..</small></p>
+                </div>
+                <a class="btn btn-primary" href="https://www.youtube.com/watch?v=RDE6Uz73A7g" role="button"><i class="fa fa-play" aria-hidden="true"></i>Trailer</a>
             </div>
-            <a class="btn btn-primary" href="https://www.youtube.com/watch?v=P9G-PA1oMPI" role="button"><i class="fa fa-play" aria-hidden="true"></i>Trailer</a>
-        </div>
+
+            <a href="{{ route('movies.show', ['movie' => 8]) }}" class="card-link">
+                <div class="card">
+                    <img class="card-img-top" src="https://media.themoviedb.org/t/p/w600_and_h900_bestv2/7lTnXOy0iNtBAdRP3TZvaKJ77F6.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h3 class="card-title card-index"> Aquaman</h3>
+                        <p class="card-text">2023 | 2h 4m | action, adventure, fantasy</p>
+                        <p class="card-text"><i class="fa fa-star" style="color:#DBA506" aria-hidden="true"></i>6.1</p>
+                        <p class="card-text"><small class="text">Black Manta seeks revenge on Aquaman for his father's death. Wielding the Black Trident's power, he becomes a formidable foe. To defend Atlantis, Aquaman forges an alliance with his imprisoned brother. They must protect the kingdom.</small></p>
+                    </div>
+
+                    <a class="btn btn-primary" href="https://www.youtube.com/watch?v=aD3v7gPZ2Lw" role="button"><i class="fa fa-play" aria-hidden="true"></i>Trailer</a>
+                </div>
+            </a>
+
+            <a href="{{ route('movies.show', ['movie' => 9]) }}" class="card-link">
+                <div class="card">
+                    <img class="card-img-top" src="https://media.themoviedb.org/t/p/w600_and_h900_bestv2/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h3 class="card-title card-index">Barbie</h3>
+                        <p class="card-text">2023 | 1h 54m | Comedy, Adventure
+                        </p>
+                        <p class="card-text"><i class="fa fa-star" style="color:#DBA506" aria-hidden="true"></i>7.3</p>
+                        <p class="card-text"><small class="text">
+                                Barbie and Ken are having the time of their lives in the colorful and seemingly perfect world of Barbie Land. However, when they get a chance to go to the real world, they soon discover the joys and perils of living among humans.</small></p>
+                    </div>
+                    <a class="btn btn-primary" href="https://www.youtube.com/watch?v=pBk4NYhWNMM" role="button"><i class="fa fa-play" aria-hidden="true"></i>Trailer</a>
+                </div>
+            </a>
+
+            <a href="{{ route('movies.show', ['movie' => 0]) }}" class="card-link">
+                <div class="card">
+                    <img class="card-img-top" src="https://media.themoviedb.org/t/p/w600_and_h900_bestv2/kmGCB4TTMEphUSxDHsDULDgJMuB.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h3 class="card-title card-index">One Life</h3>
+                        <p class="card-text"> 2024 | 2h 49m | Drama, History, War</p>
+                        <p class="card-text"><i class="fa fa-star" style="color:#DBA506" aria-hidden="true"></i>7.5</p>
+                        <p class="card-text"><small class="text">British stockbroker Nicholas Winton visits Czechoslovakia in the 1930s and forms plans to assist in the rescue of Jewish children before the onset of World War II, in an operation that came to be known as the Kindertransport.</small></p>
+                    </div>
+                    <a class="btn btn-primary" href="{{ route('movies.show', ['movie' => 8]) }}" role="button">
+                        <i class="fa fa-play" aria-hidden="true"></i> Trailer
+                    </a>
+                    <a class="btn btn-primary" href="https://www.youtube.com/watch?v=P9G-PA1oMPI" role="button"><i class="fa fa-play" aria-hidden="true"></i>Trailer</a>
+                </div>
+            </a>
     </div>
     <h3 class="h1-home" style="margin-left: 10px;"><i class="fa fa-film" aria-hidden="true"></i> Upcoming Movies</h3>
 
