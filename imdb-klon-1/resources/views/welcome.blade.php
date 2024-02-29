@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 /**
  * Deleted all the Bootstrap links and replaced the styling on the elements still in the file.
  * Added a 'include' to include the watchlist carousel - not yet added.
@@ -8,19 +9,25 @@
 @section('titletab', 'Home')
 <x-app-layout>
   @if (Route::has('login'))
-    <div class="sm:fixed sm:top-8 sm:right-4 p-6 text-right z-10">
+  <div class="sm:fixed sm:top-8 sm:right-4 p-3 text-right z-10">
+    @auth
+    <a href="{{ url('/profile') }}" class="font-semibold text-white bg-red-950 hover:bg-orange-400 px-2 py-1 rounded text-xs">
+      Dashboard
+    </a>
+    @else
+    <a href="{{ route('login') }}" class="font-semibold text-white bg-red-950 hover:bg-orange-400 px-2 py-1 rounded ml-2 text-xs">
+      Log in
+    </a>
 
-      @auth
-        <a href="{{ url('/profile') }}" class="font-semibold hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline-none focus:outline-2 focus:rounded-sm focus:outline-red-500 text-white bg-blue-700 px-4 py-2 rounded">Dashboard</a>
-      @else
-        <a href="{{ route('login') }}" class="font-semibold hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline-none focus:outline-2 focus:rounded-sm focus:outline-red-500 text-white bg-blue-700 px-4 py-2 rounded ml-4">Log in</a>
+    @if (Route::has('register'))
+    <a href="{{ route('register') }}" class="font-semibold text-white bg-red-950 hover:bg-orange-400 px-2 py-1 rounded ml-2 text-xs">
+      Register
+    </a>
+    @endif
+    @endauth
 
 
-        @if (Route::has('register'))
-          <a href="{{ route('register') }}" class="font-semibold hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline-none focus:outline-2 focus:rounded-sm focus:outline-red-500 text-white bg-blue-700 px-4 py-2 rounded ml-4">Register</a>
-        @endif
-      @endauth
-    </div>
+  </div>
   @endif
 
   <h2 class="mb-4"></h2>
@@ -41,9 +48,9 @@
 
     <div class="watchlistCarousel">
       @if(isset($movies))
-        @include('layouts.partials.watchlistCarousel')
+      @include('layouts.partials.watchlistCarousel')
       @else
-        <p>No movies in your watchlist</p>
+      <p>No movies in your watchlist</p>
       @endif
 
     </div>
