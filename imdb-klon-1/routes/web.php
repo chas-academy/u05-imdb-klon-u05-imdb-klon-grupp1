@@ -9,6 +9,7 @@ use App\Http\Controllers\TestWebController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WatchlistController;
 
+
 Route::middleware(['guest'])->group(function () {
     Route::get('/', function () {
         return view('welcome');
@@ -73,7 +74,7 @@ Route::middleware('auth')->group(function () {
 });
 
 // Dashboard Routes
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'auth:admin'])->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard.index');
     Route::get('/dashboard/movies/create', [AdminController::class, 'create'])->name('dashboard.movies.create');
     Route::post('/dashboard/movies', [AdminController::class, 'store'])->name('dashboard.movies.store');

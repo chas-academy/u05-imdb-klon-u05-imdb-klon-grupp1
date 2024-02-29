@@ -9,10 +9,12 @@
 <x-app-layout>
   @if (Route::has('login'))
     <div class="sm:fixed sm:top-8 sm:right-4 p-6 text-right z-10">
+
       @auth
         <a href="{{ url('/profile') }}" class="font-semibold hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline-none focus:outline-2 focus:rounded-sm focus:outline-red-500 text-white bg-blue-700 px-4 py-2 rounded">Dashboard</a>
       @else
         <a href="{{ route('login') }}" class="font-semibold hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline-none focus:outline-2 focus:rounded-sm focus:outline-red-500 text-white bg-blue-700 px-4 py-2 rounded ml-4">Log in</a>
+
 
         @if (Route::has('register'))
           <a href="{{ route('register') }}" class="font-semibold hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline-none focus:outline-2 focus:rounded-sm focus:outline-red-500 text-white bg-blue-700 px-4 py-2 rounded ml-4">Register</a>
@@ -43,6 +45,7 @@
       @else
         <p>No movies in your watchlist</p>
       @endif
+
     </div>
   </div>
 
