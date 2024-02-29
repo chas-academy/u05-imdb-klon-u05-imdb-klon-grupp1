@@ -40,6 +40,13 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        //Guard definition for 'admin'
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'users',
+
+        ],
     ],
 
     /*
@@ -111,5 +118,4 @@ return [
     */
 
     'password_timeout' => 10800,
-
 ];
