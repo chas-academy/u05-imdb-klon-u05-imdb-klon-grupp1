@@ -1,10 +1,3 @@
-<?php 
-/**
- * Deleted all the Bootstrap links and replaced the styling on the elements still in the file.
- * Added a 'include' to include the watchlist carousel - not yet added.
- */
-?>
-
 @section('titletab', 'Home')
 <x-app-layout>
   @if (Route::has('login'))
@@ -40,12 +33,16 @@
     </ol>
 
     <div class="watchlistCarousel">
-      @if(isset($movies))
+    @auth
+      @php 
+        $user = Auth::user();
+      @endphp
+      @if($user)
         @include('layouts.partials.watchlistCarousel')
       @else
-        <p>No movies in your watchlist</p>
+        <h3>No movies in your watchlist</h3>
       @endif
-
+    @endauth
     </div>
   </div>
 

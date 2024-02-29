@@ -1,7 +1,3 @@
-#169
-#Created a carousel as a partial
-#Use this partial by `@include('layouts.partials.watchlistCarousel')`
-#Added new logic in the Controller to handle user_id
 @auth
     @php 
     $user = Auth::user();
