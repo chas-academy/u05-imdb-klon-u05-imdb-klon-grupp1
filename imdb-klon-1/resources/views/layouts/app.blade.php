@@ -34,7 +34,7 @@
     <link rel="stylesheet" href="https://bootswatch.com/5/cyborg/bootstrap.min.css">
 </head>
 
-<body class="d-flex flex-column min-vh-100 bg-gradient-to-b from-red-950 to-zinc-950">
+<body class="d-flex flex-column min-vh-100 bg-gradient-to-b from-zinc-950 to-red-950">
     @include('layouts.partials.header')
 
     @if (isset($header))
