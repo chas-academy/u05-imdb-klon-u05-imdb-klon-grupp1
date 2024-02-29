@@ -1,5 +1,6 @@
 @section('titletab', 'Movies ' . $movie->title)
 
+
 <x-app-layout>
     <div class="container card pt-2 p-3">
         <div class="row text-center mt-3 justify-content-center items-center">
@@ -71,9 +72,10 @@
         @auth
         <div class="row mt-3">
             <h3 class="text-2xl">Reviews</h3>
-            <form action="{{ route('reviews.store', $movie->id) }}" method="POST" class="mt-3">
+            <form action="{{ route('reviews.store') }}" method="POST" class="mt-3">
                 @csrf
                 <input type="number" name="rating" class="form-control mt-4 w-20" placeholder="Rating" min="1" max="10" required>
+                <input type="hidden" id="movie_id" name="movie_id" value="{{ $movie->id }}">
                 <label for="comment" class="mt-4">Comment:</label>
                 <textarea name="comment" id="comment" class="form-control mt-2" rows="5" placeholder="Review content" required></textarea>
                 <x-primary-button type="submit" class="mt-3 dark:bg-red-950 hover:bg-orange-500">Post Review</x-primary-button>

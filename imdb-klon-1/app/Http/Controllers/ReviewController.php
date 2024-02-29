@@ -1,10 +1,12 @@
 <?php
 namespace App\Http\Controllers;
 
+
 use App\Models\Movie;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Review;
+
 
 class ReviewController extends Controller
 {
@@ -29,17 +31,23 @@ class ReviewController extends Controller
     public function store(Request $request)
     {  
         $validatedData = $request->validate([
-            'rating' => 'required|numeric', // Rating är obligatoriskt och måste vara numeriskt
-            'comment' => 'required|string', // Kommentar är obligatorisk och måste vara en sträng
+            'rating' => 'required|integer|min:1|max:10',
+            'comment' => 'required|string',
+            'movie_id' => 'required|exists:movies,id',
         ]);
-    
+       
+        $user_id = auth()->id();
+        $movie_id = $request->input('movie_id');
+
+
         $review = new Review();
         $review->rating = $validatedData['rating'];
         $review->comment = $validatedData['comment'];
-        $review->user_id = 1; // omvandla till faktiskt user_id 
-        $review->movie_id = 1; // -- movie_id <- får du via URI för filmen som kommentaren skrivs i
-    
+        $review->user_id = $user_id; // omvandla till faktiskt user_id
+        $review->movie_id = $movie_id; // -- movie_id <- får du via URI för filmen som kommentaren skrivs i
+   
         $review->save();
+
 
         return back();
     }
@@ -62,28 +70,26 @@ class ReviewController extends Controller
      */
     public function update(Request $request, Review $review)
 {
-   //Validate data
    $request->validate([
-    // 'title' => 'required',
     'rating' => 'required|integer|min:1|max:10', //Rating from 1 to 10.
     'comment' => 'required', //Not sure about this one
-    // 'movie_id' => 'required|exists:movies,id',
+ 
 ]);
- //Update review
-//  $review->title = $request->input('title');
-//  $review->movie_id = $request->input('movie_id');
+
+
  $review->rating = $request->input('rating');
  $review->comment = $request->input('comment');
  $review->save();
- //Redirect user to review page
- return redirect()->route('reviews.index', ['review' => $review->id]);
+ 
+ return redirect()->back()->with('success', 'Review updated successfully.');
 }
+
 
 public function destroy(Review $review)
 {
     // Delete the review
     $review->delete();
     // Redirect the user
-    return view('/reviews');
+    return redirect()->back()->with('success', 'Deleted successfully.');
 }
 }
