@@ -1,128 +1,125 @@
-{{-- @section('titletab', '$movie_id') <!-- html tag, name --> --}}
-@section('titletab', 'Movies ' . $movie->title) <!-- html tag, name -->
+@section('titletab', 'Movies ' . $movie->title)
 
 <x-app-layout>
-    <div class="container card pt-2 p-3" >
-        <div class="row text-center mt-3 d-flex justify-content-center align-items-center">
+    <div class="container card pt-2 p-3">
+        <div class="row text-center mt-3 justify-content-center items-center">
             <div class="col-sm">
-                <h1 class="">{{ $movie->title }}</h1>
-                <ul class="list-group list-group-horizontal d-flex justify-content-center align-items-center">
+                <h1 class="text-4xl">{{ $movie->title }}</h1>
+                <ul class="list-group list-group-horizontal flex justify-content-center items-center">
                     <li class="list-group-item text-primary">{{ $movie->release_date }}</li>
-                   
                     <li class="list-group-item text-primary">{{ $movie->duration }}</li>
-                </ul>  
+                </ul>
             </div>
-            <div class="mt-3 col ">
-                <div>
-                    <p>Group2 Rating</p>
+            <div class="mt-3 col">
+                <div class="mb-2">
+                    <p class="text-lg">Group2 Rating</p>
                 </div>
-                <i class="fa-solid fa-star" style="color:#F5C518"></i>
-                <span>{{ $movie->top_rating }}</span>
+                <div class="flex items-center">
+                    <i class="fa-solid fa-star text-yellow-500 text-lg"></i>
+                    <span class="text-lg">{{ $movie->top_rating }}</span>
+                </div>
             </div>
         </div>
         <div class="row text-center mt-3">
-        <div class="col-md d-flex justify-content-center align-items-center">
-    <img class="img-fluid" style="width: 350px" src="{{ $movie->img_path }}" alt="">
-</div>
-
-<div class="col-md mt-3">
-    @php
-        $videoId = substr($movie->trailer_path, strpos($movie->trailer_path, 'v=') + 2);
-    @endphp
-    <iframe width="100%" height="315" src="https://www.youtube.com/embed/{{ $videoId }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
-
-
-
+            <div class="col-md flex justify-content-center items-center">
+                <img class="img-fluid" style="width: 350px" src="{{ $movie->img_path }}" alt="">
+            </div>
+            <div class="col-md mt-3">
+                @php
+                $videoId = substr($movie->trailer_path, strpos($movie->trailer_path, 'v=') + 2);
+                @endphp
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/{{ $videoId }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
         </div>
-
         <div class="row mt-3">
             <div class="col-sm">
-                <ul class="list-group list-group-horizontal d-flex justify-content-center align-items-center">
+                <ul class="list-group list-group-horizontal flex justify-content-center items-center">
                     <li class="list-group-item text-primary">{{ $movie->genre }}</li>
-                </ul> 
-            <div class="mt-4">
-                <p>
-                    {{ $movie->description }}
-                </p>
-            </div> 
-            <hr>
-            <div class="mt-4 d-flex align-items-center">
-              <strong class="me-3">Directors</strong>
-              <ul class="list-group list-group-horizontal">
-        @foreach(['Carlson Young'] as $director)
-            <li class="list-group-item text-primary">{{ $director }}</li>
-        @endforeach
-           </ul> 
-            </div>
-            <hr>
-                       <div class="mt-4 d-flex align-items-center">
-                           <strong class="me-3">Actors</strong>
-                            <ul class="list-group list-group-horizontal">
-        @foreach(['Camila Mendes', 'Archie Renaux', 'Marisa Tomei'] as $actor)
-            <li class="list-group-item text-primary">{{ $actor }}</li>
-        @endforeach
-    </ul> 
-</div>
-
-            </div>
-
-            <div class="col-sm">
-             @auth
-                <x-primary-button class="ms-3 bg-red-950 hover:bg-orange-500">
-                {{ __('Add To Watchlist') }}
-            </x-primary-button>
-            @endauth
-        </div>
-
-    </div>
-
-        <div class="row mt-3">
-            <h3>Reviews</h3>
-            @auth           
-            <form action="{{ route('movies.reviews.store', $movie->id) }}" method="POST">
-                @csrf
-                <input type="text" name="title" class="form-control" style="width: 200px" placeholder="Review heading">
-                <input type="number" name="rating" class="form-control mt-4" style="width: 70px" placeholder="Rating">
-                <textarea type="text" name="content" class="form-control mt-4" rows="10" placeholder="Review content"></textarea>
-                <button type="submit" class="btn btn-primary mt-3">Post Review</button>
-            </form> 
-            @endauth
-        </div>
-
-        @if (count($movie->reviews))
-            @foreach ($movie->reviews as $review)
-            <div class="card mt-3">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-11">          
-                            <h5 class="card-title text-primary">{{ $review->title }}</h5>                         
-                            <p class="float-left"> {{ $review->user->username }} | <strong> {{ $review-> top_rating }} <i class="fa fa-star" style="color: yellow"></i> </strong> </i></p>                         
-                            <div class="clearfix"></div>
-                            <p>{{ $review->comment }}</p>
-                        </div>
-
-                        @auth                            
-                        <div class="col-md-1 d-flex align-items-center">
-                                <form action="{{ route('reviews.destroy', $review->id) }}" method="POST">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" class="btn btn-danger">
-                                    <i class="far fa-trash-alt"></i>
-                                    </button>
-                                </form>
-                                </div>
-                        </div>
-                        @endauth
-
-                    </div>
+                </ul>
+                <div class="mt-4">
+                    <p>
+                        {{ $movie->description }}
+                    </p>
                 </div>
-            </div> 
-            @endforeach
-            @else
-            <h6 class="mt-4">No reviews in this movie!</h6> 
+                <hr class="my-4">
+                <div class="mt-4 flex items-center">
+                    <strong class="me-3">Directors</strong>
+                    <ul class="list-group list-group-horizontal">
+                        @foreach(['Carlson Young'] as $director)
+                        <li class="list-group-item text-primary">{{ $director }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                <hr class="my-4">
+                <div class="mt-4 flex items-center">
+                    <strong class="me-3">Actors</strong>
+                    <ul class="list-group list-group-horizontal">
+                        @foreach(['Camila Mendes', 'Archie Renaux', 'Marisa Tomei'] as $actor)
+                        <li class="list-group-item text-primary">{{ $actor }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm">
+                @auth
+                <x-primary-button class="ms-3 bg-red-950 hover:bg-orange-500">
+                    {{ __('Add To Watchlist') }}
+                </x-primary-button>
+                @endauth
+            </div>
+        </div>
+        @auth
+        <div class="row mt-3">
+            <h3 class="text-2xl">Reviews</h3>
+            <form action="{{ route('reviews.store', $movie->id) }}" method="POST" class="mt-3">
+                @csrf
+                <input type="number" name="rating" class="form-control mt-4 w-20" placeholder="Rating" min="1" max="10" required>
+                <label for="comment" class="mt-4">Comment:</label>
+                <textarea name="comment" id="comment" class="form-control mt-2" rows="5" placeholder="Review content" required></textarea>
+                <x-primary-button type="submit" class="mt-3 dark:bg-red-950 hover:bg-orange-500">Post Review</x-primary-button>
+            </form>
+        </div>
+        @endauth
+        @if (count($movie->reviews))
+        @foreach ($movie->reviews->sortByDesc('created_at') as $review)
+        <div class="card mt-3">
+            <div class="card-body">
+                <div class="flex flex-col">
+                    <div class="mb-3">
+                        <h5 class="card-title text-primary">{{ $review->title }}</h5>
+                        <p>{{ $review->user->username }} | <strong>{{ $review->rating }} <i class="fa fa-star text-yellow-500"></i></strong></p>
+                    </div>
+                    <div class="mb-3">
+                        <p>{{ $review->comment }}</p>
+                    </div>
+                    @auth
+                    <div class="flex items-end justify-between">
+                        <form action="{{ route('reviews.update', $review->id) }}" method="POST" class="me-3 w-1/2">
+                            @csrf
+                            @method('PUT')
+                            <label for="rating">Rating:</label>
+                            <input type="number" name="rating" id="rating" min="1" max="10" value="{{ $review->rating }}" class="form-control w-20">
+                            <label for="comment" class="mt-2">Comment:</label>
+                            <textarea name="comment" id="comment" class="form-control mt-2">{{ $review->comment }}</textarea>
+                            <x-primary-button type="submit" class="mt-3 dark:bg-red-950 hover:bg-orange-500">
+                                {{ __('Update Review') }}
+                            </x-primary-button>
+                        </form>
+                        <form action="{{ route('reviews.destroy', $review->id) }}" method="POST" class="w-1/2">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn btn-danger">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
+                        </form>
+                    </div>
+                    @endauth
+                </div>
+            </div>
+        </div>
+        @endforeach
+        @else
+        <h6 class="mt-4">No reviews in this movie!</h6>
         @endif
     </div>
-    </x-app-layout>
-
-
+</x-app-layout>
