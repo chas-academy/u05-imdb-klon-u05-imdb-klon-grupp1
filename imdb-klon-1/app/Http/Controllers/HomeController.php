@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Movie;
 class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function welcome()
     {
-        //
+        $movies = Movie::all();
+        return view('welcome', compact('movies'));
     }
 
     /**
@@ -30,13 +31,14 @@ class HomeController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+   
+    public function showMovie($id)
     {
-        //
+        $movie = Movie::find($id);
+        return view('movies.show', compact('movie'));
     }
+
+    
 
     /**
      * Show the form for editing the specified resource.

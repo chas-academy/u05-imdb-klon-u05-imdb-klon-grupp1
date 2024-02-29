@@ -11,6 +11,9 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\TestWebController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WatchlistController;
+use App\Http\Controllers\HomeController;
+
+
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/', function () {
@@ -18,11 +21,21 @@ Route::middleware(['guest'])->group(function () {
     });
 });
 
+
+
+
+
 // Authenticated Routes
 Route::middleware('auth')->group(function () {
 
     // TestController
     Route::get('/tests', [TestWebController::class, 'index']);
+    Route::get('/', 'HomeController@welcome');
+    Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
+    Route::get('/welcome/{id}', [HomeController::class, 'welcome'])->name('welcome');
+
+    Route::get('/movies/{id}', [HomeController::class, 'showMovie'])->name('showMovie');
+
 
     // Routes for Watchlist
     Route::middleware(['auth'])->group(function () {
@@ -36,14 +49,26 @@ Route::middleware('auth')->group(function () {
     // Movies Routes
     Route::get('/movies', [MovieController::class, 'index'])->name('movies.index')->withoutMiddleware(['auth']);
     Route::get('/movies/create', [MovieController::class, 'create'])->name('movies.create');
+
+    Route::post('/movies', [MovieController::class, 'store'])->name('movies.store');
+    Route::get('/movies/{id}', [MovieController::class, 'show'])->name('movies.show');
+  
+
     /*     Route::post('/movies', [MovieController::class, 'store'])->name('movies.store');
  */
+
     Route::get('/movies/{movie}', [MovieController::class, 'show'])->name('movies.show')->withoutMiddleware(['auth']);
     Route::get('/movies/{movie}/edit', [MovieController::class, 'edit'])->name('movies.edit');
     Route::put('/movies/{movie}', [MovieController::class, 'update'])->name('movies.update');
     Route::delete('/movies/{movie}', [MovieController::class, 'destroy'])->name('movies.destroy');
+   
+   
+
 
     // Reviews Routes
+    
+
+    
     Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index')->withoutMiddleware(['auth']);
     Route::get('/reviews/create', [ReviewController::class, 'create'])->name('reviews.create')->withoutMiddleware(['auth']);
     Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store')->withoutMiddleware(['auth']);
@@ -51,6 +76,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/reviews/{review}/edit', [ReviewController::class, 'edit'])->name('reviews.edit')->withoutMiddleware(['auth']);
     Route::put('/reviews/{review}', [ReviewController::class, 'update'])->name('reviews.update')->withoutMiddleware(['auth']);
     Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy')->withoutMiddleware(['auth']);
+    
 
     // Users Routes
     Route::get('/users', [UserController::class, 'index'])->name('users.index')->withoutMiddleware(['auth']);
