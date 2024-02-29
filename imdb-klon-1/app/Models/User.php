@@ -1,25 +1,26 @@
 <?php
-#115
-#Implement SoftDeletes to handle user CRUD and minimize drawback
+
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\SoftDeletes;
-
-use Illuminate\Foundation\Auth\User as Authenticatable;
-
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Auth\MustVerifyEmail;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-use Laravel\Sanctum\HasApiTokens;
-
-use App\Models\Review;
-
-class User extends Authenticatable
+class User extends Model implements
+    AuthenticatableContract,
+    AuthorizableContract,
+    CanResetPasswordContract
 {
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+    use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -33,6 +34,7 @@ class User extends Authenticatable
         'password',
         'role',
     ];
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -64,5 +66,16 @@ class User extends Authenticatable
     public function reviews(): HasMany
     {
         return $this->hasMany(Review::class);
+    }
+    /**
+     * Check if the user has the given role.
+     *
+     * @param string $role
+     * @return bool
+     */
+
+    public function hasRole($role)
+    {
+        return $this->role === $role;
     }
 }

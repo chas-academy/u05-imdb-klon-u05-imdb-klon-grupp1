@@ -12,12 +12,9 @@ class RouteServiceProvider extends ServiceProvider
 {
     /**
      * The path to your application's "home" route.
-     *
-     * Typically, users are redirected here after authentication.
-     *
      * @var string
      */
-    public const HOME = '/welcome';
+    public const HOME = '/';
     //edited to redirect back to home-emma
 
     /**
@@ -34,7 +31,15 @@ class RouteServiceProvider extends ServiceProvider
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));
 
+            $webMiddleware = ['web'];
+
             Route::middleware('web')
+                ->group(base_path('routes/web.php'));
+            if (request()->is('admin/*')) {
+                $webMiddleware[] = 'admin'; // Add 'admin' guard to middleware for admin routes
+            }
+
+            Route::middleware($webMiddleware)
                 ->group(base_path('routes/web.php'));
         });
     }

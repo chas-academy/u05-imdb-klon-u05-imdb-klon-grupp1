@@ -12,6 +12,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Watchlist extends Model
 {
     use HasFactory;
+    use App\Models\Watchlist;
+    use App\Models\Review;
 
     /**
      * Mass assigned values for testing
