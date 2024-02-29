@@ -1,8 +1,4 @@
 <?php
-#137
-#Added logic to handle user watchlists.
-#Added comments in the code
-#Added a function to sort by genre if needed
 
 namespace App\Http\Controllers;
 
@@ -32,15 +28,6 @@ class WatchlistController extends Controller
         //creating in registratedusercontroller
     }
 
-
-    public function store(Request $request, Movie $movie)
-    {
-        $user = auth()->user();
-        $user->watchlist->movies()->attach($movie->id);
-
-        return redirect()->back()->with('success', 'Movie added to watchlist successfully');
-    }
-
     /**
      * Display the specified resource.
      */
@@ -51,6 +38,15 @@ class WatchlistController extends Controller
 
         return view('watchlist.index', compact('movies'));
     }
+
+    public function store(Request $request, Movie $movie)
+    {
+        $user = auth()->user();
+        $user->watchlist->movies()->attach($movie->id);
+
+        return redirect()->back()->with('success', 'Movie added to watchlist successfully');
+    }
+
 
     /**
      * Show the form for editing the specified resource.
