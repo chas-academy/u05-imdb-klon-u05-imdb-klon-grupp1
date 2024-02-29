@@ -17,19 +17,19 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $this->authorize('isAdmin');
-
+        // Authorize that the current user is an admin. If not, this might throw an exception or handle it based on your authorization logic.
+        // $this->authorize('isAdmin');
+    
         // Display all movies from the Movie model
         $movies = Movie::all();
-
+    
         // Display all users from the User model
         $users = User::all();
-
+    
         // Return the 'dashboard' view with the retrieved data
         return view('admin.index', compact('movies', 'users'));
     }
-
-
+      
 
 
     /**
@@ -105,6 +105,7 @@ class AdminController extends Controller
 
         return redirect()->route('dashboard.index')->with('Success', 'Description has been updated');
     }
+
 
     public function updateGenre(Request $request, Movie $movie)
     {

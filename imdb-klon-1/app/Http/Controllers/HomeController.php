@@ -1,11 +1,19 @@
 <?php
-
+#169 
+#Added the 'welcome' method but never used it.
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+
+    public function welcome () {
+        $user = auth()->user();
+        $watchlist = $user ? $user->watchlist : null;
+
+        return view('welcome', compact('watchlist'));
+    }
     /**
      * Display a listing of the resource.
      */
