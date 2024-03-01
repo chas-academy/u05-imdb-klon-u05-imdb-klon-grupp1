@@ -62,12 +62,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy')->withoutMiddleware(['auth']);
 
     // Genre Routes
+    
+    // Genre Routes
     Route::get('/genres', [GenreController::class, 'genres.index']);
     Route::get('/genres/{id}', [GenreController::class, 'genres.show']);
     Route::get('/genres/{id}/edit', [GenreController::class, 'genres.edit']);
     Route::put('/genres/{id}', [GenreController::class, 'genres.update']);
     Route::delete('/genres/{id}', [GenreController::class, 'genres.destroy']);
 
+    
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
