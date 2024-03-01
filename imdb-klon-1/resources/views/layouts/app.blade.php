@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <?php 
 /**
- * Removed all the bootstrap styling i could and the implementation style-sheets
  * 
  */ 
 ?>

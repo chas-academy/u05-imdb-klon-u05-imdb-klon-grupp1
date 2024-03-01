@@ -44,6 +44,10 @@
       @endif
     @endauth
     </div>
+
+    <div class="genreCarousel">
+      @include('layouts.partials.genreCarousel')
+    </div>
   </div>
 
   <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
