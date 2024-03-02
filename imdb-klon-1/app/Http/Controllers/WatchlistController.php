@@ -28,7 +28,7 @@ class WatchlistController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the watchlist on the front page if logged in
      */
     public function show(int $userId)
     {

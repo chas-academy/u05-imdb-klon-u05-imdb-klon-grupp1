@@ -45,10 +45,6 @@ class MovieController extends Controller
         return view('movies.show', compact('movie'));
     }
 
-    public function showFromWatchlist($id)
-    {
-        // Implement your logic for displaying a movie from the watchlist
-    }
 
     /**
      * Show the form for editing the specified resource.

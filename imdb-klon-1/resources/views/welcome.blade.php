@@ -33,21 +33,26 @@
     </ol>
 
     <div class="watchlistCarousel">
-    @auth
-      @php 
-        $user = Auth::user();
-      @endphp
-      @if($user)
-        @include('layouts.partials.watchlistCarousel')
-      @else
-        <h3>No movies in your watchlist</h3>
-      @endif
-    @endauth
+      @auth
+        @php 
+          $user = Auth::user();
+        @endphp
+        @if($user)
+          @include('layouts.partials.watchlistCarousel')
+        @else
+          <h3>No movies in your watchlist</h3>
+        @endif
+      @endauth
     </div>
 
-    <div class="genreCarousel">
-      @include('layouts.partials.genreCarousel')
-    </div>
+  </div>
+
+  <div class="genreCarousel">
+    @include('layouts.partials.genreCarousel')
+  </div>
+
+  <div class="allMovies">
+   @include('layouts.partials.allMovies')
   </div>
 
   <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>

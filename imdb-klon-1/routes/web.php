@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GenreController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
@@ -34,8 +35,7 @@ Route::middleware('auth')->group(function () {
     // Movies Routes
     Route::get('/movies', [MovieController::class, 'index'])->name('movies.index')->withoutMiddleware(['auth']);
     Route::get('/movies/create', [MovieController::class, 'create'])->name('movies.create');
-    /*     Route::post('/movies', [MovieController::class, 'store'])->name('movies.store');
- */
+    Route::get('/movies', [MovieController::class, 'showMoviesOnFrontpage'])->name('movies.frontpage')->withoutMiddleware(['auth']);
     Route::get('/movies/{movie}', [MovieController::class, 'show'])->name('movies.show')->withoutMiddleware(['auth']);
     Route::get('/movies/{movie}/edit', [MovieController::class, 'edit'])->name('movies.edit');
     Route::put('/movies/{movie}', [MovieController::class, 'update'])->name('movies.update');
