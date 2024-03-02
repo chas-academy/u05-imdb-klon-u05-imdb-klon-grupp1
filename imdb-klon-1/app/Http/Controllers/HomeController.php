@@ -1,19 +1,14 @@
 <?php
-#169 
-#Added the 'welcome' method but never used it.
+#188
+#Removed the welcome method as it was never used
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Movie;
 
 class HomeController extends Controller
 {
-
-    public function welcome () {
-        $user = auth()->user();
-        $watchlist = $user ? $user->watchlist : null;
-
-        return view('welcome', compact('watchlist'));
-    }
     /**
      * Display a listing of the resource.
      */
