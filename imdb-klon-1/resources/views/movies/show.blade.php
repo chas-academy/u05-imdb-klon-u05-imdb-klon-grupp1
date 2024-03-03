@@ -3,28 +3,9 @@
 
 <x-app-layout>
     <div class="container card pt-2 p-3">
-        <div class="row text-center mt-3 justify-content-center items-center">
-            <div class="col-sm">
-                <h1 class="text-4xl">{{ $movie->title }}</h1>
-                <ul class="list-group list-group-horizontal flex justify-content-center items-center">
-                    <li class="list-group-item text-primary">{{ $movie->release_date }}</li>
-                    <li class="list-group-item text-primary">{{ $movie->duration }}</li>
-                </ul>
-            </div>
-            <div class="mt-3 col">
-                <div class="mb-2">
-                    <p class="text-lg">Group2 Rating</p>
-                </div>
-                <div class="flex items-center">
-                    <i class="fa-solid fa-star text-yellow-500 text-lg"></i>
-                    <span class="text-lg">{{ $movie->top_rating }}</span>
-                </div>
-            </div>
-        </div>
         <div class="row text-center mt-3">
-            <div class="col-md flex justify-content-center items-center">
-                <img class="img-fluid" style="width: 350px" src="{{ $movie->img_path }}" alt="">
-            </div>
+            <h1 class="text-4xl">{{ $movie->title }}</h1>
+
             <div class="col-md mt-3">
                 @php
                 $videoId = substr($movie->trailer_path, strpos($movie->trailer_path, 'v=') + 2);
@@ -32,6 +13,20 @@
                 <iframe width="100%" height="315" src="https://www.youtube.com/embed/{{ $videoId }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
+        <div class="row text-center mt-3 justify-content-center items-center">
+            <div class="col-md flex justify-content-center items-center">
+                <img class="img-fluid" style="width: 350px" src="{{ $movie->img_path }}" alt="">
+            </div>
+            <div class="flex items-center justify-start">
+                <i class="fa-solid fa-star text-yellow-500 text-lg"></i>
+                <span class="text-lg">{{ $movie->top_rating }}</span>
+            </div>
+            <div class="flex items-start justify-start space-x-2">
+                <span class="text-lg">{{ $movie->release_date }}</span>
+                <span class="text-lg">{{ $movie->duration }}</span>
+            </div>
+        </div>
+
         <div class="row mt-3">
             <div class="col-sm">
                 <ul class="list-group list-group-horizontal flex justify-content-center items-center">
@@ -43,7 +38,7 @@
                     </p>
                 </div>
                 <hr class="my-4">
-                <div class="mt-4 flex items-center">
+                <!--   <div class="mt-4 flex items-center">
                     <strong class="me-3">Directors</strong>
                     <ul class="list-group list-group-horizontal">
                         @foreach(['Carlson Young'] as $director)
@@ -59,7 +54,7 @@
                         <li class="list-group-item text-primary">{{ $actor }}</li>
                         @endforeach
                     </ul>
-                </div>
+                </div> -->
             </div>
             <div class="col-sm">
                 @auth
