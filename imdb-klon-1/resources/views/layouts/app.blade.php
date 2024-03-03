@@ -27,8 +27,32 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/b21a636a7a.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+
+    <!--   <style>
+    .slideshow-container {
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+    }
+
+    .mySlides {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+</style> -->
+
 
 </head>
 
