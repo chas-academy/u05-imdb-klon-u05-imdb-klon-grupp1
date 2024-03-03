@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<?php 
+<?php
 /**
  * 
- */ 
+ */
 ?>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -26,26 +26,23 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/b21a636a7a.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
 
 </head>
 
 <body class="d-flex flex-column min-vh-100 bg-gradient-to-b from-zinc-950 to-red-950">
-    @include('layouts.partials.header')
 
-    @if (isset($header))
-    <header class="bg-white dark:bg-gray-800 shadow">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            {{ $header }}
-        </div>
-    </header>
-    @endif
-    
+
     <main class="flex-grow flex flex-col items-center justify-center relative">
-        <a href="{{ url()->previous() }}" class="absolute top-0 left-0 text-white no-underline hover:text-gray-300 inline-flex items-center bg-opacity-40 bg-red-400 bg-opacity-10 p-2 rounded-md border border-white border-opacity-50 mb-4 ml-4 mt-4">
-            <i class="fas fa-arrow-left mr-2"></i>
-            <span>Go Back</span>
+
+        <!--go back btn-->
+        <a href="{{ route('navigate.back') }}" class="absolute top-0 left-0 text-white no-underline hover:text-amber-500 inline-flex items-center bg-opacity-10 p-1 mb-2 ml-2 mt-2">
+            <i class="fas fa-arrow-left text-xl mr-1"></i>
+            <span class="text-xs">Go Back</span>
         </a>
         <div class="flex items-center mb-4">
             <div class="text-4xl font-bold text-amber-300 dark:text-white">
