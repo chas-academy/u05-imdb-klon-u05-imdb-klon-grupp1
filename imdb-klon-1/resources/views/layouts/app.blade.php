@@ -48,8 +48,8 @@
             <div class="text-4xl font-bold text-amber-300 dark:text-white">
                 ReelCorn
             </div>
-            <a href="/" class="ml-2 mr-2">
-                <x-application-logo class="w-10 h-10 fill-current text-red-700" />
+            <a href="/" class="ml-2 mr-2 mt-2">
+                <x-application-logo class="w-10 h-10 fill-current" />
             </a>
             <div class="text-4xl font-bold text-amber-500 dark:text-white">
                 DataBase

@@ -22,19 +22,19 @@
             <div class="text-4xl font-bold text-amber-300 dark:text-white">
                 ReelCorn
             </div>
-            <a href="/" class="ml-2 mr-2"> <!-- Adjust the ml and mr values as needed -->
-                <x-application-logo class="w-10 h-10 fill-current text-red-700" />
+            <a href="/" class="ml-2 mr-2 mt-2">
+                <x-application-logo class="w-10 h-10 fill-current" />
             </a>
+
             <div class="text-4xl font-bold text-amber-500 dark:text-white">
                 DataBase
             </div>
-        </div>
 
-        <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-gradient-to-b from-amber-500 to-amber-400 shadow-md overflow-hidden sm:rounded-lg">
-            {{ $slot }}
-        </div>
+            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-gradient-to-b from-amber-500 to-amber-400 shadow-md overflow-hidden sm:rounded-lg">
+                {{ $slot }}
+            </div>
 
-    </div>
+        </div>
 </body>
 
 </html>
