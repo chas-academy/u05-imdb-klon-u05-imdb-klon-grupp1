@@ -28,8 +28,6 @@
 
 - As an admin, I want to have the ability to delete users.
 
-Certainly! Here's a sample README explaining the issues faced during the development of your Laravel IMDb project, why they couldn't be resolved before the deadline, how you attempted to address them, and the lessons learned:
-
 ---
 
 ## Project Status
