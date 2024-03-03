@@ -41,7 +41,6 @@ class Movie extends Model
         return $watchlistStatus;
     }
     
-    //TODO Add comments //Dennis
     public function updateTopRating($movie)
     {
         $data_rating = $movie->reviews()->avg('rating');
@@ -61,7 +60,7 @@ class Movie extends Model
      */
     public function genres(): BelongsToMany
     {
-        return $this->belongsToMany(Genre::class, 'genre_movie', 'movie_id', 'genre_id')->withTimestamps();
+        return $this->belongsToMany(Genre::class)->withTimestamps();
     }
 
     /**
@@ -71,6 +70,6 @@ class Movie extends Model
      */
     public function watchlists(): BelongsToMany
     {
-        return $this->belongsToMany(Watchlist::class, 'movie_watchlist', 'movie_id', 'watchlist_id')->withTimestamps();
+        return $this->belongsToMany(Watchlist::class)->withTimestamps();
     }
 }

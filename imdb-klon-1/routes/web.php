@@ -32,14 +32,15 @@ Route::middleware('auth')->group(function () {
         Route::get('/watchlist/sort-by-watched', [WatchlistController::class, 'sortMoviesByWatched'])->name('watchlist.sortByWatched');
     });
 
-    // Movies Routes
-    Route::get('/movies', [MovieController::class, 'index'])->name('movies.index')->withoutMiddleware(['auth']);
-    Route::get('/movies/create', [MovieController::class, 'create'])->name('movies.create');
-    Route::get('/movies', [MovieController::class, 'showMoviesOnFrontpage'])->name('movies.frontpage')->withoutMiddleware(['auth']);
-    Route::get('/movies/{movie}', [MovieController::class, 'show'])->name('movies.show')->withoutMiddleware(['auth']);
-    Route::get('/movies/{movie}/edit', [MovieController::class, 'edit'])->name('movies.edit');
-    Route::put('/movies/{movie}', [MovieController::class, 'update'])->name('movies.update');
-    Route::delete('/movies/{movie}', [MovieController::class, 'destroy'])->name('movies.destroy');
+    /**
+     * All routs that handle movies
+     */
+    Route::get('/movies', [MovieController::class, 'index'])->name('movies.index')->withoutMiddleware(['auth']); // ...Read
+    Route::get('/movies/create', [MovieController::class, 'create'])->name('movies.create'); // ...Create
+    Route::get('/movies/{movie}', [MovieController::class, 'show'])->name('movies.show')->withoutMiddleware(['auth']); // ...Read single movie
+    Route::get('/movies/{movie}/edit', [MovieController::class, 'edit'])->name('movies.edit'); // ...Update
+    Route::put('/movies/{movie}', [MovieController::class, 'update'])->name('movies.update'); // ...Update
+    Route::delete('/movies/{movie}', [MovieController::class, 'destroy'])->name('movies.destroy'); // ...Delete
 
     // Reviews Routes
     Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index')->withoutMiddleware(['auth']);

@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
         } 
 
         View::composer(['welcome', 'movies.index'], function ($view) {
-            $view->with('movies', Movie::all()); // Assuming you have a Movie model
+            $view->with('movies', Movie::all());
         });
     }
 }

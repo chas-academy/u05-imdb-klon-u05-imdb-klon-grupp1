@@ -5,6 +5,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Genre;
 use App\Models\Movie;
 
 class MovieController extends Controller
@@ -12,13 +13,26 @@ class MovieController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        // Check if the user is not authenticated
-        $movies = Movie::paginate(10); // Adjust the number as needed
+    public function index(Request $request)
+{
+    $genreName = $request->input('genre');
 
-        return view('movies.index', ['movies' => $movies]);
-    }
+    // Initially, filter movies by genre if a genre is selected.
+    $moviesQuery = Movie::when($genreName, function ($query, $genreName) {
+        return $query->whereHas('genres', function ($query) use ($genreName) {
+            $query->where('name', '=', $genreName);
+        });
+    });
+
+    $moviesQuery->orderBy('genre');
+
+    $movies = $moviesQuery->paginate(10);
+
+    $genres = Genre::all();
+
+    return view('movies.index', compact('movies', 'genres'));
+}
+
 
     /**
      * Show the form for creating a new resource.
