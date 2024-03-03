@@ -67,7 +67,7 @@
             <iframe class="w-screen" height="500" src="https://www.youtube.com/embed/{{ $videoId }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
 
-        <h3 class="text-2xl mt-4">Reviews</h3>
+        <h3 class="text-2xl mt-4g">Reviews</h3>
         @auth
         <div class="row mt-3">
 
@@ -84,7 +84,7 @@
 
         @if (count($movie->reviews))
         @foreach ($movie->reviews->sortByDesc('created_at') as $review)
-        <div class="card mt-3 bg-black bg-opacity-80 rounded p-4">
+        <div class="card mt-3 bg-white rounded p-4 text-black">
             <div class="card-body">
                 <div class="flex flex-col">
                     <div class="mb-3">
