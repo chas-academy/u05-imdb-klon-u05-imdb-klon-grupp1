@@ -76,24 +76,23 @@ Route::middleware(['auth', \App\Http\Middleware\PageHistoryMiddleware::class])->
 });
 
 // Dashboard Routes
-Route::middleware(['auth', 'auth:admin'])->group(function () {
-    Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard.index');
-    Route::get('/dashboard/movies/create', [AdminController::class, 'create'])->name('dashboard.movies.create');
-    Route::post('/dashboard/movies', [AdminController::class, 'store'])->name('dashboard.movies.store');
-    Route::get('/dashboard/{movie}/edit', [AdminController::class, 'edit'])->name('dashboard.movies.edit');
-    Route::put('/dashboard/{movie}', [AdminController::class, 'update'])->name('dashboard.movies.update');
-    Route::patch('/dashboard/{movie}/updateTitle', [AdminController::class, 'updateTitle'])->name('dashboard.movies.updateTitle');
-    Route::patch('/dashboard/{movie}/updateDescription', [AdminController::class, 'updateDescription'])->name('dashboard.movies.updateDescription');
-    Route::patch('/dashboard/{movie}/updateDate', [AdminController::class, 'updateDate'])->name('dashboard.movies.updateDate');
-    Route::patch('/dashboard/{movie}/updateImg', [AdminController::class, 'updateImg'])->name('dashboard.movies.updateImg');
-    Route::patch('/dashboard/{movie}/updateTrailer', [AdminController::class, 'updateTrailer'])->name('dashboard.movies.updateTrailer');
-    Route::patch('/dashboard/{movie}/updateRating', [AdminController::class, 'updateRating'])->name('dashboard.movies.updateRating');
-    Route::delete('/dashboard/{movie}', [AdminController::class, 'destroy'])->name('dashboard.movies.destroy');
-    Route::put('/dashboard/{user}', [AdminController::class, 'update'])->name('dashboard.users.update');
-    Route::patch('/dashboard/{movie}/updateGenre', [AdminController::class, 'updateGenre'])->name('dashboard.movies.updateGenre');
-    Route::patch('/dashboard/{user}/update-username', [AdminController::class, 'updateUsername'])->name('dashboard.users.updateUsername');
-    Route::patch('/dashboard/{user}/update-role', [AdminController::class, 'updateRole'])->name('dashboard.users.updateRole');
-    Route::delete('/dashboard/users/{user}', [AdminController::class, 'destroy'])->name('dashboard.users.destroy');
+Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard.index')->withoutMiddleware(['auth']);
+Route::get('/dashboard/movies/create', [AdminController::class, 'create'])->name('dashboard.movies.create')->withoutMiddleware(['auth']);
+Route::post('/dashboard/movies', [AdminController::class, 'store'])->name('dashboard.movies.store')->withoutMiddleware(['auth']);
+Route::get('/dashboard/{movie}/edit', [AdminController::class, 'edit'])->name('dashboard.movies.edit')->withoutMiddleware(['auth']);
+Route::put('/dashboard/{movie}', [AdminController::class, 'update'])->name('dashboard.movies.update')->withoutMiddleware(['auth']);
+Route::patch('/dashboard/{movie}/updateTitle', [AdminController::class, 'updateTitle'])->name('dashboard.movies.updateTitle')->withoutMiddleware(['auth']);
+Route::patch('/dashboard/{movie}/updateDescription', [AdminController::class, 'updateDescription'])->name('dashboard.movies.updateDescription')->withoutMiddleware(['auth']);
+Route::patch('/dashboard/{movie}/updateDate', [AdminController::class, 'updateDate'])->name('dashboard.movies.updateDate')->withoutMiddleware(['auth']);
+Route::patch('/dashboard/{movie}/updateImg', [AdminController::class, 'updateImg'])->name('dashboard.movies.updateImg')->withoutMiddleware(['auth']);
+Route::patch('/dashboard/{movie}/updateTrailer', [AdminController::class, 'updateTrailer'])->name('dashboard.movies.updateTrailer')->withoutMiddleware(['auth']);
+Route::patch('/dashboard/{movie}/updateRating', [AdminController::class, 'updateRating'])->name('dashboard.movies.updateRating')->withoutMiddleware(['auth']);
+Route::delete('/dashboard/{movie}', [AdminController::class, 'destroy'])->name('dashboard.movies.destroy')->withoutMiddleware(['auth']);
+Route::put('/dashboard/{user}', [AdminController::class, 'update'])->name('dashboard.users.update')->withoutMiddleware(['auth']);
+Route::patch('/dashboard/{movie}/updateGenre', [AdminController::class, 'updateGenre'])->name('dashboard.movies.updateGenre')->withoutMiddleware(['auth']);
+Route::patch('/dashboard/{user}/update-username', [AdminController::class, 'updateUsername'])->name('dashboard.users.updateUsername')->withoutMiddleware(['auth']);
+Route::patch('/dashboard/{user}/update-role', [AdminController::class, 'updateRole'])->name('dashboard.users.updateRole')->withoutMiddleware(['auth']);
+Route::delete('/dashboard/users/{user}', [AdminController::class, 'destroy'])->name('dashboard.users.destroy')->withoutMiddleware(['auth']);
 
     Route::get('/navigate/back', function () {
         $history = session('page_history', []);
@@ -109,7 +108,6 @@ Route::middleware(['auth', 'auth:admin'])->group(function () {
         // If there is no or only one page in the history, redirect to the home page
         return redirect('/');
     })->name('navigate.back')->withoutMiddleware(['auth']);
-});
 
 // Auth Routes
 require __DIR__ . '/auth.php';
