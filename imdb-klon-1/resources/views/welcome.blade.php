@@ -1,7 +1,7 @@
 @section('titletab', 'Home')
 <x-app-layout>
   @if (Route::has('login'))
-  <div class="sm:fixed sm:top-8 sm:right-4 p-3 text-right z-10">
+  <div class=" sm:top-8 sm:right-4 p-3 text-right z-10">
     @auth
     @if(auth()->user()->isAdmin())
     <a href="{{ url('/dashboard') }}" class="font-semibold text-white bg-red-950 hover:bg-amber-600 px-2 py-1 rounded text-xs">
