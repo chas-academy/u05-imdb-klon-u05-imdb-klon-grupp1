@@ -10,12 +10,15 @@
                 @php
                 $videoId = substr($movie->trailer_path, strpos($movie->trailer_path, 'v=') + 2);
                 @endphp
-                <iframe width="100%" height="315" src="https://www.youtube.com/embed/{{ $videoId }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="100%" height="500" src="https://www.youtube.com/embed/{{ $videoId }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
         <div class="row text-center mt-3 justify-content-center items-center">
             <div class="col-md flex justify-content-center items-center">
-                <img class="img-fluid" style="width: 350px" src="{{ $movie->img_path }}" alt="">
+                <img class="img-fluid" style="width: 200px" src="{{ $movie->img_path }}" alt="">
+            </div>
+            <div class="flex items-center justify-start">
+                <h2 class="text-4xl">{{ $movie->title }}</h2>
             </div>
             <div class="flex items-center justify-start">
                 <i class="fa-solid fa-star text-yellow-500 text-lg"></i>
