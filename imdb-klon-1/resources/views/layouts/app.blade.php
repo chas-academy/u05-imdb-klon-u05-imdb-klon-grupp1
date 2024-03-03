@@ -34,7 +34,7 @@
 
 </head>
 
-<body class="d-flex flex-column min-vh-100 bg-gradient-to-b from-zinc-950 to-red-950">
+<body class="d-flex flex-column min-vh-100 bg-gradient-to-b from-zinc-950 to-red-950 text-white">
 
 
     <main class="flex-grow flex flex-col items-center justify-center relative">
