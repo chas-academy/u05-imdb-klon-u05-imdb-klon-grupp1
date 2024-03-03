@@ -34,7 +34,7 @@
 
 </head>
 
-<body class="d-flex flex-column min-vh-100 bg-gradient-to-b from-zinc-950 to-red-950">
+<body class="d-flex flex-column min-vh-100 bg-gradient-to-b from-zinc-950 to-red-950 text-white">
 
 
     <main class="flex-grow flex flex-col items-center justify-center relative">
@@ -48,8 +48,8 @@
             <div class="text-4xl font-bold text-amber-300 dark:text-white">
                 ReelCorn
             </div>
-            <a href="/" class="ml-2 mr-2">
-                <x-application-logo class="w-10 h-10 fill-current text-red-700" />
+            <a href="/" class="ml-2 mr-2 mt-2">
+                <x-application-logo class="w-10 h-10 fill-current" />
             </a>
             <div class="text-4xl font-bold text-amber-500 dark:text-white">
                 DataBase

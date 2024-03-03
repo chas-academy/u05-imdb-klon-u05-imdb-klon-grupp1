@@ -3,47 +3,39 @@
 
 <x-app-layout>
     <div class="container card pt-2 p-3">
-        <div class="row text-center mt-3 justify-content-center items-center">
-            <div class="col-sm">
-                <h1 class="text-4xl">{{ $movie->title }}</h1>
-                <ul class="list-group list-group-horizontal flex justify-content-center items-center">
-                    <li class="list-group-item text-primary">{{ $movie->release_date }}</li>
-                    <li class="list-group-item text-primary">{{ $movie->duration }}</li>
-                </ul>
-            </div>
-            <div class="mt-3 col">
-                <div class="mb-2">
-                    <p class="text-lg">Group2 Rating</p>
-                </div>
-                <div class="flex items-center">
+        <div class="row mt-3 flex justify-content-center items-center">
+
+            <img class="img-fluid" style="width: 200px" src="{{ $movie->img_path }}" alt="">
+
+
+
+
+            <div class="flex flex-col items-start justify-start ml-4">
+
+                <div class="flex items-center justify-start">
                     <i class="fa-solid fa-star text-yellow-500 text-lg"></i>
                     <span class="text-lg">{{ $movie->top_rating }}</span>
                 </div>
-            </div>
-        </div>
-        <div class="row text-center mt-3">
-            <div class="col-md flex justify-content-center items-center">
-                <img class="img-fluid" style="width: 350px" src="{{ $movie->img_path }}" alt="">
-            </div>
-            <div class="col-md mt-3">
-                @php
-                $videoId = substr($movie->trailer_path, strpos($movie->trailer_path, 'v=') + 2);
-                @endphp
-                <iframe width="100%" height="315" src="https://www.youtube.com/embed/{{ $videoId }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-        </div>
-        <div class="row mt-3">
-            <div class="col-sm">
-                <ul class="list-group list-group-horizontal flex justify-content-center items-center">
-                    <li class="list-group-item text-primary">{{ $movie->genre }}</li>
-                </ul>
-                <div class="mt-4">
-                    <p>
-                        {{ $movie->description }}
-                    </p>
+                <p class="list-group-item text-primary">{{ $movie->genre }}</p>
+
+
+                <div class="flex items-start justify-start space-x-2">
+                    <span class="text-lg">{{ $movie->release_date }}</span>
+                    <span class="text-lg">{{ $movie->duration }}</span>
                 </div>
-                <hr class="my-4">
-                <div class="mt-4 flex items-center">
+                <h1 class="text-4xl mt-2">{{ $movie->title }}</h1>
+                <p>
+                    {{ $movie->description }}
+                </p>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+
+
+
+            <hr class="my-4">
+            <!--   <div class="mt-4 flex items-center">
                     <strong class="me-3">Directors</strong>
                     <ul class="list-group list-group-horizontal">
                         @foreach(['Carlson Young'] as $director)
@@ -59,19 +51,26 @@
                         <li class="list-group-item text-primary">{{ $actor }}</li>
                         @endforeach
                     </ul>
-                </div>
-            </div>
-            <div class="col-sm">
-                @auth
-                <x-primary-button class="ms-3 bg-red-950 hover:bg-orange-500">
-                    {{ __('Add To Watchlist') }}
-                </x-primary-button>
-                @endauth
-            </div>
+                </div> -->
         </div>
+        <div class="col-sm">
+            @auth
+            <x-primary-button class="ms-3 bg-red-950 hover:bg-orange-500">
+                {{ __('Add To Watchlist') }}
+            </x-primary-button>
+            @endauth
+        </div>
+        <div class="col-md mt-3 flex items-center justify-center">
+            @php
+            $videoId = substr($movie->trailer_path, strpos($movie->trailer_path, 'v=') + 2);
+            @endphp
+            <iframe class="w-screen" height="500" src="https://www.youtube.com/embed/{{ $videoId }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <h3 class="text-2xl mt-4">Reviews</h3>
         @auth
         <div class="row mt-3">
-            <h3 class="text-2xl">Reviews</h3>
+
             <form action="{{ route('reviews.store') }}" method="POST" class="mt-3">
                 @csrf
                 <input type="number" name="rating" class="form-control mt-4 w-20" placeholder="Rating" min="1" max="10" required>
@@ -82,9 +81,10 @@
             </form>
         </div>
         @endauth
+
         @if (count($movie->reviews))
         @foreach ($movie->reviews->sortByDesc('created_at') as $review)
-        <div class="card mt-3">
+        <div class="card mt-3 bg-black bg-opacity-80 rounded p-4">
             <div class="card-body">
                 <div class="flex flex-col">
                     <div class="mb-3">
@@ -123,5 +123,6 @@
         @else
         <h6 class="mt-4">No reviews in this movie!</h6>
         @endif
+    </div>
     </div>
 </x-app-layout>

@@ -1,4 +1,3 @@
-
 @section('titletab', 'Home')
 <x-app-layout>
   @if (Route::has('login'))
@@ -35,12 +34,12 @@
   <div class="slideshow-container max-w-full mx-auto relative">
     <!-- Image 1 -->
     <a href="{{ route('movies.show', ['movie' => 1]) }}">
-      <img src="https://m.media-amazon.com/images/S/pv-target-images/af5f3bfd605bcf60c762eee7cc2f94d6bd3c1514573440c4cd28126c662e3820._UR1920,1080_BR-6_SX720_FMpng_.png" alt="Upgraded" class="mySlides fade">
+      <img src="https://m.media-amazon.com/images/S/pv-target-images/7fb8d653e0f83411437d9ba7e25ec1aa2ca6f21873f6af70274297eb94e0f47f._UR1920,1080_BR-6_SX720_FMjpg_.jpg" alt="The Voyeurs" class="mySlides fade">
     </a>
 
     <!-- Image 2 -->
     <a href="{{ route('movies.show', ['movie' => 2]) }}">
-      <img src="https://m.media-amazon.com/images/S/pv-target-images/c9a768bbc37d687ae0a7b654823149a383f881c9b2f11ef26a653f5932e5902f._UR1920,1080_BR-6_SX720_FMjpg_.jpg" alt="Before I Fall" class="mySlides fade">
+      <img src="https://m.media-amazon.com/images/S/pv-target-images/81cd0205ad75a9884996b20fa2b82701cd532144ec23b688973f0998344080af._UR1920,1080_SX720_FMjpg_.jpg" alt="Goodnight Mommy" class="mySlides fade">
     </a>
 
     <!-- Image 3 -->
@@ -65,30 +64,49 @@
   <h3 class="h1-home" style="margin-left: 10px;">
     <a href="{{ route('movies.index') }}" class="inline-flex items-center px-8 py-4 bg-amber-500 hover:bg-amber-600 text-white text-base font-medium rounded-md mt-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">All Movies</a>
   </h3>
- 
 
-    <div class="watchlistCarousel">
-      @auth
-        @php 
-          $user = Auth::user();
-        @endphp
-        @if($user)
-          @include('layouts.partials.watchlistCarousel')
-        @else
-          <h3>No movies in your watchlist</h3>
-        @endif
-      @endauth
-    </div>
 
+  <div class="watchlistCarousel">
+    @auth
+    @php
+    $user = Auth::user();
+    @endphp
+    @if($user)
+    @include('layouts.partials.watchlistCarousel')
+    @else
+    <h3>No movies in your watchlist</h3>
+    @endif
+    @endauth
   </div>
+  <h2> Newly Released </h2>
+  <div class="overflow-hidden">
+    <div class="flex space-x-4 overflow-x-auto" style="width: calc(100vw + 1px);">
+      @foreach ($movies->sortByDesc('release_date')->take(8) as $movie)
+      <div class="flex-none w-64 bg-black bg-opacity-80 p-4 rounded-md">
+        <a href="{{ route('movies.show', $movie) }}" class="text-decoration-none">
+          <img src="{{ asset($movie->img_path) }}" class="w-full h-auto mb-4" />
+          <h2 class="text-white text-xl font-semibold mb-2">{{ $movie->title }}</h2>
+          <p class="text-gray-500">{{ $movie->release_date }}</p>
+          <div class="mt-4 flex justify-between">
+            <p class="text-gray-300 text-sm">
+              PG-13 | {{ $movie->top_rating }} <i class="text-warning fa fa-star"></i> {{ $movie->genre }}
+            </p>
+          </div>
+        </a>
+      </div>
+      @endforeach
+    </div>
+  </div>
+
+
 
   <div class="genreCarousel">
     @include('layouts.partials.genreCarousel')
   </div>
 
-  <div class="allMovies">
-   @include('layouts.partials.allMovies')
-  </div>
+  <!--  <div class="allMovies">
+    @include('layouts.partials.allMovies')
+  </div> -->
 
 
 
