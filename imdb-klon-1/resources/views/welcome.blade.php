@@ -11,6 +11,12 @@
     <a href="{{ url('/profile') }}" class="font-semibold text-white bg-red-950 hover:bg-orange-600 px-2 py-1 rounded text-xs">
       Profile
     </a>
+    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
+    Logout
+    </a>    
+    <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
+        {{ csrf_field() }}
+    </form>
     @endif
     @else
     <a href="{{ route('login') }}" class="font-semibold text-white bg-red-950 hover:bg-amber-600 px-2 py-1 rounded ml-2 text-xs">
@@ -131,6 +137,5 @@
 
   <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
   <script src="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
-  <script type="text/javascript" src="main.js"></script>
 
 </x-app-layout>

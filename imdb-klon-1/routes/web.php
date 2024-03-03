@@ -13,11 +13,8 @@ use App\Http\Controllers\WatchlistController;
 
 
 
-Route::middleware(['guest'])->group(function () {
-    Route::get('/', function () {
-        return view('welcome');
-    });
-});
+
+Route::get('/', function () {return view('welcome');});
 
 // Authenticated Routes
 Route::middleware(['auth', \App\Http\Middleware\PageHistoryMiddleware::class])->group(function () {
