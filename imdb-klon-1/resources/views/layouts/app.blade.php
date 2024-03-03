@@ -33,27 +33,6 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
 
-    <!--   <style>
-    .slideshow-container {
-        max-width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-        position: relative;
-    }
-
-    .mySlides {
-        display: none;
-        opacity: 0;
-        transition: opacity 0.5s ease-in-out;
-    }
-
-    img {
-        width: 100%;
-        height: auto;
-    }
-</style> -->
-
-
 </head>
 
 <body class="d-flex flex-column min-vh-100 bg-gradient-to-b from-zinc-950 to-red-950">
@@ -68,9 +47,11 @@
     @endif -->
 
     <main class="flex-grow flex flex-col items-center justify-center relative">
-        <a href="{{ url()->previous() }}" class="absolute top-0 left-0 text-white no-underline hover:text-orange-400 inline-flex items-center bg-opacity-40 bg-red-400 bg-opacity-10 p-1 rounded-md border border-white border-opacity-50 mb-2 ml-2 mt-2">
-            <i class="fas fa-arrow-left text-xl mr-1"></i> <!-- Adjusted text-xl for smaller icon size -->
-            <span class="text-xs">Go Back</span> <!-- Adjusted text-xs for smaller font size -->
+
+        <!--go back btn-->
+        <a href="{{ route('navigate.back') }}" class="absolute top-0 left-0 text-white no-underline hover:text-orange-400 inline-flex items-center bg-opacity-40 bg-red-400 bg-opacity-10 p-1 rounded-md border border-white border-opacity-50 mb-2 ml-2 mt-2">
+            <i class="fas fa-arrow-left text-xl mr-1"></i>
+            <span class="text-xs">Go Back</span>
         </a>
         <div class="flex items-center mb-4">
             <div class="text-4xl font-bold text-amber-300 dark:text-white">

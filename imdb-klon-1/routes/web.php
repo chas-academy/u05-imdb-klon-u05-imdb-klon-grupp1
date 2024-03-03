@@ -11,6 +11,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\WatchlistController;
 
 
+
 Route::middleware(['guest'])->group(function () {
     Route::get('/', function () {
         return view('welcome');
@@ -18,7 +19,7 @@ Route::middleware(['guest'])->group(function () {
 });
 
 // Authenticated Routes
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', \App\Http\Middleware\PageHistoryMiddleware::class])->group(function () {
 
     // TestController
     Route::get('/tests', [TestWebController::class, 'index']);
@@ -93,6 +94,21 @@ Route::middleware(['auth', 'auth:admin'])->group(function () {
     Route::patch('/dashboard/{user}/update-username', [AdminController::class, 'updateUsername'])->name('dashboard.users.updateUsername');
     Route::patch('/dashboard/{user}/update-role', [AdminController::class, 'updateRole'])->name('dashboard.users.updateRole');
     Route::delete('/dashboard/users/{user}', [AdminController::class, 'destroy'])->name('dashboard.users.destroy');
+
+    Route::get('/navigate/back', function () {
+        $history = session('page_history', []);
+
+        if (count($history) > 1) {
+            array_pop($history); // Remove the current page
+            $previousPage = array_pop($history);
+            session(['page_history' => $history]);
+
+            return redirect($previousPage);
+        }
+
+        // If there is no or only one page in the history, redirect to the home page
+        return redirect('/');
+    })->name('navigate.back')->withoutMiddleware(['auth']);
 });
 
 // Auth Routes
