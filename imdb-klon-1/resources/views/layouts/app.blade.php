@@ -32,18 +32,33 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
 
+    <style>
+        /* Newly Released Section */
+        .overflow-x-auto::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .overflow-x-auto::-webkit-scrollbar-thumb {
+            background-color: #d97706;
+            border-radius: 4px;
+        }
+
+        .overflow-x-auto::-webkit-scrollbar-track {
+            background-color: #00000080;
+        }
+    </style>
 </head>
 
 <body class="d-flex flex-column min-vh-100 bg-gradient-to-b from-zinc-950 to-red-950 text-white">
-
+    <!--go back btn-->
+    <a href="{{ route('navigate.back') }}" class="absolute top-0 left-0 text-white no-underline hover:text-amber-500 inline-flex items-center bg-opacity-10 p-1 mb-2 ml-2 mt-2">
+        <i class="fas fa-arrow-left text-xl mr-1"></i>
+        <span class="text-xs">Go Back</span>
+    </a>
 
     <main class="flex-grow flex flex-col items-center justify-center relative">
 
-        <!--go back btn-->
-        <a href="{{ route('navigate.back') }}" class="absolute top-0 left-0 text-white no-underline hover:text-amber-500 inline-flex items-center bg-opacity-10 p-1 mb-2 ml-2 mt-2">
-            <i class="fas fa-arrow-left text-xl mr-1"></i>
-            <span class="text-xs">Go Back</span>
-        </a>
+
         <div class="flex items-center mb-4">
             <div class="text-4xl font-bold text-amber-300 dark:text-white">
                 ReelCorn

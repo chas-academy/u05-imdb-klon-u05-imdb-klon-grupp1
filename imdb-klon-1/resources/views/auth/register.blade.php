@@ -1,11 +1,11 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}" class="bg-gradient-to-b from-amber-400 to-amber-100 py-8 px-4 rounded-md">
+    <form method="POST" action="{{ route('register') }}" class="bg-gradient-to-b from-amber-400 to-amber-100 py-8 px-4 rounded-md text-black">
         @csrf
 
         <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full bg-stone-50 border-2 border-orange-400 rounded-md py-2 px-4" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+            <x-text-input id="name" class="block mt-1 w-full bg-stone-50 border-2 border-orange-400 rounded-md py-2 px-4 " type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2 text-red-700" />
         </div>
 

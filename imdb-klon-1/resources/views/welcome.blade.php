@@ -1,7 +1,7 @@
 @section('titletab', 'Home')
 <x-app-layout>
   @if (Route::has('login'))
-  <div class="sm:fixed sm:top-8 sm:right-4 p-3 text-right z-10">
+  <div class=" sm:top-8 sm:right-4 p-3 text-right z-10">
     @auth
     @if(auth()->user()->isAdmin())
     <a href="{{ url('/dashboard') }}" class="font-semibold text-white bg-red-950 hover:bg-amber-600 px-2 py-1 rounded text-xs">
@@ -61,8 +61,8 @@
 
 
   <!--all movies btn-->
-  <h3 class="h1-home" style="margin-left: 10px;">
-    <a href="{{ route('movies.index') }}" class="inline-flex items-center px-8 py-4 bg-amber-500 hover:bg-amber-600 text-white text-base font-medium rounded-md mt-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">All Movies</a>
+  <h3 class="h1-home mb-4 mt-4" style="margin-left: 10px; ">
+    <a href="{{ route('movies.index') }}" class="inline-flex items-center px-16 py-8 bg-amber-500 hover:bg-amber-600 text-white text-base font-medium rounded-md mt-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">All Movies</a>
   </h3>
 
 
@@ -78,11 +78,11 @@
     @endif
     @endauth
   </div>
-  <h2> Newly Released </h2>
+  <h2 class="mt-3"> Newly Released </h2>
   <div class="overflow-hidden">
     <div class="flex space-x-4 overflow-x-auto" style="width: calc(100vw + 1px);">
       @foreach ($movies->sortByDesc('release_date')->take(8) as $movie)
-      <div class="flex-none w-64 bg-black bg-opacity-80 p-4 rounded-md">
+      <div class="flex-none w-64 bg-black bg-opacity-80 p-4 rounded-md mt-2">
         <a href="{{ route('movies.show', $movie) }}" class="text-decoration-none">
           <img src="{{ asset($movie->img_path) }}" class="w-full h-auto mb-4" />
           <h2 class="text-white text-xl font-semibold mb-2">{{ $movie->title }}</h2>
