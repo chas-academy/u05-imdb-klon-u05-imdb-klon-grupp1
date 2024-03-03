@@ -1,10 +1,3 @@
-<?php
-
-/**
- * Deleted all the Bootstrap links and replaced the styling on the elements still in the file.
- * Added a 'include' to include the watchlist carousel - not yet added.
- */
-?>
 
 @section('titletab', 'Home')
 <x-app-layout>
@@ -72,14 +65,29 @@
   <h3 class="h1-home" style="margin-left: 10px;">
     <a href="{{ route('movies.index') }}" class="inline-flex items-center px-8 py-4 bg-amber-500 hover:bg-amber-600 text-white text-base font-medium rounded-md mt-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">All Movies</a>
   </h3>
-  <div class="watchlistCarousel">
-    @if(isset($movies))
-    @include('layouts.partials.watchlistCarousel')
-    @else
-    <p>No movies in your watchlist</p>
-    @endif
+ 
+
+    <div class="watchlistCarousel">
+      @auth
+        @php 
+          $user = Auth::user();
+        @endphp
+        @if($user)
+          @include('layouts.partials.watchlistCarousel')
+        @else
+          <h3>No movies in your watchlist</h3>
+        @endif
+      @endauth
+    </div>
 
   </div>
+
+  <div class="genreCarousel">
+    @include('layouts.partials.genreCarousel')
+  </div>
+
+  <div class="allMovies">
+   @include('layouts.partials.allMovies')
   </div>
 
 

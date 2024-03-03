@@ -1,5 +1,5 @@
 <?php
-
+// There is something missing. 'hasRole' does not apply it looks like.
 namespace App\Http\Middleware;
 
 use Closure;

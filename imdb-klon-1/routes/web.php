@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GenreController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
@@ -36,8 +37,7 @@ Route::middleware(['auth', \App\Http\Middleware\PageHistoryMiddleware::class])->
     // Movies Routes
     Route::get('/movies', [MovieController::class, 'index'])->name('movies.index')->withoutMiddleware(['auth']);
     Route::get('/movies/create', [MovieController::class, 'create'])->name('movies.create');
-    /*     Route::post('/movies', [MovieController::class, 'store'])->name('movies.store');
- */
+    Route::get('/movies', [MovieController::class, 'showMoviesOnFrontpage'])->name('movies.frontpage')->withoutMiddleware(['auth']);
     Route::get('/movies/{movie}', [MovieController::class, 'show'])->name('movies.show')->withoutMiddleware(['auth']);
     Route::get('/movies/{movie}/edit', [MovieController::class, 'edit'])->name('movies.edit');
     Route::put('/movies/{movie}', [MovieController::class, 'update'])->name('movies.update');
@@ -64,12 +64,15 @@ Route::middleware(['auth', \App\Http\Middleware\PageHistoryMiddleware::class])->
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy')->withoutMiddleware(['auth']);
 
     // Genre Routes
+    
+    // Genre Routes
     Route::get('/genres', [GenreController::class, 'genres.index']);
     Route::get('/genres/{id}', [GenreController::class, 'genres.show']);
     Route::get('/genres/{id}/edit', [GenreController::class, 'genres.edit']);
     Route::put('/genres/{id}', [GenreController::class, 'genres.update']);
     Route::delete('/genres/{id}', [GenreController::class, 'genres.destroy']);
 
+    
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

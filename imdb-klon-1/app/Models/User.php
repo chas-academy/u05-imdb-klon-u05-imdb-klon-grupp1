@@ -52,8 +52,7 @@ class User extends Model implements
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
+        'email_verified_at' => 'datetime', // I deleted the password hashed, just problems with git commit 
     ];
 
     // One user can have one 'Watchlist'

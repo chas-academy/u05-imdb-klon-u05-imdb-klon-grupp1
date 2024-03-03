@@ -1,6 +1,6 @@
 <?php
 #169
-#Rewrote the logic in the 'show' method to view the watchlist based on the user who is logged in.
+#Removed the logic in the 'show' method to view the watchlist based on the user who is logged in.
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -11,16 +11,14 @@ use App\Models\User;
 
 class WatchlistController extends Controller
 {
+    /**
+     * Display the users watchlist on a single page
+     */
     public function index()
     {
-        //TODO Is this needed? //Dennis
-        // auths user's watchlist
-        $watchlist = Auth::user()->watchlist;
-
-        // Retrieve the movies
-        $watchlistMovies = $watchlist->movies;
-
-        return view('watchlist.index', compact('watchlist'));
+        $watchlist = Auth::user()->watchlist; // ...finds the user 
+        
+        return view('watchlist.index', compact('watchlist')); // ...returns the content in a view
     }
 
 
@@ -30,7 +28,7 @@ class WatchlistController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the watchlist on the front page if logged in
      */
     public function show(int $userId)
     {

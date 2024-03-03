@@ -41,8 +41,7 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        // Attempt to authenticate with both email and role
-        if (!Auth::attempt($this->only('email', 'password') + ['role' => 'admin'], $this->boolean('remember'))) {
+        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) { // I changed this function, just problems with git commit
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([

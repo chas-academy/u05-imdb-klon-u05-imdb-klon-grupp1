@@ -1,4 +1,6 @@
 <?php
+#178
+#Removed comments and debugging code
 
 namespace App\Http\Controllers;
 
@@ -12,17 +14,8 @@ class MovieController extends Controller
      */
     public function index()
     {
-        $startTime = microtime(true);
-
         // Check if the user is not authenticated
         $movies = Movie::paginate(10); // Adjust the number as needed
-
-        $endTime = microtime(true);
-
-        $elapsedTime = $endTime - $startTime;
-
-        // Output the elapsed time (for testing purposes)
-        echo "Elapsed Time: " . $elapsedTime . " seconds";
 
         return view('movies.index', ['movies' => $movies]);
     }
@@ -52,10 +45,6 @@ class MovieController extends Controller
         return view('movies.show', compact('movie'));
     }
 
-    public function showFromWatchlist($id)
-    {
-        // Implement your logic for displaying a movie from the watchlist
-    }
 
     /**
      * Show the form for editing the specified resource.
