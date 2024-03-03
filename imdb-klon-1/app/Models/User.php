@@ -77,4 +77,9 @@ class User extends Model implements
     {
         return $this->role === $role;
     }
+
+    public function isAdmin()
+    {
+        return $this->hasRole("admin");
+    }
 }
