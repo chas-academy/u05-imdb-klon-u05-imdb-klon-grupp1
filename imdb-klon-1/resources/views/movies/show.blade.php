@@ -67,9 +67,10 @@
                 @endauth
             </div>
         </div>
+        <h3 class="text-2xl">Reviews</h3>
         @auth
         <div class="row mt-3">
-            <h3 class="text-2xl">Reviews</h3>
+
             <form action="{{ route('reviews.store') }}" method="POST" class="mt-3">
                 @csrf
                 <input type="number" name="rating" class="form-control mt-4 w-20" placeholder="Rating" min="1" max="10" required>
@@ -80,9 +81,10 @@
             </form>
         </div>
         @endauth
+
         @if (count($movie->reviews))
         @foreach ($movie->reviews->sortByDesc('created_at') as $review)
-        <div class="card mt-3">
+        <div class="card mt-3 bg-black bg-opacity-80 rounded p-4">
             <div class="card-body">
                 <div class="flex flex-col">
                     <div class="mb-3">
