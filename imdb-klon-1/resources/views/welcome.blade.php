@@ -7,11 +7,17 @@
     <a href="{{ url('/dashboard') }}" class="font-semibold text-white bg-red-950 hover:bg-amber-600 px-2 py-1 rounded text-xs">
       Dashboard
     </a>
+    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();" class="font-semibold text-white bg-red-950 hover:bg-amber-600 px-2 py-1 rounded text-xs">
+    Logout
+    </a>    
+    <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
+        {{ csrf_field() }}
+    </form>
     @else
     <a href="{{ url('/profile') }}" class="font-semibold text-white bg-red-950 hover:bg-orange-600 px-2 py-1 rounded text-xs">
       Profile
     </a>
-    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
+    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();" class="font-semibold text-white bg-red-950 hover:bg-amber-600 px-2 py-1 rounded text-xs">
     Logout
     </a>    
     <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
