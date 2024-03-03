@@ -37,7 +37,7 @@ Route::middleware(['auth', \App\Http\Middleware\PageHistoryMiddleware::class])->
     // Movies Routes
     Route::get('/movies', [MovieController::class, 'index'])->name('movies.index')->withoutMiddleware(['auth']);
     Route::get('/movies/create', [MovieController::class, 'create'])->name('movies.create');
-    Route::get('/movies', [MovieController::class, 'showMoviesOnFrontpage'])->name('movies.frontpage')->withoutMiddleware(['auth']);
+    Route::get('/movies/frontpage', [MovieController::class, 'showMoviesOnFrontpage'])->name('movies.frontpage')->withoutMiddleware(['auth']);
     Route::get('/movies/{movie}', [MovieController::class, 'show'])->name('movies.show')->withoutMiddleware(['auth']);
     Route::get('/movies/{movie}/edit', [MovieController::class, 'edit'])->name('movies.edit');
     Route::put('/movies/{movie}', [MovieController::class, 'update'])->name('movies.update');
