@@ -11,24 +11,29 @@
   @if (Route::has('login'))
   <div class="sm:fixed sm:top-8 sm:right-4 p-3 text-right z-10">
     @auth
-    <a href="{{ url('/profile') }}" class="font-semibold text-white bg-red-950 hover:bg-orange-400 px-2 py-1 rounded text-xs">
+    @if(auth()->user()->isAdmin())
+    <a href="{{ url('/dashboard') }}" class="font-semibold text-white bg-red-950 hover:bg-amber-600 px-2 py-1 rounded text-xs">
       Dashboard
     </a>
     @else
-    <a href="{{ route('login') }}" class="font-semibold text-white bg-red-950 hover:bg-orange-400 px-2 py-1 rounded ml-2 text-xs">
+    <a href="{{ url('/profile') }}" class="font-semibold text-white bg-red-950 hover:bg-orange-600 px-2 py-1 rounded text-xs">
+      Profile
+    </a>
+    @endif
+    @else
+    <a href="{{ route('login') }}" class="font-semibold text-white bg-red-950 hover:bg-amber-600 px-2 py-1 rounded ml-2 text-xs">
       Log in
     </a>
 
     @if (Route::has('register'))
-    <a href="{{ route('register') }}" class="font-semibold text-white bg-red-950 hover:bg-orange-400 px-2 py-1 rounded ml-2 text-xs">
+    <a href="{{ route('register') }}" class="font-semibold text-white bg-red-950 hover:bg-amber-600 px-2 py-1 rounded ml-2 text-xs">
       Register
     </a>
     @endif
     @endauth
-
-
   </div>
   @endif
+
 
   <h2 class="mb-4"></h2>
 
@@ -65,7 +70,7 @@
 
   <!--all movies btn-->
   <h3 class="h1-home" style="margin-left: 10px;">
-    <a href="{{ route('movies.index') }}" class="inline-flex items-center px-4 py-2 bg-blue-700 text-white text-base font-medium rounded-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">All Movies</a>
+    <a href="{{ route('movies.index') }}" class="inline-flex items-center px-8 py-4 bg-amber-500 hover:bg-amber-600 text-white text-base font-medium rounded-md mt-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">All Movies</a>
   </h3>
   <div class="watchlistCarousel">
     @if(isset($movies))

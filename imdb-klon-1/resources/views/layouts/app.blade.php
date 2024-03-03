@@ -36,20 +36,12 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100 bg-gradient-to-b from-zinc-950 to-red-950">
-    @include('layouts.partials.header')
 
-    <!-- @if (isset($header))
-    <header class="bg-white dark:bg-gray-800 shadow">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            {{ $header }}
-        </div>
-    </header>
-    @endif -->
 
     <main class="flex-grow flex flex-col items-center justify-center relative">
 
         <!--go back btn-->
-        <a href="{{ route('navigate.back') }}" class="absolute top-0 left-0 text-white no-underline hover:text-orange-400 inline-flex items-center bg-opacity-40 bg-red-400 bg-opacity-10 p-1 rounded-md border border-white border-opacity-50 mb-2 ml-2 mt-2">
+        <a href="{{ route('navigate.back') }}" class="absolute top-0 left-0 text-white no-underline hover:text-amber-500 inline-flex items-center bg-opacity-10 p-1 mb-2 ml-2 mt-2">
             <i class="fas fa-arrow-left text-xl mr-1"></i>
             <span class="text-xs">Go Back</span>
         </a>
