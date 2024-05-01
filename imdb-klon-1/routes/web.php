@@ -68,12 +68,15 @@ Route::middleware(['auth', \App\Http\Middleware\PageHistoryMiddleware::class])->
     Route::get('/genres/{id}/edit', [GenreController::class, 'genres.edit']);
     Route::put('/genres/{id}', [GenreController::class, 'genres.update']);
     Route::delete('/genres/{id}', [GenreController::class, 'genres.destroy']);
-
     
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+// Flyttade ut `profile` routes från middleware då det returnerade un-authorized 403 trotts att min var inloggad.
+// 01/05-2024
+// Dennis
+Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 // Dashboard Routes
 Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard.index')->withoutMiddleware(['auth']);

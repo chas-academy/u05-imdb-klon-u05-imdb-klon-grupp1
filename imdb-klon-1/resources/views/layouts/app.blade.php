@@ -56,7 +56,7 @@
         <span class="text-xs">Go Back</span>
     </a>
 
-    <main class="flex-grow flex flex-col items-center justify-center relative">
+    <main class="flex-grow flex flex-col items-center justify-center relative bg-gray-400">
 
 
         <div class="flex items-center mb-4">
