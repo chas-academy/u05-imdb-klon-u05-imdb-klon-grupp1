@@ -53,13 +53,16 @@
                     </ul>
                 </div> -->
         </div>
+        <form action="{{ route('watchlist.storeFromMovie', ['movie' => $movie->id]) }}" method="POST">
+        @csrf
         <div class="col-sm">
-            @auth
-            <x-primary-button class="ms-3 bg-red-950 hover:bg-orange-500">
+            <x-primary-button type="submit" class="ms-3 bg-red-950 hover:bg-orange-500">
                 {{ __('Add To Watchlist') }}
             </x-primary-button>
-            @endauth
         </div>
+        </form>
+
+
         <div class="col-md mt-3 flex items-center justify-center">
             @php
             $videoId = substr($movie->trailer_path, strpos($movie->trailer_path, 'v=') + 2);
